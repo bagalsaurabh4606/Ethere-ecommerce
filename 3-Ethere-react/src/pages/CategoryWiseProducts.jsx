@@ -16,6 +16,7 @@ const dispatch=useDispatch()
   const [loading , setLoading]=useState(false)
   const { category } = useParams()
   console.log("params",category)
+
   const fetchData=async()=>{
     const categoryProduct=await fetchproductOne(category)
 
@@ -31,8 +32,11 @@ const dispatch=useDispatch()
   useEffect(()=>{
     fetchData()
   },[category])
+
   
   const items=useSelector((store)=>store.fabric)
+
+  
 
   console.log("slkdfjsaf",items)
   return (
