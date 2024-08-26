@@ -16,6 +16,7 @@ const dispatch=useDispatch()
   const [loading , setLoading]=useState(false)
   const { category } = useParams()
   console.log("params",category)
+  const products = useSelector((state) => state.fabric.products || []);
   const fetchData=async()=>{
     const categoryProduct=await fetchproductOne(category)
 
@@ -32,7 +33,8 @@ const dispatch=useDispatch()
     fetchData()
   },[category])
   
-  const items=useSelector((store)=>store.fabric)
+  
+  const items = products.filter((item) => item.category === category);
 
   console.log("slkdfjsaf",items)
   return (

@@ -4,11 +4,13 @@ import { createSlice } from "@reduxjs/toolkit";
 const fabricSlice=createSlice(
   {
     name:'fabric',
-    initialState:[],
+    initialState:{
+      products:[]
+    },
     reducers:{
       addInitialItemsFabric:(state,action)=>{
         console.log("fabric items are f**",state,action);
-         return action.payload;
+         state.products= action.payload;
       }
     }
   }
