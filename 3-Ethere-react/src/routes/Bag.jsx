@@ -2,18 +2,47 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import BagSummary from "../components/BagSummary";
 import BagItem from "../components/BagItem";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
+import summaryApi from "../comman";
+import { useEffect } from "react";
+import { bagActions } from "../store/bagSlice";
 const Bag=()=>{
+  const dispatch=useDispatch()
+  const fetchbagproduct=async()=>{
+    const response=await fetch(summaryApi.getBagproducts.url,{
+      method:summaryApi.getBagproducts.method,
+      credentials:'include',
+      headers:{
+        "content-type":"application/json"
+      },
 
+    })
+    const responseData=await response.json()
+    console.log("ye bag ka product agaya dekh",responseData);
+
+    if(responseData.success){
+      dispatch(bagActions.addToBag(responseData?.data));
+    }
+
+  }
 const bagItems= useSelector(store=>store.bag);
+const items=useSelector(state=>state.items.products);
+console.log("bag items",bagItems)
+console.log("products items",items)
+// const FinalItems=items.filter(item=>{
+//   const itemIndex=bagItems.indexOf(item.id);
+//   return itemIndex>=0;
+// })
+const flatbagItems=bagItems.flat()
+const FinalItems = items.filter((item) => {
+  return flatbagItems.some((bagItem) => bagItem.productId === item.id.toString());
+});
+console.log("final items in bag",FinalItems)
+useEffect(()=>{
+  fetchbagproduct();
+},[])
 
-const items=useSelector(state=>state.items);
-
-const FinalItems=items.filter(item=>{
-  const itemIndex=bagItems.indexOf(item.id);
-  return itemIndex>=0;
-})
   
 return <>
 

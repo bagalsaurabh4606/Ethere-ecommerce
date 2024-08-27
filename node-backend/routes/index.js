@@ -15,6 +15,8 @@ const getCatagoryProductController = require('../controller/getCatagoryProduct')
 const getCategoryWiseOneProduct = require('../controller/getCategoryWiseOneProduct')
 const addToCartController = require('../controller/addtoCartController')
 const fetchCartProductController = require('../controller/fetchCartProductController')
+const addToBagController = require('../controller/addtoBagController')
+const getBagProductController = require('../controller/getBagproductController')
 
 router.post("/signup",userSignUpController)
 router.post("/login",userLoginINController)
@@ -39,6 +41,10 @@ router.get("/get-catagory",getCatagoryProductController)
 
 router.post("/addTocart",authToken,addToCartController)
 router.get("/fetchCart-product",authToken,fetchCartProductController)
+
+//useradd to bag
+router.post("/addToBag",authToken,addToBagController)
+router.get("/getBagproduct",authToken,getBagProductController)
 
 
 module.exports=router

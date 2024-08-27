@@ -1,14 +1,15 @@
 import { toast } from "react-toastify";
 import summaryApi from "../comman";
 import { useDispatch } from "react-redux";
-import { wishlistActions } from "../store/wishlistSlice";
+import { bagActions } from "../store/bagSlice";
 
-const addTocart= async(e,item ,dispatch)=>{
+const addTobag= async(e,item,dispatch)=>{
 e?.stopPropagation()
 e?.preventDefault()
+console.log("item in add to bag function",item)
 
-  const response = await fetch(summaryApi.addTocart.url,{
-    method:summaryApi.addTocart.method,
+  const response = await fetch(summaryApi.addToBag.url,{
+    method:summaryApi.addToBag.method,
     credentials:'include',
     headers:{
       "content-type":"application/json"
@@ -30,7 +31,7 @@ e?.preventDefault()
 
   if(responseData.success){
     toast.error(responseData.message)
-    // dispatch(wishlistActions.addTocart(responseData))
+    dispatch(bagActions.addToBag(responseData))
   }
   if(responseData.error){
     toast.success(responseData.message)
@@ -38,4 +39,4 @@ e?.preventDefault()
   
 }
 
-export default addTocart;
+export default addTobag;

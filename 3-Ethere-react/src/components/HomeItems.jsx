@@ -10,6 +10,7 @@ import { IoBag } from "react-icons/io5";
 import addTocart from "../helper/addTocart";
 import { useEffect, useState } from "react";
 import summaryApi from "../comman";
+import addTobag from "../helper/addTobag";
 const HomeItems = ({ item }) => {
 console.log("overall item",item)
 
@@ -19,9 +20,16 @@ console.log("overall item",item)
   console.log("element found", elementfound);
  
   // const [elementfound,setElementfound]=useState(false) //used for fetching cart product
-  const bagItemelement = useSelector((state) => state.bag);
-  const bagitemelementfound = bagItemelement.indexOf(item.id) >= 0;
+  // const bagItemelement = useSelector((state) => state.bag);
+  
+  // const bagitemelementfound = bagItemelement.indexOf(item.id) >= 0;
+  const bagItem = useSelector((state) => state.bag);
+ 
+  const bagItemelement=bagItem.flat()
+  console.log("bag store product comming",bagItemelement);
+  const bagitemelementfound = bagItemelement.some((bagItem) => bagItem.productId === item.id.toString());
 
+  console.log("bagitemelementfound",bagitemelementfound)
   const dispatch = useDispatch();
 
   const handleAddtoBag = () => {
@@ -72,7 +80,7 @@ console.log("overall item",item)
               <FcLike />
             </div>
           ) : (
-            <div className="like" onClick={(e)=>{addTocart(e,item)}}> 
+            <div className="like" onClick={(e)=>{addTocart(e,item,dispatch)}}> 
              {/* fetchcartproduct() called inside onclick*/}
               <FcLikePlaceholder />
             </div>
@@ -90,7 +98,7 @@ console.log("overall item",item)
 
       
         {! bagitemelementfound ? (
-          <button className="btn-add-bag" onClick={handleAddtoBag}>
+          <button className="btn-add-bag" onClick={(e)=>{addTobag(e,item ,dispatch)}}>
             Add to Bag <IoBag/>
           </button>
         ) : (
@@ -111,3 +119,4 @@ console.log("overall item",item)
 };
 
 export default HomeItems;
+
