@@ -11,6 +11,7 @@ import HomeItems from "../components/HomeItems"
 const CategoryWiseProducts=()=>{
   const { category } = useParams()
   console.log("params",category)
+
   const products=useSelector((state)=>state.items.products || [])
   const [fileterdItem , setfilteredItem]=useState([])
   useEffect(()=>{
