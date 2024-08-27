@@ -33,7 +33,7 @@ router.post("/update-product",authToken,upadateProductController)
 
 
 router.get("/get-catagory",getCatagoryProductController)
-router.post("/category-product",getCategoryWiseOneProduct)
+// router.post("/category-product",getCategoryWiseOneProduct)
 
 //useradd to cart
 

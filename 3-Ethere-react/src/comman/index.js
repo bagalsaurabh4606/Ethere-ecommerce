@@ -41,10 +41,10 @@ const summaryApi = {
     url:`${backendDomain}/api/get-catagory`,
     method:`get`
   },
-  categoryWiseProductOne:{
-    url:`${backendDomain}/api/category-product`,
-    method:`post`
-  },
+  // categoryWiseProductOne:{
+  //   url:`${backendDomain}/api/category-product`,
+  //   method:`post`
+  // },
   addTocart:{
     url:`${backendDomain}/api/addTocart`,
     method:`post`

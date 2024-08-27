@@ -5,7 +5,7 @@ import bagSlice from "./bagSlice";
 import wishlistSlice from "./wishlistSlice";
 import userSlice from "./userSlice";
 import categorySlice from "./categorySlice";
-import fabricSlice, { fabricAction } from "./fabric";
+
 
 
 const ethereStore=configureStore(
@@ -17,7 +17,7 @@ const ethereStore=configureStore(
       wishlist:wishlistSlice.reducer,
       user:userSlice.reducer,
       category:categorySlice.reducer,
-      fabric:fabricSlice.reducer,
+      
     }
   }
 );
