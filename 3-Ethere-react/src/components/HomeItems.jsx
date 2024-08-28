@@ -11,59 +11,47 @@ import addTocart from "../helper/addTocart";
 import { useEffect, useState } from "react";
 import summaryApi from "../comman";
 import addTobag from "../helper/addTobag";
-const HomeItems = ({ item }) => {
-console.log("overall item",item)
-
- const wishlistitem = useSelector((state) => state.wishlist);
-
-  const elementfound = wishlistitem.some((i) => i.productId === item.id.toString());
-  console.log("element found", elementfound);
- 
-  // const [elementfound,setElementfound]=useState(false) //used for fetching cart product
-  // const bagItemelement = useSelector((state) => state.bag);
-  
-  // const bagitemelementfound = bagItemelement.indexOf(item.id) >= 0;
-  const bagItem = useSelector((state) => state.bag);
- 
-  const bagItemelement=bagItem.flat()
-  console.log("bag store product comming",bagItemelement);
-  const bagitemelementfound = bagItemelement.some((bagItem) => bagItem.productId === item.id.toString());
-
-  console.log("bagitemelementfound",bagitemelementfound)
+const HomeItems = ({ item, bagItem, wishlistitem }) => {
+  console.log("overall item", item);
   const dispatch = useDispatch();
+  console.log("data comming from wishlist", wishlistitem);
+  console.log("item.id", item);
+  const wishlistelementfound = wishlistitem.some(
+    (i) => i.productId === item.id.toString()
+  );
+  console.log("wishlstk eldn e fouhnd", wishlistelementfound);
+  const [isInWishlist, setisInWishlist] = useState(wishlistelementfound);
+  useEffect(() => {
+    setisInWishlist(wishlistelementfound);
+  }, [wishlistelementfound]);
 
-  const handleAddtoBag = () => {
-    dispatch(bagActions.addToBag(item.id));
+  const bagItemelement = bagItem.flat();
+  const bagitemelementfound = bagItemelement.some(
+    (bagItem) => bagItem.productId === item.id.toString()
+  );
+
+  const [isInBag, setIsinBag] = useState(bagitemelementfound);
+  useEffect(() => {
+    setIsinBag(bagitemelementfound);
+  }, [bagitemelementfound]);
+
+  const handleAddtoBag = (e) => {
+    addTobag(e, item, dispatch);
+    setIsinBag(true);
   };
+
   const handleremovetoBag = () => {
     dispatch(bagActions.removeFromBag(item.id));
   };
-  const wishlisthandle = () => {
-    console.log("wishlist added", item.id);
-    dispatch(wishlistActions.addToWishlist(item.id));
+  const wishlisthandle = (e) => {
+    addTocart(e, item, dispatch);
+    setisInWishlist(true);
   };
   const removeWishlist = () => {
     dispatch(wishlistActions.removeFromWishlist(item.id));
   };
-  const curr_price =item.originalPrice-((item.originalPrice /100)*item.discountPercentage);
-  
-    //     const fetchcartproduct = async () => {
-    //   const response = await fetch(summaryApi.getCartProduct.url, {
-    //     method: summaryApi.getCartProduct.method,
-    //     credentials: "include",
-    //     headers: {
-    //       "content-type": "application/json",
-    //     },
-    //   });
-    //   const responseData = await response.json();
-    //   console.log("Fetched cart productsss:", responseData);
-
-    //   const element=responseData.data
-    //   const elementfound1 = element.some((i) => i.productId === item.id.toString());
-    //   setElementfound(elementfound1)
-
-    // };
-    // useEffect(()=>{fetchcartproduct()},[item])
+  const curr_price =
+    item.originalPrice - (item.originalPrice / 100) * item.discountPercentage;
 
   return (
     <div className="item-container">
@@ -75,17 +63,15 @@ console.log("overall item",item)
         </div>
 
         <div className="wishlist-icon">
-          {elementfound ? (
+          {isInWishlist ? (
             <div className="like" onClick={removeWishlist}>
               <FcLike />
             </div>
           ) : (
-            <div className="like" onClick={(e)=>{addTocart(e,item,dispatch)}}> 
-             {/* fetchcartproduct() called inside onclick*/}
+            <div className="like" onClick={wishlisthandle}>
               <FcLikePlaceholder />
             </div>
           )}
-
         </div>
       </div>
       <div className="company-name">{item.name}</div>
@@ -96,27 +82,24 @@ console.log("overall item",item)
         <span className="discount">({item.discountPercentage} % OFF)</span>
       </div>
 
-      
-        {! bagitemelementfound ? (
-          <button className="btn-add-bag" onClick={(e)=>{addTobag(e,item ,dispatch)}}>
-            Add to Bag <IoBag/>
-          </button>
-        ) : (
-          <div className="tow-buttons-container">
+      {!isInBag ? (
+        <button className="btn-add-bag" onClick={handleAddtoBag}>
+          Add to Bag <IoBag />
+        </button>
+      ) : (
+        <div className="tow-buttons-container">
           <Link to={"/bag"} className="bag-link">
-            
-          <button className="buy-now-button">
-            Buy Now <IoBag/>
-          </button></Link> 
+            <button className="buy-now-button">
+              Buy Now <IoBag />
+            </button>
+          </Link>
           <button className="remove-button" onClick={handleremovetoBag}>
-          <RiDeleteBin4Fill />
+            <RiDeleteBin4Fill />
           </button>
-          </div>
-          
-        )}
+        </div>
+      )}
     </div>
   );
 };
 
 export default HomeItems;
-

@@ -10,9 +10,9 @@ import HomeItems from "../components/HomeItems"
 
 const CategoryWiseProducts=()=>{
   const { category } = useParams()
-  console.log("params",category)
-
+  const bagItems=useSelector((state)=>state.bag)
   const products=useSelector((state)=>state.items.products || [])
+  const  wishlistitem=useSelector((state)=>state.wishlist)
   const [fileterdItem , setfilteredItem]=useState([])
   useEffect(()=>{
     const items = products.filter((item) => item.category === category);
@@ -25,7 +25,7 @@ const CategoryWiseProducts=()=>{
      
       <div className="items-container">
         {fileterdItem.map((item) => (
-          <HomeItems key={item.id} item={item} />
+          <HomeItems key={item.id} item={item} bagItem={bagItems}  wishlistitem={wishlistitem}/>
         ))}
       </div>
     </main>

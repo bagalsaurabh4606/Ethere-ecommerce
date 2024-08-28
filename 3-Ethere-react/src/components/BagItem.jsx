@@ -16,7 +16,7 @@ const BagItem=({item})=>{
     </div>
     <div className="item-right-part">
       <div className="company">{item.company}</div>
-      <div className="item-name">{item.item_name}</div>
+      <div className="item-name">{item.name}</div>
       <div className="price-container">
         <span className="current-price">Rs {item.currentPrice}</span>
         <span className="original-price">Rs {item.originalPrice}</span>

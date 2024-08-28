@@ -2,17 +2,22 @@ const CONVENIENCE_FEES=99;
 const BagSummary=({FinalItems})=>{
 
 
-
+console.log("finla item in bag summury",FinalItems)
   let totalItem = FinalItems.length;
   let totalMRP = 0;
   let totalDiscount = 0;
-
+  let curruntprice=0;
   FinalItems.forEach(bagItem => {
-    totalMRP += bagItem.original_price;
-    totalDiscount += bagItem.original_price - bagItem.current_price;
+    totalMRP += bagItem.originalPrice;
+    curruntprice+=(bagItem.originalPrice)-(bagItem.originalPrice/100)*(bagItem.discountPercentage)
+    console.log("cuuurnt price",curruntprice)
+    totalDiscount += totalMRP - curruntprice;
+    console.log("total discount",totalDiscount)
+    
   });
 
-  let finalPayment = totalMRP - totalDiscount + CONVENIENCE_FEES;
+
+  let finalPayment = curruntprice + CONVENIENCE_FEES;
   
 
 return (
@@ -22,11 +27,11 @@ return (
     <div className="price-header">PRICE DETAILS ({totalItem} Items) </div>
     <div className="price-item">
       <span className="price-item-tag">Total MRP</span>
-      <span className="price-item-value">₹{totalMRP}</span>
+      <span className="price-item-value">₹{Math.round(totalMRP)}</span>
     </div>
     <div className="price-item">
       <span className="price-item-tag">Discount on MRP</span>
-      <span className="price-item-value priceDetail-base-discount">-₹{totalDiscount}</span>
+      <span className="price-item-value priceDetail-base-discount">-₹{Math.round(totalDiscount)}</span>
     </div>
     <div className="price-item">
       <span className="price-item-tag">Convenience Fee</span>
@@ -35,7 +40,7 @@ return (
     <hr/>
     <div className="price-footer">
       <span className="price-item-tag">Total Amount</span>
-      <span className="price-item-value">{finalPayment}</span>
+      <span className="price-item-value">{Math.round(finalPayment)}</span>
     </div>
   </div>
   <button className="btn-place-order">

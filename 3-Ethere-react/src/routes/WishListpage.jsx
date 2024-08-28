@@ -29,19 +29,6 @@ const WishListPage = () => {
   const FinalItems=useSelector((state)=>state.wishlist)
   console.log("final item",FinalItems)
 
-  
-  // const WishListItems = useSelector((state) => state.wishlist);
-
-  
-  // const items = useSelector((state) => state.items);
-
-  
-  // const FinalItems = items.filter((item) => {
-  //   const itemIndex = WishListItems.indexOf(item.id);
-  //   return itemIndex >= 0;
-  // });
-
-
   useEffect(()=>{
     fetchcartproduct();
   },[])
