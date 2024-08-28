@@ -5,31 +5,57 @@ import { wishlistActions } from "../store/wishlistSlice";
 import { FcLike } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
-
+import { RiDeleteBin4Fill } from "react-icons/ri";
 import { FcLikePlaceholder } from "react-icons/fc";
+import { useEffect, useState } from "react";
+import addTocart from "../helper/addTocart";
+import addTobag from "../helper/addTobag";
 
 const HorizontalCardItems = ({item})=>
 {
-  
-
   const dispatch = useDispatch();
+  const wishlistitem=useSelector((state)=>state.wishlist)
+  const bagItem=useSelector((state)=>state.bag)
 
-  const wishlistItems = useSelector((store) => store.wishlist);
-  const bagItems = useSelector((store) => store.bag);
+  //wishlist
+  const wishlistelementfound = wishlistitem.some(
+    (i) => i.productId === item.id.toString()
+  );
+  console.log("wishlstk eldn e fouhnd", wishlistelementfound);
+  const [isInWishlist, setisInWishlist] = useState(wishlistelementfound);
+  useEffect(() => {
+    setisInWishlist(wishlistelementfound);
+  }, [wishlistelementfound]);
 
-  const wishlistelementFound = wishlistItems.indexOf(item.id) >= 0;
-  const bagelementFound = bagItems.indexOf(item.id) >= 0;
 
-  const handleAddToBag = () => {
-    dispatch(bagActions.addToBag(item.id));
+ //bag
+
+ 
+ const bagItemelement = bagItem.flat();
+ const bagitemelementfound = bagItemelement.some(
+   (bagItem) => bagItem.productId === item.id.toString()
+ );
+
+ const [isInBag, setIsinBag] = useState(bagitemelementfound);
+ useEffect(() => {
+   setIsinBag(bagitemelementfound);
+ }, [bagitemelementfound]);
+
+
+
+
+  const handleAddToBag = (e) => {
+    addTobag(e, item, dispatch);
+    setIsinBag(true);
   };
 
   const handleRemoveFromBag = () => {
     dispatch(bagActions.removeFromBag(item.id));
   };
 
-  const handleAddToWishlist = () => {
-    dispatch(wishlistActions.addToWishlist(item.id));
+  const handleAddToWishlist = (e) => {
+    addTocart(e, item, dispatch);
+    setisInWishlist(true);
   };
 
   const handleRemoveFromWishlist = () => {
@@ -65,7 +91,7 @@ const HorizontalCardItems = ({item})=>
             <div className="horizontal-rating-container">
               <div className="horizontal-rating">4.5|1400</div>
               <div className="horizontal-wishlist-buttons">
-                {wishlistelementFound ? (
+                {isInWishlist ? (
                   <div
                     className="horizontal-like"
                     onClick={handleRemoveFromWishlist}
@@ -82,14 +108,22 @@ const HorizontalCardItems = ({item})=>
                 )}
               </div>
             </div>
-
-          
-
-           
-
-            <button className="horizontal-btn-add-bag" onClick={handleAddToBag}>
-              Add to Bag <IoBag className="horizontal-bag-icon" />
+            {!isInBag ? (
+        <button className="btn-add-bag" onClick={handleAddToBag}>
+          Add to Bag <IoBag />
+        </button>
+      ) : (
+        <div className="tow-buttons-container">
+          <Link to={"/bag"} className="bag-link">
+            <button className="buy-now-button">
+              Buy Now <IoBag />
             </button>
+          </Link>
+          <button className="remove-button" onClick={handleRemoveFromBag}>
+            <RiDeleteBin4Fill />
+          </button>
+        </div>
+      )}
           </div>
         </div>
       

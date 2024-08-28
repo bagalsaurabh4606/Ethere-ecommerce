@@ -1600,6 +1600,7 @@ Admin Panel all proucts */
  .main-category-container{
 
   width: 90%;
+  height: 160px;
   margin: 30px 5%;
   display: flex;
   flex-wrap: wrap;

@@ -4,7 +4,7 @@ import CatagoryList from "../components/CatagoryList";
 import { useDispatch, useSelector } from "react-redux";
 import summaryApi from "../comman";
 import { categoryAction } from "../store/categorySlice";
-import HorizontalCardHome from "../components/HorizontalCardHome";
+import HorizontalCardHome from "../pages/HorizontalCardHome";
 
 const Home = () => {
   //   const [showCategorys , setshowCategorys]=useState(true)
