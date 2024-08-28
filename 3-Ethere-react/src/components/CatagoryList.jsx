@@ -8,19 +8,6 @@ import { categoryAction } from "../store/categorySlice";
 const CatagoryList = () => {
   // const [CategoryProduct, setcategoryProducts] = useState([]);
   // const [Loading, setLoading] = useState(false);
-const dispatch=useDispatch()
-  const fetchCategoryProduct = async () => {
-    const response = await fetch(summaryApi.categoryProduct.url);
-    const dataResponse = await response.json();
-    console.log("catagories products", dataResponse);
-
-    if(dataResponse.success){
-      dispatch(categoryAction.addInitialItems(dataResponse?.data))
-    }
-  };
-  useEffect(() => {
-    fetchCategoryProduct();
-  }, []);
 
   const CategoryProduct=useSelector((store)=>store?.category)
 

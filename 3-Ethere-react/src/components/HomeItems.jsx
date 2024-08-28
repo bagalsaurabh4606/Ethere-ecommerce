@@ -11,6 +11,8 @@ import addTocart from "../helper/addTocart";
 import { useEffect, useState } from "react";
 import summaryApi from "../comman";
 import addTobag from "../helper/addTobag";
+
+
 const HomeItems = ({ item, bagItem, wishlistitem }) => {
   console.log("overall item", item);
   const dispatch = useDispatch();

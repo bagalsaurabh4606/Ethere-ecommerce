@@ -1665,10 +1665,11 @@ Admin Panel all proucts */
 
 .banner-container { 
   position: relative;
-  width: 90%;
-  height: 500px; 
+  width: 100%;
+  height: 400px; /* Adjust as needed */
   overflow: hidden;
-  left: 75px;
+ 
+  margin: 20px 0;
 }
 
 .banner-image {
@@ -1725,4 +1726,157 @@ Admin Panel all proucts */
 .main-items-container{
   display: flex;
   gap: 3px;
+}
+
+
+/* horizontal card home  */
+.horizontal-items-container-main {
+  display: grid;
+  text-align: center;
+  margin: 20px 5%; /* Adjusted margin */
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 90%;
+  position: relative;
+  overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+.horizontal-items-container {
+  display: flex;
+  padding: 10px;
+  flex-direction: row;
+  overflow-x: hidden; /* Hide overflow */
+  white-space: nowrap; /* Prevent line breaks */
+  gap: 20px; /* Space between products */
+  position: relative; /* To position the "See More" button */
+  width: 100%; /* Ensure container width fits within the main container */
+  box-sizing: border-box; /* Ensure padding doesn't add to total width */
+}
+
+.horizontal-title
+{
+  font-size:25px ; 
+  text-transform: capitalize;
+}
+
+.horizontal-item-container {
+  display: flex;/* Maintain original width without shrinking */
+  flex: 0 0 auto;
+  width: 300px; /* Original width */
+  border: 2px solid #eaeaec;
+  border-radius: 4px;
+  background-color: rgb(255, 255, 255);
+  overflow: hidden;
+}
+
+.horizontal-image-container {
+  width: 50%;
+  height: 190px;
+}
+
+.horizontal-item-image {
+  width: 100%;
+  height: 180px; /* Adjust as needed */
+  object-fit: cover;
+  margin: 5px;
+}
+
+.horizontal-details-container {
+  width: 50%;
+  padding: 9px; /* Adjusted padding */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.horizontal-rating-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.horizontal-rating {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.horizontal-company-name {
+  font-size: 14px; /* Slightly reduced font size */
+  font-weight: 700;
+  color: #282c3f;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 4px;
+}
+
+.horizontal-price {
+  margin-top: 8px;
+  font-size: 12px; /* Slightly reduced font size */
+  color: #282c3f;
+  white-space: nowrap;
+}
+
+.horizontal-current-price {
+  font-size: 12px; /* Slightly reduced font size */
+  font-weight: 700;
+  color: #282c3f;
+}
+
+.horizontal-original-price {
+  text-decoration: line-through;
+  color: #7e818c;
+  font-weight: 400;
+  margin-left: 4px;
+  font-size: 10px; /* Slightly reduced font size */
+}
+
+.horizontal-discount {
+  color: red;
+  font-weight: 400;
+  font-size: 10px; /* Slightly reduced font size */
+  margin-left: 4px;
+}
+
+.horizontal-btn-add-bag {
+  padding: 4px 10px; /* Reduced padding */
+  border-radius: 9px;
+  font-size: 14px; /* Slightly reduced font size */
+  width: 100%;
+  border: 1px solid black;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* Container for horizontal alignment */
+.horizontal-product-list {
+  display: flex;
+  gap: 20px; /* Space between products */
+  padding: 10px;
+  justify-content: start; /* Align products to the start */
+}
+
+
+
+.horizontal-see-more-overlay {
+  position: absolute;
+    right: 0;
+    top: 57%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 76%;
+    background: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    z-index: 1;
+  cursor: pointer;
+ 
+  z-index: 1; /* Ensure it overlays the items */
+}
+
+.horizontal-see-more-text {
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  text-align: center;
 }
