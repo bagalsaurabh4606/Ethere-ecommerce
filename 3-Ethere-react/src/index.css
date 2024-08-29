@@ -833,6 +833,41 @@ a.action_container:link {
   width: 75%;
 }
 
+/* for horizontal cards */
+.Horizontalcard_tow-buttons-container{
+  margin-top: 16px;
+  font-size: 18px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap:1px;
+}
+
+.Horizontalcard_bag-link{
+  width: 71%;
+}
+
+.Horizontalcard_remove-button{
+  text-decoration: none;
+    border: 1px solid black;
+    padding: 5px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: white;
+    width: 35%;
+    font-size: 14px;
+}
+
+.Horizontalcard_buy-now-button{
+  width: 100%;
+  border: 1px solid black;
+  padding: 5px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #ff3f6c;
+  font-size: 14px;
+}
+
 /*Singup page*/
 
 /* Login page */

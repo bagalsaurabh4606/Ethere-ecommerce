@@ -102,13 +102,13 @@ const HorizontalCardItems = ({ item }) => {
             Add to Bag <IoBag />
           </button>
         ) : (
-          <div className="tow-buttons-container">
-            <Link to={"/bag"} className="bag-link">
-              <button className="buy-now-button">
+          <div className="Horizontalcard_tow-buttons-container">
+            <Link to={"/bag"} className="Horizontalcard_bag-link">
+              <button className="Horizontalcard_buy-now-button">
                 Buy Now <IoBag />
               </button>
             </Link>
-            <button className="remove-button" onClick={handleRemoveFromBag}>
+            <button className="Horizontalcard_remove-button" onClick={handleRemoveFromBag}>
               <RiDeleteBin4Fill />
             </button>
           </div>
