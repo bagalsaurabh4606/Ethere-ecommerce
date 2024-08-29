@@ -1,4 +1,4 @@
-const addtocarModel = require("../models/addtoCardModel")
+const addtocartModel = require("../models/addtoCardModel")
 
 const addToCartController= async(req,res)=>{
   try{
@@ -6,7 +6,7 @@ const addToCartController= async(req,res)=>{
 
     const curruentUser=req.userId
 
-    const isproductavailable= await addtocarModel.findOne({productId:productId, userId: curruentUser})
+    const isproductavailable= await addtocartModel.findOne({productId:productId, userId: curruentUser})
 
     if(isproductavailable){
       return res.json({
@@ -27,7 +27,7 @@ const addToCartController= async(req,res)=>{
       discountPercentage:discountPercentage
     }
 
-    const newaddTocart= await addtocarModel(payload)
+    const newaddTocart= await addtocartModel(payload)
     const saveproduct=await newaddTocart.save()
 
    return res.json({

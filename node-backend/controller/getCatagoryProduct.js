@@ -3,7 +3,7 @@ const productModel = require("../models/productModel");
 async function getCatagoryProductController(req, res) {
   try {
     const product = await productModel.distinct("category");
-    console.log("catagory", product);
+    console.log("catagory...", product);
 
     //array to store product from each catagory
 

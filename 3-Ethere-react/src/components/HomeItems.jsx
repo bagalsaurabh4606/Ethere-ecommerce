@@ -12,16 +12,11 @@ import { useEffect, useState } from "react";
 import summaryApi from "../comman";
 import addTobag from "../helper/addTobag";
 
-
 const HomeItems = ({ item, bagItem, wishlistitem }) => {
-  console.log("overall item", item);
   const dispatch = useDispatch();
-  console.log("data comming from wishlist", wishlistitem);
-  console.log("item.id", item);
   const wishlistelementfound = wishlistitem.some(
     (i) => i.productId === item.id.toString()
   );
-  console.log("wishlstk eldn e fouhnd", wishlistelementfound);
   const [isInWishlist, setisInWishlist] = useState(wishlistelementfound);
   useEffect(() => {
     setisInWishlist(wishlistelementfound);

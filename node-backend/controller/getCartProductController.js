@@ -1,11 +1,11 @@
-const addtocarModel = require("../models/addtoCardModel");
+const addtocartModel = require("../models/addtoCardModel");
 const productModel = require("../models/productModel");
 
-const fetchCartProductController=async(req,res)=>{
+const getCartProductController=async(req,res)=>{
   try{
     const currentuser=req.userId;
     console.log("cart product user ",currentuser)
-    const cartProduct=await addtocarModel.find({userId:currentuser})
+    const cartProduct=await addtocartModel.find({userId:currentuser})
     
     res.json({
       error:false,
@@ -21,4 +21,4 @@ const fetchCartProductController=async(req,res)=>{
   }
 }
 
-module.exports=fetchCartProductController;
+module.exports=getCartProductController;

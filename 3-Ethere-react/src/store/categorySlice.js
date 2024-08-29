@@ -7,7 +7,7 @@ const categorySlice=createSlice(
     initialState:[],
     reducers:{
       addInitialItems:(state,action)=>{
-        console.log(state,action);
+        console.log("adkjfsfjsjfsfjsfjsfj",action.payload)
          return action.payload;
       }
     }

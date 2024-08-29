@@ -20,7 +20,7 @@ const Home = () => {
   const fetchCategoryProduct = async () => {
     const response = await fetch(summaryApi.categoryProduct.url);
     const dataResponse = await response.json();
-    console.log("catagories products", dataResponse);
+
 
     if (dataResponse.success) {
       dispatch(categoryAction.addInitialItems(dataResponse?.data));

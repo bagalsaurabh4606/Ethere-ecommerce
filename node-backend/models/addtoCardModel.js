@@ -18,6 +18,6 @@ const addtocartSchema=new mongoose.Schema({
 {timestamps:true,}
 )
 
-const addtocarModel = mongoose.model("addtocart",addtocartSchema)
+const addtocartModel = mongoose.model("addtocart",addtocartSchema)
 
-module.exports=addtocarModel;
+module.exports=addtocartModel;

@@ -1,5 +1,5 @@
 const addtoBagModel = require("../models/addtoBagModel")
-const addtocarModel = require("../models/addtoCardModel")
+const addtocartModel = require("../models/addtoCardModel")
 
 const addToBagController= async(req,res)=>{
   try{
