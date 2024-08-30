@@ -1317,6 +1317,7 @@ th {
 .cross-icon {
   display: flex;
   justify-content: right;
+  cursor: pointer;
 }
 .nav-item :hover {
   background-color: #ddd;

@@ -7,6 +7,8 @@ const BagItem=({item})=>{
   const handleremove=()=>{
      dispatch(bagActions.removeFromBag(item.id));
   }
+  
+  const currentPrice=(item.originalPrice)-(item.originalPrice/100)*(item.discountPercentage)
   return <>
  
   <div className="bag-item-container">
@@ -17,7 +19,7 @@ const BagItem=({item})=>{
       <div className="company">{item.company}</div>
       <div className="item-name">{item.name}</div>
       <div className="price-container">
-        <span className="current-price">Rs {item.currentPrice}</span>
+        <span className="current-price">Rs {Math.round(currentPrice)}</span>
         <span className="original-price">Rs {item.originalPrice}</span>
         <span className="discount-percentage">({item.discountPercentage}% OFF)</span>
       </div>
