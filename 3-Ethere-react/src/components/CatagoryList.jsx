@@ -20,7 +20,6 @@ const CatagoryList = () => {
   }, []);
 
   const CategoryProduct = useSelector((store) => store?.category);
-  console.log("in cagtegory after refresh", CategoryProduct);
 
   return (
     <div className="main-category-container">

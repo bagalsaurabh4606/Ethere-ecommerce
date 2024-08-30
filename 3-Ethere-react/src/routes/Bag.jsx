@@ -28,12 +28,6 @@ const Bag=()=>{
   }
 const bagItems= useSelector(store=>store.bag);
 const items=useSelector(state=>state.items.products);
-console.log("bag items",bagItems)
-console.log("products items",items)
-// const FinalItems=items.filter(item=>{
-//   const itemIndex=bagItems.indexOf(item.id);
-//   return itemIndex>=0;
-// })
 const flatbagItems=bagItems.flat()
 const FinalItems = items.filter((item) => {
   return flatbagItems.some((bagItem) => bagItem.productId === item.id.toString());

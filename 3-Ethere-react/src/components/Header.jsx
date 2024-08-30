@@ -6,16 +6,24 @@ import { FiSearch } from "react-icons/fi";
 import ProfileSidebar from "./ProfileSidebar";
 
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 
-const Header=()=>{
+const Header=({fetchbagproduct , fetchcartproduct})=>{
+
 
    const bag= useSelector(store=>store.bag);
+   const [baglength , setbaglength]=useState(0)
    const user=useSelector(store=>store?.user?.data);
+  
 
- 
+   useEffect(()=>{
+    fetchbagproduct()
+   },[fetchbagproduct])
 
+   useEffect(()=>{
+    setbaglength(bag.length)
+   },[bag])
 
 return   <>
 <header>
@@ -88,7 +96,7 @@ return   <>
       
      
     </Link>
-    <span className="bag-item-count">{bag.length}</span>
+    <span className="bag-item-count">{baglength}</span>
   </div>
 </header>
 </>

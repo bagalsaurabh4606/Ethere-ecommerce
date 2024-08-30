@@ -11,6 +11,8 @@ import { useEffect } from "react";
 import Context from "../context";
 import { userActions } from "../store/userSlice";
 import ProfileSidebar from "../components/ProfileSidebar";
+import { categoryAction } from "../store/categorySlice";
+import { bagActions } from "../store/bagSlice";
 
 
 function App() {
@@ -30,14 +32,62 @@ function App() {
     if(dataApi.success){
       dispatch(userActions.setUserDetails(dataApi))
     }
-    
-
-    
   };
+
+  //bag product fetching
+  const fetchbagproduct=async()=>{
+    const response=await fetch(summaryApi.getBagproducts.url,{
+      method:summaryApi.getBagproducts.method,
+      credentials:'include',
+      headers:{
+        "content-type":"application/json"
+      },
+
+    })
+    const responseData=await response.json()
+    if(responseData.success){
+      dispatch(bagActions.addToBag(responseData?.data));
+    }
+
+  }
+  //wishlist product fetching
+  const fetchcartproduct=async()=>{
+    const response=await fetch(summaryApi.getCartProduct.url,{
+      method:summaryApi.getCartProduct.method,
+      credentials:'include',
+      headers:{
+        "content-type":"application/json"
+      },
+
+    })
+    const responseData=await response.json()
+
+    if(responseData.success){
+      dispatch(wishlistActions.addToWishlist(responseData?.data));
+    }
+
+  }
+  useEffect(()=>{
+    fetchcartproduct();
+  },[])
+
+
+  useEffect(()=>{
+    fetchcartproduct();
+  },[])
+
+
 
   useEffect(() => {
     fetchUserDetails();
   }, []);
+
+  useEffect(() => {
+    fetchbagproduct();
+  }, []);
+
+
+
   return (
     <>
       <Context.Provider
@@ -47,7 +97,7 @@ function App() {
       >
        
         <ToastContainer />
-        <Header />
+        <Header fetchbagproduct={fetchbagproduct} fetchcartproduct={fetchcartproduct}/>
         <FetchItems></FetchItems>
         {fetchStatus.currentFetching ? (
           <LoadingSpinner></LoadingSpinner>

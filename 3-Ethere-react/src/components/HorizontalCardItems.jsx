@@ -41,6 +41,7 @@ const HorizontalCardItems = ({ item }) => {
   const handleAddToBag = (e) => {
     addTobag(e, item, dispatch);
     setIsinBag(true);
+
   };
 
   const handleRemoveFromBag = () => {
