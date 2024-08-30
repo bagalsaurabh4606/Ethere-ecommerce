@@ -13,6 +13,7 @@ import { userActions } from "../store/userSlice";
 import ProfileSidebar from "../components/ProfileSidebar";
 import { categoryAction } from "../store/categorySlice";
 import { bagActions } from "../store/bagSlice";
+import { wishlistActions } from "../store/wishlistSlice";
 
 
 function App() {

@@ -12,10 +12,10 @@ import React, { useEffect, useState } from 'react';
 const Header=({fetchbagproduct , fetchcartproduct})=>{
 
 
+
    const bag= useSelector(store=>store.bag);
    const [baglength , setbaglength]=useState(0)
    const user=useSelector(store=>store?.user?.data);
-  
 
    useEffect(()=>{
     fetchbagproduct()
@@ -92,7 +92,8 @@ return   <>
       {/* <sup>{bag.length}</sup> */}
       
       
-      <span className="action_name">Store</span>
+      <span className="action_name">Store
+      </span>
       
      
     </Link>
