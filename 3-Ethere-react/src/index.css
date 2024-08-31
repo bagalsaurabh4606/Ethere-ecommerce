@@ -1706,12 +1706,13 @@ Admin Panel all proucts */
   height: 400px; /* Adjust as needed */
   overflow: hidden;
  
-  margin: 20px 0;
+  /* margin: 20px 0; */
 }
 
 .banner-image {
   width: 100%;
   height: 100%;
+
 }
 
 .banner-image img {
@@ -1735,11 +1736,11 @@ Admin Panel all proucts */
 }
 
 .left-arrow {
-  left: 10px; 
+  left: 0px; 
 }
 
 .right-arrow {
-  right: 10px;
+  right: 0px;
 }
 
 .arrow:hover {
@@ -1771,7 +1772,7 @@ Admin Panel all proucts */
   display: grid;
   text-align: center;
   margin: 20px 5%; /* Adjusted margin */
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(140, 0, 0, 0.1);
   width: 90%;
   position: relative;
   overflow-x: hidden; /* Prevent horizontal overflow */
@@ -1791,10 +1792,13 @@ Admin Panel all proucts */
 
 .horizontal-title
 {
-  font-size:25px ; 
+  font-size: 25px;
+  margin: 10px 600px 0 600px;
+  background: aliceblue;
+  text-decoration: none;
   text-transform: capitalize;
-}
-
+  color: inherit;
+}  
 .horizontal-item-container {
   display: flex;/* Maintain original width without shrinking */
   flex: 0 0 auto;
@@ -1896,13 +1900,13 @@ Admin Panel all proucts */
 .horizontal-see-more-overlay {
   position: absolute;
     right: 0;
-    top: 57%;
+    top: 59%;
     transform: translateY(-50%);
     display: flex;
     align-items: center;
     justify-content: center;
     width: 50px;
-    height: 72%;
+    height: 69%;
     background: rgba(0, 0, 0, 0.5);
     cursor: pointer;
     z-index: 1;
