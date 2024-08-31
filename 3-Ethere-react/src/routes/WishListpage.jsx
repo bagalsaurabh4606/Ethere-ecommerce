@@ -18,7 +18,6 @@ const WishListPage = () => {
 
     })
     const responseData=await response.json()
-    console.log("ye cart ka product agaya dekh",responseData);
 
     if(responseData.success){
       dispatch(wishlistActions.addToWishlist(responseData?.data));
@@ -27,7 +26,6 @@ const WishListPage = () => {
   }
 
   const FinalItems=useSelector((state)=>state.wishlist)
-  console.log("final item",FinalItems)
 
   useEffect(()=>{
     fetchcartproduct();

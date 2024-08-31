@@ -4,13 +4,15 @@ import { toast } from "react-toastify";
 import { userActions } from "../store/userSlice";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
+import { useState } from "react";
+import AdminLogOutConfirm from "./AdminLogOutConfirm";
 
 const ProfileSidebar=()=>{
   const user=useSelector((store)=>store?.user?.data);
   const navigate=useNavigate();
   const dispatch=useDispatch();
  
-  
+  const [logoutConfirm , setlogOutForm]=useState(false)
   const handleLogout = async () => {
     try {
       console.log("Logging out...");
@@ -49,7 +51,7 @@ const ProfileSidebar=()=>{
             </div>
           </div>
 
-            <button className="edit-profile-btn" onClick={handleLogout}>Logout</button>
+            <button className="edit-profile-btn" onClick={()=>{setlogOutForm(true)}}>Logout</button>
         </div>
         <div class="profile-body">
             <div class="profile-details">
@@ -91,6 +93,7 @@ const ProfileSidebar=()=>{
                 </table>
             </div>
         </div>
+        {logoutConfirm &&<>{console.log("rendering user log out")} <AdminLogOutConfirm handleLogout={handleLogout}  setlogOutForm={setlogOutForm}/></>}
     </div>
   </>
 }

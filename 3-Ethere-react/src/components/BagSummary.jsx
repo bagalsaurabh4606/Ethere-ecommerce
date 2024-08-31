@@ -1,8 +1,6 @@
 const CONVENIENCE_FEES=99;
 const BagSummary=({FinalItems})=>{
 
-
-console.log("finla item in bag summury",FinalItems)
   let totalItem = FinalItems.length;
   let totalMRP = 0;
   let totalDiscount = 0;
@@ -10,9 +8,7 @@ console.log("finla item in bag summury",FinalItems)
   FinalItems.forEach(bagItem => {
     totalMRP += bagItem.originalPrice;
     curruntprice+=(bagItem.originalPrice)-(bagItem.originalPrice/100)*(bagItem.discountPercentage)
-    console.log("cuuurnt price",curruntprice)
     totalDiscount += totalMRP - curruntprice;
-    console.log("total discount",totalDiscount)
     
   });
 

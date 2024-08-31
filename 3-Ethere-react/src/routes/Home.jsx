@@ -6,7 +6,7 @@ import summaryApi from "../comman";
 import { categoryAction } from "../store/categorySlice";
 import HorizontalCardHome from "../pages/HorizontalCardHome";
 
-const Home = () => {
+const Home = ({fetchbagproduct}) => {
   //   const [showCategorys , setshowCategorys]=useState(true)
   //  const handleMouseenter=()=>{
   // setshowCategorys(true)
@@ -42,7 +42,7 @@ const Home = () => {
       {CategoryProduct.map((item) => (
         <div>
           {" "}
-          <HorizontalCardHome category={item?.category} />{" "}
+          <HorizontalCardHome category={item?.category} fetchbagproduct={fetchbagproduct} />{" "}
         </div>
       ))}
     </div>

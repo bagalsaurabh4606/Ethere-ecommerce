@@ -10,7 +10,6 @@ const handleremove=()=>
   dispatch(wishlistActions.removeFromWishlist(item.id));
 }
 
-console.log("for image",item)
 
 return  <div className="bag-item-container">
 <div className="item-left-part">

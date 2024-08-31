@@ -833,7 +833,7 @@ a.action_container:link {
   width: 75%;
 }
 
-/* for horizontal cards */
+/* for horizontal cards buy now and remove*/
 .Horizontalcard_tow-buttons-container{
   margin-top: 16px;
   font-size: 18px;
@@ -1317,6 +1317,7 @@ th {
 .cross-icon {
   display: flex;
   justify-content: right;
+  cursor: pointer;
 }
 .nav-item :hover {
   background-color: #ddd;
@@ -1705,12 +1706,13 @@ Admin Panel all proucts */
   height: 400px; /* Adjust as needed */
   overflow: hidden;
  
-  margin: 20px 0;
+  /* margin: 20px 0; */
 }
 
 .banner-image {
   width: 100%;
   height: 100%;
+
 }
 
 .banner-image img {
@@ -1734,11 +1736,11 @@ Admin Panel all proucts */
 }
 
 .left-arrow {
-  left: 10px; 
+  left: 0px; 
 }
 
 .right-arrow {
-  right: 10px;
+  right: 0px;
 }
 
 .arrow:hover {
@@ -1770,7 +1772,7 @@ Admin Panel all proucts */
   display: grid;
   text-align: center;
   margin: 20px 5%; /* Adjusted margin */
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(140, 0, 0, 0.1);
   width: 90%;
   position: relative;
   overflow-x: hidden; /* Prevent horizontal overflow */
@@ -1782,7 +1784,7 @@ Admin Panel all proucts */
   flex-direction: row;
   overflow-x: hidden; /* Hide overflow */
   white-space: nowrap; /* Prevent line breaks */
-  gap: 20px; /* Space between products */
+  gap: 5px; /* Space between products */
   position: relative; /* To position the "See More" button */
   width: 100%; /* Ensure container width fits within the main container */
   box-sizing: border-box; /* Ensure padding doesn't add to total width */
@@ -1790,10 +1792,13 @@ Admin Panel all proucts */
 
 .horizontal-title
 {
-  font-size:25px ; 
+  font-size: 25px;
+  margin: 10px 600px 0 600px;
+  background: aliceblue;
+  text-decoration: none;
   text-transform: capitalize;
-}
-
+  color: inherit;
+}  
 .horizontal-item-container {
   display: flex;/* Maintain original width without shrinking */
   flex: 0 0 auto;
@@ -1813,7 +1818,7 @@ Admin Panel all proucts */
   width: 100%;
   height: 180px; /* Adjust as needed */
   object-fit: cover;
-  margin: 5px;
+  margin: 4px;
 }
 
 .horizontal-details-container {
@@ -1895,13 +1900,13 @@ Admin Panel all proucts */
 .horizontal-see-more-overlay {
   position: absolute;
     right: 0;
-    top: 57%;
+    top: 59%;
     transform: translateY(-50%);
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100px;
-    height: 76%;
+    width: 50px;
+    height: 69%;
     background: rgba(0, 0, 0, 0.5);
     cursor: pointer;
     z-index: 1;

@@ -93,7 +93,7 @@ const [logoutForm , setlogOutForm]=useState(false)
         </div>
       </div>
       <div className="main-section-admin"><Outlet></Outlet></div>
-      {logoutForm &&<>{console.log("rendering admin logout")} <AdminLogOutConfirm handleLogout={handleLogout} setlogOutForm={setlogOutForm}/></>}
+      {logoutForm &&<> <AdminLogOutConfirm handleLogout={handleLogout} setlogOutForm={setlogOutForm}/></>}
     </div>
   );
 };
