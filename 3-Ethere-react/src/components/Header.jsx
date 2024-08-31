@@ -7,12 +7,19 @@ import ProfileSidebar from "./ProfileSidebar";
 
 
 import React, { useState } from 'react';
+import addTobag from "../helper/addTobag";
+import addTocart from "../helper/addTocart";
 
 
 const Header=()=>{
 
    const bag= useSelector(store=>store.bag);
+   console.log("bag data in home ",bag);
    const user=useSelector(store=>store?.user?.data);
+
+   addTobag();
+   addTocart();
+ 
 
  
 

@@ -1906,7 +1906,7 @@ Admin Panel all proucts */
     cursor: pointer;
     z-index: 1;
   cursor: pointer;
- 
+  text-decoration: none;
   z-index: 1; /* Ensure it overlays the items */
 }
 
@@ -1915,4 +1915,5 @@ Admin Panel all proucts */
   font-weight: 700;
   color: white;
   text-align: center;
+ 
 }

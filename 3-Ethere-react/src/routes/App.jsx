@@ -11,6 +11,8 @@ import { useEffect } from "react";
 import Context from "../context";
 import { userActions } from "../store/userSlice";
 import ProfileSidebar from "../components/ProfileSidebar";
+import addTobag from "../helper/addTobag";
+import addTocart from "../helper/addTocart";
 
 
 function App() {
@@ -38,6 +40,11 @@ function App() {
   useEffect(() => {
     fetchUserDetails();
   }, []);
+
+  addTobag();
+  addTocart();
+
+  
   return (
     <>
       <Context.Provider
