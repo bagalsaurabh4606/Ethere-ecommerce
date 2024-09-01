@@ -30,7 +30,7 @@ e?.preventDefault()
 
   if(responseData.success){
     toast.error(responseData.message)
-    // dispatch(wishlistActions.addTocart(responseData))
+    //dispatch(wishlistActions.addTocart(responseData))
   }
   if(responseData.error){
     toast.success(responseData.message)

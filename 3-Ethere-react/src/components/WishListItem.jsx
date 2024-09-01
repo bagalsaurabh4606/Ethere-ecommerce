@@ -1,13 +1,15 @@
 import { useDispatch } from "react-redux";
 import { wishlistActions } from "../store/wishlistSlice";
 import { FcLike } from "react-icons/fc";
+import deleteCartProduct from "../helper/deleteCartProduct";
 
 
 const WishListItem=({item})=>{
+  console.log("item in wishlist",item.productId)
 const dispatch = useDispatch();
-const handleremove=()=>
+const handleremove=(e)=>
 {
-  dispatch(wishlistActions.removeFromWishlist(item.id));
+  deleteCartProduct(e,item,dispatch);
 }
 
 

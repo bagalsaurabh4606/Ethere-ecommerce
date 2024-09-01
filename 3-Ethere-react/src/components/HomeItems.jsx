@@ -11,8 +11,12 @@ import addTocart from "../helper/addTocart";
 import { useEffect, useState } from "react";
 import summaryApi from "../comman";
 import addTobag from "../helper/addTobag";
+import deletefrombag from "../helper/deleteBagProduct";
+import deleteCartProduct from "../helper/deleteCartProduct";
 
 const HomeItems = ({ item, bagItem, wishlistitem }) => {
+  const user=useSelector((store)=>store?.user?.data)
+  console.log("user data in hmoeitem",user)
   const dispatch = useDispatch();
   const wishlistelementfound = wishlistitem.some(
     (i) => i.productId === item.id.toString()
@@ -37,15 +41,17 @@ const HomeItems = ({ item, bagItem, wishlistitem }) => {
     setIsinBag(true);
   };
 
-  const handleremovetoBag = () => {
-    dispatch(bagActions.removeFromBag(item.id));
+  const handleremovetoBag = (e) => {
+    deletefrombag(e,item,dispatch);
+    setIsinBag(false);
   };
   const wishlisthandle = (e) => {
     addTocart(e, item, dispatch);
     setisInWishlist(true);
   };
-  const removeWishlist = () => {
-    dispatch(wishlistActions.removeFromWishlist(item.id));
+  const removeWishlist = (e) => {
+    deleteCartProduct(e,item,dispatch);
+    setisInWishlist(false);
   };
   const curr_price =
     item.originalPrice - (item.originalPrice / 100) * item.discountPercentage;

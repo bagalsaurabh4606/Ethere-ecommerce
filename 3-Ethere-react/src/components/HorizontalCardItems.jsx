@@ -10,6 +10,8 @@ import { FcLikePlaceholder } from "react-icons/fc";
 import { useEffect, useState } from "react";
 import addTocart from "../helper/addTocart";
 import addTobag from "../helper/addTobag";
+import deletefrombag from "../helper/deleteBagProduct";
+import deleteCartProduct from "../helper/deleteCartProduct";
 
 const HorizontalCardItems = ({ item }) => {
   const dispatch = useDispatch();
@@ -44,8 +46,10 @@ const HorizontalCardItems = ({ item }) => {
 
   };
 
-  const handleRemoveFromBag = () => {
-    dispatch(bagActions.removeFromBag(item.id));
+  const handleRemoveFromBag = (e) => {
+    // dispatch(bagActions.removeFromBag(item.id));
+    deletefrombag(e,item,dispatch);
+    setIsinBag(false);
   };
 
   const handleAddToWishlist = (e) => {
@@ -53,8 +57,9 @@ const HorizontalCardItems = ({ item }) => {
     setisInWishlist(true);
   };
 
-  const handleRemoveFromWishlist = () => {
-    dispatch(wishlistActions.removeFromWishlist(item.id));
+  const handleRemoveFromWishlist = (e) => {
+    deleteCartProduct(e,item,dispatch);
+    setisInWishlist(false);
   };
   const curr_price =
     item.originalPrice - (item.originalPrice / 100) * item.discountPercentage;
