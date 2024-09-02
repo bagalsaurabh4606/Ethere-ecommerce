@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import summaryApi from "../comman";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Context from "../context";
 import { userActions } from "../store/userSlice";
 import ProfileSidebar from "../components/ProfileSidebar";
@@ -36,6 +36,7 @@ function App() {
   };
 
   //bag product fetching
+
   const fetchbagproduct=async()=>{
     const response=await fetch(summaryApi.getBagproducts.url,{
       method:summaryApi.getBagproducts.method,
@@ -51,6 +52,7 @@ function App() {
     }
 
   }
+
   //wishlist product fetching
   const fetchcartproduct=async()=>{
     const response=await fetch(summaryApi.getCartProduct.url,{
@@ -68,16 +70,10 @@ function App() {
     }
 
   }
-  useEffect(()=>{
-    fetchcartproduct();
-  },[])
-
 
   useEffect(()=>{
     fetchcartproduct();
   },[])
-
-
 
   useEffect(() => {
     fetchUserDetails();
@@ -86,7 +82,6 @@ function App() {
   useEffect(() => {
     fetchbagproduct();
   }, []);
-
 
 
   return (

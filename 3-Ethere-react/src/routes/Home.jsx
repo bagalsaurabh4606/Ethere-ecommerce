@@ -39,10 +39,10 @@ const Home = ({fetchbagproduct}) => {
         <BannerImage />
       </div>
 
-      {CategoryProduct.map((item) => (
-        <div>
+      {CategoryProduct.map((item , index) => (
+        <div key={index}>
           {" "}
-          <HorizontalCardHome category={item?.category} fetchbagproduct={fetchbagproduct} />{" "}
+          <HorizontalCardHome  category={item?.category} fetchbagproduct={fetchbagproduct} key={item.id} />{" "}
         </div>
       ))}
     </div>

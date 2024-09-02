@@ -13,7 +13,7 @@ const Header=({fetchbagproduct , fetchcartproduct})=>{
 
 
 
-   const bag= useSelector(store=>store.bag);
+   const bag= useSelector((store)=>store.bag);
    const [baglength , setbaglength]=useState(0)
    const user=useSelector(store=>store?.user?.data);
 
