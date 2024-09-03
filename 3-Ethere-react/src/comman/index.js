@@ -61,7 +61,16 @@ const summaryApi = {
   getBagproducts:{
     url:`${backendDomain}/api/getBagproduct`,
     method:`get`
+  },
+  deleteBagProduct:{
+    url:`${backendDomain}/api/deletebagProduct`,
+    method:`delete`
+  },
+  deleteCartProduct:{
+    url:`${backendDomain}/api/deletecartproduct`,
+    method:`delete`
   }
+
   
 };
 

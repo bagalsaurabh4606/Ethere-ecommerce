@@ -16,8 +16,6 @@ const FetchItems = () => {
     const dataResponse = await fetch(summaryApi.getProduct.url)
 
     const dataApi = await dataResponse.json();
-    console.log("bhai",dataApi)
-
     if(dataApi.success)
     {
         dispatch(fetchActions.markFetchingDone());

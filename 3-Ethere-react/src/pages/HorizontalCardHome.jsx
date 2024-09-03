@@ -18,7 +18,7 @@ const HorizontalCardHome = ({ category  }) => {
       <Link className="horizontal-title" to={"/product-category/" + category}>{category}</Link>
       
     
-    <div className="horizontal-items-container" >{items.map((item)=><HorizontalCardItems item={item}/>)}
+    <div className="horizontal-items-container" >{items.map((item , index)=><HorizontalCardItems key={item.id || index} item={item}/>)}
     </div>
     <Link className="horizontal-see-more-overlay" to={"/product-category/" + category}>
     <div className="horizontal-see-more-text">See More <MdArrowForwardIos/></div>

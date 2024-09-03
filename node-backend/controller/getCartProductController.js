@@ -4,7 +4,6 @@ const productModel = require("../models/productModel");
 const getCartProductController=async(req,res)=>{
   try{
     const currentuser=req.userId;
-    console.log("cart product user ",currentuser)
     const cartProduct=await addtocartModel.find({userId:currentuser})
     
     res.json({

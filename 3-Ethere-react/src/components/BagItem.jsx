@@ -1,11 +1,12 @@
 import { useDispatch } from "react-redux";
 import { bagActions } from "../store/bagSlice";
+import deletefrombag from "../helper/deleteBagProduct";
 
 const BagItem=({item})=>{
   
   const dispatch=useDispatch();
-  const handleremove=()=>{
-     dispatch(bagActions.removeFromBag(item.id));
+  const handleremove=(e)=>{
+    deletefrombag(e,item,dispatch);
   }
   
   const currentPrice=(item.originalPrice)-(item.originalPrice/100)*(item.discountPercentage)
