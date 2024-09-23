@@ -39,7 +39,7 @@ const WishListPage = () => {
         ) : (
           <div className="wishlist-items-container">
             {FinalItems.map((item) => (
-              <WishListItem item={item}></WishListItem>
+              <WishListItem item={item} fetchcartproduct={fetchcartproduct}></WishListItem>
             ))}
           </div>
         )}

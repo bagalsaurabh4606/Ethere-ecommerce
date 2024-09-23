@@ -46,7 +46,7 @@ return <>
      :
      <div className="bag-page">
 
-        <div className="bag-items-container">{FinalItems.map(item=> <BagItem item={item} key={FinalItems.id} ></BagItem>)}</div>
+        <div className="bag-items-container">{FinalItems.map(item=> <BagItem item={item} key={FinalItems.id} fetchbagproduct={fetchbagproduct} ></BagItem>)}</div>
          
         <div className="bag-summary"> <BagSummary FinalItems={FinalItems}></BagSummary></div>
         </div>}

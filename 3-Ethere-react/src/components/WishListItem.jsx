@@ -4,12 +4,13 @@ import { FcLike } from "react-icons/fc";
 import deleteCartProduct from "../helper/deleteCartProduct";
 
 
-const WishListItem=({item})=>{
+const WishListItem=({item,fetchcartproduct})=>{
   console.log("item in wishlist",item.productId)
 const dispatch = useDispatch();
 const handleremove=(e)=>
 {
   deleteCartProduct(e,item,dispatch);
+  fetchcartproduct();
 }
 
 

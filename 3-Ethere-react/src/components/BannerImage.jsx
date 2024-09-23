@@ -1,7 +1,7 @@
 
 // new
 import React, { useState, useEffect } from "react";
-import Fabric from "../../public/images/Fabric.jpg";
+import Fabric from "/images/Fabric.jpg";
 import Scrunchies from "../../public/images/Scrunchies.jpg";
 import Polymer from "../../public/images/Polymer.jpg";
 import WristCharms from "../../public/images/WristCharms.jpg";
