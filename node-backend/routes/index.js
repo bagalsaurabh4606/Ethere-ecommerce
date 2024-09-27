@@ -19,6 +19,7 @@ const getBagProductController = require('../controller/getBagproductController')
 const getCartProductController = require('../controller/getCartProductController')
 const deleteBagProductController = require('../controller/deleteBagproductController')
 const deleteCartProductController = require('../controller/deleteCartproductController')
+const searchProductController = require('../controller/searchProductController')
 
 router.post("/signup",userSignUpController)
 router.post("/login",userLoginINController)
@@ -37,6 +38,8 @@ router.post("/update-product",authToken,upadateProductController)
 
 
 router.get("/get-catagory",getCatagoryProductController)
+
+router.get("/search",searchProductController)
 // router.post("/category-product",getCategoryWiseOneProduct)
 
 //useradd to cart
