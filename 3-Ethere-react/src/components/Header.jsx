@@ -8,7 +8,7 @@ import ProfileSidebar from "./ProfileSidebar";
 
 import React, { useEffect, useState } from "react";
 
-const Header = ({ fetchbagproduct, fetchcartproduct }) => {
+const Header = ({ fetchbagproduct, fetchcartproduct ,bagData }) => {
   const bag = useSelector((store) => store.bag);
   const [baglength, setbaglength] = useState(0);
   const user = useSelector((store) => store?.user?.data);
@@ -19,7 +19,13 @@ const Header = ({ fetchbagproduct, fetchcartproduct }) => {
 
   useEffect(() => {
     fetchbagproduct();
+    
   }, [fetchbagproduct]);
+
+  useEffect(() => {
+    fetchcartproduct();
+    
+  }, [fetchcartproduct]);
 
   useEffect(() => {
     setbaglength(bag.length);
@@ -127,7 +133,7 @@ const Header = ({ fetchbagproduct, fetchcartproduct }) => {
 
             <span className="action_name">Store</span>
           </Link>
-          <span className="bag-item-count">{baglength}</span>
+          <span className="bag-item-count">{bagData.length}</span>
         </div>
       </header>
     </>

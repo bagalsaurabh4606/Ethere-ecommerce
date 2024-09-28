@@ -19,6 +19,8 @@ import { wishlistActions } from "../store/wishlistSlice";
 function App() {
   const fetchStatus = useSelector((store) => store.fetchStatus);
  const dispatch=useDispatch();
+
+ const[bagData,setBagData]=useState([]);
   const fetchUserDetails = async () => {
     const dataresponse = await fetch(summaryApi.currentUser.url, {
       method: summaryApi.currentUser.method,
@@ -48,6 +50,7 @@ function App() {
     })
     const responseData=await response.json()
     if(responseData.success){
+      setBagData(responseData.data)
       dispatch(bagActions.addToBag(responseData?.data));
     }
 
@@ -93,7 +96,7 @@ function App() {
       >
        
         <ToastContainer />
-        <Header fetchbagproduct={fetchbagproduct} fetchcartproduct={fetchcartproduct}/>
+        <Header fetchbagproduct={fetchbagproduct} bagData={bagData} fetchcartproduct={fetchcartproduct}/>
         <FetchItems></FetchItems>
         {fetchStatus.currentFetching ? (
           <LoadingSpinner></LoadingSpinner>

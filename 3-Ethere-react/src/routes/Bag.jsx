@@ -9,30 +9,34 @@ import { useEffect, useState } from "react";
 import { bagActions } from "../store/bagSlice";
 const Bag=()=>{
   const dispatch=useDispatch()
+
+  const [bagData,setBagData]=useState([]);
   const fetchbagproduct=async()=>{
     const response=await fetch(summaryApi.getBagproducts.url,{
       method:summaryApi.getBagproducts.method,
-      credentials:'include',
+      credentials:'include',  
       headers:{
         "content-type":"application/json"
       },
 
     })
     const responseData=await response.json()
-    console.log("ye bag ka product agaya dekh",responseData);
 
     if(responseData.success){
+      setBagData(responseData?.data);
       dispatch(bagActions.addToBag(responseData?.data));
     }
 
   }
 const bagItems= useSelector(store=>store.bag);
 const items=useSelector(state=>state.items.products);
+ 
+
 const flatbagItems=bagItems.flat()
 const FinalItems = items.filter((item) => {
   return flatbagItems.some((bagItem) => bagItem.productId === item.id.toString());
 });
-console.log("final items in bag",FinalItems)
+
 useEffect(()=>{
   fetchbagproduct();
 },[])
@@ -46,14 +50,15 @@ return <>
      :
      <div className="bag-page">
 
-        <div className="bag-items-container">{FinalItems.map(item=> <BagItem item={item} key={FinalItems.id} fetchbagproduct={fetchbagproduct} ></BagItem>)}</div>
+        <div className="bag-items-container">{bagData.map(item=> <BagItem item={item} fetchbagproduct={fetchbagproduct} key={FinalItems.id} ></BagItem>)}</div>
          
-        <div className="bag-summary"> <BagSummary FinalItems={FinalItems}></BagSummary></div>
+
+        <div className="bag-summary"> <BagSummary FinalItems={FinalItems}  ></BagSummary></div>
         </div>}
         
       </main>
-    </>
-  );
-};
+  
+</>
+}
 
 export default Bag;
