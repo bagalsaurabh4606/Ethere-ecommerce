@@ -9,7 +9,9 @@ const productSchema=new mongoose.Schema({
   description: String,
   originalPrice: Number,
   discountPercentage: Number,
+  quantity:Number,
   image: [],
+  
 
 },
 {timestamps:true,}

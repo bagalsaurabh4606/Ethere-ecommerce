@@ -70,6 +70,10 @@ const summaryApi = {
     url:`${backendDomain}/api/deletecartproduct`,
     method:`delete`
   },
+  bagQuantity:{
+    url:`${backendDomain}/api/bag-quantity`,
+    method:`post`
+  },
 
   searchProduct:{
     url:`${backendDomain}/api/search`,

@@ -3,10 +3,10 @@ const addtocartModel = require("../models/addtoCardModel")
 
 const addToBagController= async(req,res)=>{
   try{
-    const {productId , image , category,name,description,originalPrice,discountPercentage}=req?.body
+    const {productId ,id, image , category,name,description,originalPrice,discountPercentage}=req?.body
 
     const curruentUser=req.userId
-
+console.log("madarchod",productId)
     const isproductavailable= await addtoBagModel.findOne({productId:productId, userId: curruentUser})
 
     if(isproductavailable){
@@ -18,6 +18,7 @@ const addToBagController= async(req,res)=>{
     }
     const payload={
       productId:productId,
+      id:id,
       userId:curruentUser,
       quantity:1,
       image:image,
@@ -33,9 +34,9 @@ const addToBagController= async(req,res)=>{
 
    return res.json({
       data:saveproduct,
-      message:"Item added to Favorite",
-      error:true,
-      success:false,
+      message:"Item added to Store",
+      error:false,
+      success:true,
     })
 
   }catch(err){

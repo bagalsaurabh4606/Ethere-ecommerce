@@ -15,6 +15,7 @@ const UploadProduct = ({ onClose,fetchuploadProduct}) => {
     originalPrice: "",
     discountPercentage: "",
     image: [],
+    quantity:""
   });
 
   const [uploadImageInput, setuploadImageInput] = useState(" ");
@@ -94,6 +95,20 @@ const UploadProduct = ({ onClose,fetchuploadProduct}) => {
             required
           />
         </div>
+
+        <div className="form-group">
+          <label htmlFor="quantity">Quantity:</label>
+          <input
+            type="number"
+            id="quantity"
+            name="quantity"
+            value={product.quantity}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+
         <div className="form-group">
           <label htmlFor="category">Category:</label>
           <select

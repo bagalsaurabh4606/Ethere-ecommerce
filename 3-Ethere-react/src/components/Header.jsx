@@ -110,7 +110,7 @@ const Header = ({ fetchbagproduct, fetchcartproduct }) => {
 
           <Link
             className="action_container"
-            to="/WishList"
+            to="/WishLists"
             style={{ color: "inherit", textDecoration: "none" }}
           >
             <ImHeart />

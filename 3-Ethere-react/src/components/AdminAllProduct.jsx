@@ -11,6 +11,7 @@ const AdminAllProduct = ({ product,fetchData }) => {
         <img src={product.image} alt={product.name} className="product-image" />
         <div className="product-info">
           <h3>{product.name}</h3>
+          <p> <b>Quantity:</b> {product.quantity}</p>
           <p> <b>Description:</b> {product.description}</p>
           <p><b>Category:</b> {product.category}</p>
           <p> <b>Original Price: Rs</b>{product.originalPrice}</p>
