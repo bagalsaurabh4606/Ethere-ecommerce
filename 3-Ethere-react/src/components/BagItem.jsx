@@ -13,6 +13,7 @@ const BagItem=({item,fetchbagproduct})=>{
  
   const handleremove=(e)=>{
     deletefrombag(e,item,dispatch);
+    fetchbagproduct();
   }
   const increasequantity=async(id,qty)=>{
     const response=await fetch(summaryApi.bagQuantity.url,{

@@ -73,7 +73,12 @@ const summaryApi = {
   bagQuantity:{
     url:`${backendDomain}/api/bag-quantity`,
     method:`post`
-  }
+  },
+
+  searchProduct:{
+    url:`${backendDomain}/api/search`,
+    method:`get`
+  },
 
   
 };

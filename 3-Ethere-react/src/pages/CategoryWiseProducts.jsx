@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CatagoryList from "../components/CatagoryList";
 import HomeItems from "../components/HomeItems";
-import summaryApi from "../comman";
+
 
 const CategoryWiseProducts = () => {
   const { category } = useParams();
@@ -23,7 +23,7 @@ const CategoryWiseProducts = () => {
       <div>
         <CatagoryList />
       </div>
-       
+      <hr className="hr-tag"/>
       <div className="items-container">
         {fileterdItem.map((item) => (
           <HomeItems
