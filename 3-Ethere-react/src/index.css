@@ -1922,6 +1922,7 @@ Admin Panel all proucts */
 }
 
 
+
 .quantity-controller {
   display: flex;
   align-items: center;
@@ -1959,6 +1960,7 @@ Admin Panel all proucts */
 
 .remove-from-cart:hover {
   color: #e64a19;
+}
 .hr-tag{
   border: 0;
     height: 2px;
@@ -1994,4 +1996,5 @@ Admin Panel all proucts */
 .no-results{
   text-align: center;
     font-size: 50px;
+
 }
