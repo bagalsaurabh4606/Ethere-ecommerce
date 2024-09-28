@@ -1922,3 +1922,43 @@ Admin Panel all proucts */
   text-align: center;
  
 }
+
+
+.quantity-controller {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.quantity-btn {
+  width: 30px;
+  height: 30px;
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quantity-btn:hover {
+  background-color: #e64a19;
+}
+
+.quantity {
+  margin: 0 15px;
+  font-size: 16px;
+}
+
+.remove-from-cart {
+  font-size: 20px;
+  color: #ff5722;
+  cursor: pointer;
+}
+
+.remove-from-cart:hover {
+  color: #e64a19;
+}

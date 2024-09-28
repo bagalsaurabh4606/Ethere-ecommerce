@@ -23,7 +23,7 @@ const CategoryWiseProducts = () => {
       <div>
         <CatagoryList />
       </div>
-
+       
       <div className="items-container">
         {fileterdItem.map((item) => (
           <HomeItems

@@ -12,6 +12,7 @@ try{
   const {_id , ...resBody}=req.body
   const updateProduct=await productModel.findByIdAndUpdate(_id,resBody)
 
+  console.log("update product",updateProduct)
   res.json({
     message:"product updated successfully",
     data:updateProduct,

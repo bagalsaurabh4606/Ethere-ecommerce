@@ -16,12 +16,14 @@ console.log("item in add to bag function",item)
     },
 
     body:JSON.stringify(
-      {productId : item.id , image:item.image , 
+      {productId : item.id , 
+        image:item.image , 
         category: item.category,
         name:item.name,
         description: item.description,
         originalPrice: item.originalPrice,
         discountPercentage: item.discountPercentage,
+        quantity:item.quantity
       }
     )
   })
@@ -30,11 +32,11 @@ console.log("item in add to bag function",item)
  
 
   if(responseData.success){
-    toast.error(responseData.message)
-    dispatch(bagActions.addToBag(responseData))
+    toast.success(responseData.message)
+   // dispatch(bagActions.addToBag(responseData))
   }
   if(responseData.error){
-    toast.success(responseData.message)
+    toast.error(responseData.message)
   }
   
 }

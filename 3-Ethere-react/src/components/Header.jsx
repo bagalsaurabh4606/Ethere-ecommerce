@@ -4,19 +4,13 @@ import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
 import { FiSearch } from "react-icons/fi";
 import ProfileSidebar from "./ProfileSidebar";
-
-
 import React, { useEffect, useState } from 'react';
 
 
 const Header=({fetchbagproduct , fetchcartproduct})=>{
-
-
-
    const bag= useSelector((store)=>store.bag);
    const [baglength , setbaglength]=useState(0)
    const user=useSelector(store=>store?.user?.data);
-
    useEffect(()=>{
     fetchbagproduct()
    },[fetchbagproduct])

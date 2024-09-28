@@ -23,6 +23,7 @@ const HorizontalCardItems = ({ item }) => {
     (i) => i.productId === item.id.toString()
   );
 
+
   const [isInWishlist, setisInWishlist] = useState(wishlistelementfound);
   useEffect(() => {
     setisInWishlist(wishlistelementfound);
@@ -44,10 +45,12 @@ const HorizontalCardItems = ({ item }) => {
     addTobag(e, item, dispatch);
     setIsinBag(true);
 
+
   };
 
   const handleRemoveFromBag = (e) => {
     // dispatch(bagActions.removeFromBag(item.id));
+    console.log("horizontal cart item id",item.id)
     deletefrombag(e,item,dispatch);
     setIsinBag(false);
   };
@@ -86,7 +89,7 @@ const HorizontalCardItems = ({ item }) => {
             ({item.discountPercentage}% OFF)
           </span>
         </div>
-        <div className="horizontal-rating-container">
+        <div className="horizontal-rating-container"> 
           <div className="horizontal-rating">4.5|1400</div>
           <div className="horizontal-wishlist-buttons">
             {isInWishlist ? (

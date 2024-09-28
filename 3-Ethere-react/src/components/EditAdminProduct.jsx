@@ -16,6 +16,7 @@ const EditAdminProduct=({onClose , data ,fetchData})=>{
     originalPrice:data?.originalPrice,
     discountPercentage: data?.discountPercentage,
     image: data?.image || [],
+    quantity:"",
   });
 
   const [uploadImageInput, setuploadImageInput] = useState(" ");
@@ -96,6 +97,20 @@ const EditAdminProduct=({onClose , data ,fetchData})=>{
         required
       />
     </div>
+
+    <div className="form-group">
+          <label htmlFor="quantity">Quantity:</label>
+          <input
+            type="number"
+            id="quantity"
+            name="quantity"
+            value={product.quantity}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+
     <div className="form-group">
       <label htmlFor="category">Category:</label>
       <select
