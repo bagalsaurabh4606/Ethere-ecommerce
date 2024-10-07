@@ -5,7 +5,6 @@ const getCartProductController=async(req,res)=>{
   try{
     const currentuser=req.userId;
     const cartProduct=await addtocartModel.find({userId:currentuser})
-    
     res.json({
       error:false,
       success:true,

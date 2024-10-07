@@ -4,16 +4,16 @@ const express=require('mongoose')
 
 const addtoBagSchema=new mongoose.Schema({ 
 
-  productId:String,
+
   id: Number,
   userId:String,
   quantity:Number,
-  image:[],
-  category:String,
-  name:String,
-  description:String,
-  originalPrice:Number,
-  discountPercentage:Number,
+  // image:[],
+  // category:String,
+  // name:String,
+  // description:String,
+  // originalPrice:Number,
+  // discountPercentage:Number,
 
 },
 {timestamps:true,}

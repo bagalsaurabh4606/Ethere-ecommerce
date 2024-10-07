@@ -3,39 +3,30 @@ import summaryApi from "../comman";
 import { useDispatch } from "react-redux";
 import { wishlistActions } from "../store/wishlistSlice";
 
-const addTocart= async(e,item ,dispatch)=>{
-e?.stopPropagation()
-e?.preventDefault()
+const addTocart = async (e, item, dispatch) => {
+  e?.stopPropagation();
+  e?.preventDefault();
 
-  const response = await fetch(summaryApi.addTocart.url,{
-    method:summaryApi.addTocart.method,
-    credentials:'include',
-    headers:{
-      "content-type":"application/json"
+  dispatch(wishlistActions.addToWishlist(item));
+  const response = await fetch(summaryApi.addTocart.url, {
+    method: summaryApi.addTocart.method,
+    credentials: "include",
+    headers: {
+      "content-type": "application/json",
     },
 
-    body:JSON.stringify(
-      {productId : item.id , image:item.image , 
-        category: item.category,
-        name:item.name,
-        description: item.description,
-        originalPrice: item.originalPrice,
-        discountPercentage: item.discountPercentage,
-      }
-    )
-  })
+    body: JSON.stringify({
+      id: item.id,
+      image: item.image,
+      category: item.category,
+      name: item.name,
+      description: item.description,
+      originalPrice: item.originalPrice,
+      discountPercentage: item.discountPercentage,
+    }),
+  });
 
-  const responseData=await response.json()
- 
-
-  if(responseData.success){
-    toast.error(responseData.message)
-    //dispatch(wishlistActions.addTocart(responseData))
-  }
-  if(responseData.error){
-    toast.success(responseData.message)
-  }
-  
-}
+  const responseData = await response.json();
+};
 
 export default addTocart;

@@ -3,17 +3,18 @@ const addtoBagModel = require("../models/addtoBagModel");
 const deleteBagProductController = async (req, res) => {
   try {
     const currentuser = req.userId; 
-    const productId = String(req.body.productId);
+    const id = String(req.body.id);
 
     
 
     const product = await addtoBagModel.findOneAndDelete({
-      productId: productId,
+      id: id,
       userId: currentuser
 
     }); 
     if (product) {
       res.status(200).json({
+        data:product,
         message: "Product removed from Store",
         error: false,
         success: true,

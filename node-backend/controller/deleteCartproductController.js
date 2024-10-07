@@ -3,10 +3,8 @@ const addtocartModel = require("../models/addtoCardModel");
 const deleteCartProductController=async(req,res)=>{
   try{
     const currentuser=req.userId;
-    const cartproduct=String(req.body.productId);
-
-    console.log("cart product comming",cartproduct)
-    const product=await addtocartModel.findOneAndDelete({userId:currentuser , productId:cartproduct})
+    const cartproduct=String(req.body.id);
+    const product=await addtocartModel.findOneAndDelete({userId:currentuser , id:cartproduct})
 
     console.log("cart product for delete",product)
     if(product){

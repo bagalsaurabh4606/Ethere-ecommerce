@@ -48,7 +48,7 @@ const Allusers = () => {
           </tr>
         </thead>
         <tbody>{allUser.map((el, index) => {
-          return <tr>
+          return <tr key={el._id}>
             <td>
               {index+1}
             </td>

@@ -4,7 +4,7 @@ const express=require('mongoose')
 
 const addtocartSchema=new mongoose.Schema({ 
 
-  productId:String,
+  id:Number,
   userId:String,
   quantity:String,
   image:[],

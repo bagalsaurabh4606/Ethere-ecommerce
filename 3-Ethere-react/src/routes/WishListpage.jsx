@@ -6,30 +6,12 @@ import { useEffect, useState } from "react";
 import { wishlistActions } from "../store/wishlistSlice";
 
 const WishListPage = () => {
-  const dispatch=useDispatch()
+  const wishItems = useSelector((state) => state.wishlist.wishProducts);
+  const items = useSelector((state) => state.items.products);
 
-  const fetchcartproduct=async()=>{
-    const response=await fetch(summaryApi.getCartProduct.url,{
-      method:summaryApi.getCartProduct.method,
-      credentials:'include',
-      headers:{
-        "content-type":"application/json"
-      },
-
-    })
-    const responseData=await response.json()
-
-    if(responseData.success){
-      dispatch(wishlistActions.addToWishlist(responseData?.data));
-    }
-
-  }
-
-  const FinalItems=useSelector((state)=>state.wishlist)
-
-  useEffect(()=>{
-    fetchcartproduct();
-  },[])
+  const FinalItems = items.filter((item) => {
+    return wishItems.some((wishId) => wishId.id === item.id);
+  });
 
   return (
     <>
@@ -39,7 +21,7 @@ const WishListPage = () => {
         ) : (
           <div className="wishlist-items-container">
             {FinalItems.map((item) => (
-              <WishListItem item={item} fetchcartproduct={fetchcartproduct}></WishListItem>
+              <WishListItem item={item}></WishListItem>
             ))}
           </div>
         )}

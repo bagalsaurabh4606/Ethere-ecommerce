@@ -9,8 +9,6 @@ const itemsSlice=createSlice(
     },
     reducers:{
       addInitialItems:(state,action)=>{
-        //  return action.payload;
-        console.log("item slice",action.payload)
         state.products= action.payload;
 
       }

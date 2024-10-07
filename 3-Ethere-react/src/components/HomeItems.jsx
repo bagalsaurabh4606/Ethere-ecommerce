@@ -14,43 +14,53 @@ import addTobag from "../helper/addTobag";
 import deletefrombag from "../helper/deleteBagProduct";
 import deleteCartProduct from "../helper/deleteCartProduct";
 
-const HomeItems = ({ item, bagItem, wishlistitem }) => {
-  const user=useSelector((store)=>store?.user?.data)
-  console.log("user data in hmoeitem",user)
+const HomeItems = ({ item }) => {
   const dispatch = useDispatch();
+  const currentUser = useSelector((store) => store.user.data);
+  const isUserLoggedIn = currentUser && Object.keys(currentUser).length > 0;
+
+  const wishlistitem = useSelector((state) => state.wishlist.wishProducts);
+  const bagItem = useSelector((store) => store.bag.bagProducts);
+
+  //wishlist
   const wishlistelementfound = wishlistitem.some(
-    (i) => i.productId === item.id.toString()
+    (wishID) => wishID.id === item.id
   );
+
   const [isInWishlist, setisInWishlist] = useState(wishlistelementfound);
   useEffect(() => {
     setisInWishlist(wishlistelementfound);
   }, [wishlistelementfound]);
 
-  const bagItemelement = bagItem.flat();
-  const bagitemelementfound = bagItemelement.some(
-    (bagItem) => bagItem.productId === item.id.toString()
-  );
+  //bag
 
-  const [isInBag, setIsinBag] = useState(bagitemelementfound);
+  const bagitemelementfound = bagItem.some((bagId) => bagId.id === item.id);
+
+  const [isInBag, setIsinBag] = useState(false);
   useEffect(() => {
     setIsinBag(bagitemelementfound);
   }, [bagitemelementfound]);
 
-  const handleAddtoBag = (e) => {
+  const handleAddToBag = (e) => {
+    dispatch(bagActions.addToBag(item));
     addTobag(e, item, dispatch);
+
     setIsinBag(true);
   };
 
-  const handleremovetoBag = (e) => {
-    deletefrombag(e,item,dispatch);
+  const handleRemoveFromBag = (e) => {
+    deletefrombag(e, item, dispatch);
     setIsinBag(false);
   };
-  const wishlisthandle = (e) => {
+
+  const handleAddToWishlist = (e) => {
     addTocart(e, item, dispatch);
+
     setisInWishlist(true);
   };
-  const removeWishlist = (e) => {
-    deleteCartProduct(e,item,dispatch);
+
+  const handleRemoveFromWishlist = (e) => {
+    deleteCartProduct(e, item, dispatch);
     setisInWishlist(false);
   };
   const curr_price =
@@ -67,11 +77,11 @@ const HomeItems = ({ item, bagItem, wishlistitem }) => {
 
         <div className="wishlist-icon">
           {isInWishlist ? (
-            <div className="like" onClick={removeWishlist}>
+            <div className="like" onClick={handleRemoveFromWishlist}>
               <FcLike />
             </div>
           ) : (
-            <div className="like" onClick={wishlisthandle}>
+            <div className="like" onClick={handleAddToWishlist}>
               <FcLikePlaceholder />
             </div>
           )}
@@ -86,7 +96,7 @@ const HomeItems = ({ item, bagItem, wishlistitem }) => {
       </div>
 
       {!isInBag ? (
-        <button className="btn-add-bag" onClick={handleAddtoBag}>
+        <button className="btn-add-bag" onClick={handleAddToBag}>
           Add to Bag <IoBag />
         </button>
       ) : (
@@ -96,7 +106,7 @@ const HomeItems = ({ item, bagItem, wishlistitem }) => {
               Buy Now <IoBag />
             </button>
           </Link>
-          <button className="remove-button" onClick={handleremovetoBag}>
+          <button className="remove-button" onClick={handleRemoveFromBag}>
             <RiDeleteBin4Fill />
           </button>
         </div>

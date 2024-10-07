@@ -21,6 +21,7 @@ const deleteBagProductController = require('../controller/deleteBagproductContro
 const deleteCartProductController = require('../controller/deleteCartproductController')
 const searchProductController = require('../controller/searchProductController')
 const quantityController = require('../controller/quantityController')
+const authorizeAdminController = require('../controller/authorizeAdminController')
 
 router.post("/signup",userSignUpController)
 router.post("/login",userLoginINController)
@@ -28,6 +29,7 @@ router.get("/user-details",authToken,userDetailsController)
 router.get("/user-logout",userLogout)
 
 //admin-panel
+router.get("http://localhost:5173/admin-panel",authToken,authorizeAdminController)
 router.get("/all-users",authToken,allUsers)
 router.post("/update-user",authToken,updateUser)
 //product

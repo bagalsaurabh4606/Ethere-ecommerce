@@ -4,12 +4,9 @@ const quantityController=async (req,res)=>{
 try{
   const userid=req.userId;
   const productId=req.body.productId;
-  console.log("userid",userid);
-  console.log("product id",productId)
-
   const qty = req.body.quantity;
-  console.log("qantity comming frmo front end",qty)
-  const updatedproduct=await addtoBagModel.updateOne({_id:productId},{
+
+  const updatedproduct=await addtoBagModel.updateOne({id:productId ,userId:userid},{
 
     ...(qty && {quantity : qty})
   })

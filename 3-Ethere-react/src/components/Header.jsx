@@ -5,48 +5,27 @@ import { useSelector } from "react-redux";
 import { FiSearch } from "react-icons/fi";
 import ProfileSidebar from "./ProfileSidebar";
 
-
 import React, { useEffect, useState } from "react";
 
-const Header = ({ fetchbagproduct, fetchcartproduct ,bagData }) => {
-  const bag = useSelector((store) => store.bag);
-  const [baglength, setbaglength] = useState(0);
+const Header = () => {
+  const bag = useSelector((store) => store.bag.bagProducts);
+
   const user = useSelector((store) => store?.user?.data);
 
-  const searchInput =useLocation();
+  const searchInput = useLocation();
 
-  const [search,setSearch]=useState(searchInput?.search?.split("=")[1]);
+  const [search, setSearch] = useState(searchInput?.search?.split("=")[1]);
 
-  useEffect(() => {
-    fetchbagproduct();
-    
-  }, [fetchbagproduct]);
-
-  useEffect(() => {
-    fetchcartproduct();
-    
-  }, [fetchcartproduct]);
-
-  useEffect(() => {
-    setbaglength(bag.length);
-  }, [bag]);
-
- const navigate =useNavigate();
-  const handleSearch =(e)=>
-  {
-    const {value}=e.target;
+  const navigate = useNavigate();
+  const handleSearch = (e) => {
+    const { value } = e.target;
     setSearch(value);
-    if(value)
-    {
-      navigate(`/search?q=${value}`)
+    if (value) {
+      navigate(`/search?q=${value}`);
+    } else {
+      navigate("/search");
     }
-    else 
-    {
-      navigate("/search")
-    }
-     
-
-  }
+  };
   return (
     <>
       <header>
@@ -133,7 +112,7 @@ const Header = ({ fetchbagproduct, fetchcartproduct ,bagData }) => {
 
             <span className="action_name">Store</span>
           </Link>
-          <span className="bag-item-count">{bagData.length}</span>
+          <Link to="/bag"className="bag-item-count">{bag.length}</Link>
         </div>
       </header>
     </>

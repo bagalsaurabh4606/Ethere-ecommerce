@@ -15,14 +15,16 @@ import deleteCartProduct from "../helper/deleteCartProduct";
 
 const HorizontalCardItems = ({ item }) => {
   const dispatch = useDispatch();
-  const wishlistitem = useSelector((state) => state.wishlist);
-  const bagItem = useSelector((state) => state.bag);
+  const currentUser = useSelector((store) => store.user.data);
+  const isUserLoggedIn = currentUser && Object.keys(currentUser).length > 0;
+
+  const wishlistitem = useSelector((state) => state.wishlist.wishProducts);
+  const bagItem = useSelector((store) => store.bag.bagProducts);
 
   //wishlist
   const wishlistelementfound = wishlistitem.some(
-    (i) => i.productId === item.id.toString()
+    (wishID) => wishID.id === item.id
   );
-
 
   const [isInWishlist, setisInWishlist] = useState(wishlistelementfound);
   useEffect(() => {
@@ -31,27 +33,22 @@ const HorizontalCardItems = ({ item }) => {
 
   //bag
 
-  const bagItemelement = bagItem.flat();
-  const bagitemelementfound = bagItemelement.some(
-    (bagItem) => bagItem.productId === item.id.toString()
-  );
+  const bagitemelementfound = bagItem.some((bagId) => bagId.id === item.id);
 
-  const [isInBag, setIsinBag] = useState(bagitemelementfound);
+  const [isInBag, setIsinBag] = useState(false);
   useEffect(() => {
     setIsinBag(bagitemelementfound);
   }, [bagitemelementfound]);
 
   const handleAddToBag = (e) => {
+    dispatch(bagActions.addToBag(item));
     addTobag(e, item, dispatch);
+
     setIsinBag(true);
-
-
   };
 
   const handleRemoveFromBag = (e) => {
-    // dispatch(bagActions.removeFromBag(item.id));
-    console.log("horizontal cart item id",item.id)
-    deletefrombag(e,item,dispatch);
+    deletefrombag(e, item, dispatch);
     setIsinBag(false);
   };
 
@@ -61,7 +58,7 @@ const HorizontalCardItems = ({ item }) => {
   };
 
   const handleRemoveFromWishlist = (e) => {
-    deleteCartProduct(e,item,dispatch);
+    deleteCartProduct(e, item, dispatch);
     setisInWishlist(false);
   };
   const curr_price =
@@ -89,7 +86,7 @@ const HorizontalCardItems = ({ item }) => {
             ({item.discountPercentage}% OFF)
           </span>
         </div>
-        <div className="horizontal-rating-container"> 
+        <div className="horizontal-rating-container">
           <div className="horizontal-rating">4.5|1400</div>
           <div className="horizontal-wishlist-buttons">
             {isInWishlist ? (
@@ -117,7 +114,10 @@ const HorizontalCardItems = ({ item }) => {
                 Buy Now <IoBag />
               </button>
             </Link>
-            <button className="Horizontalcard_remove-button" onClick={handleRemoveFromBag}>
+            <button
+              className="Horizontalcard_remove-button"
+              onClick={handleRemoveFromBag}
+            >
               <RiDeleteBin4Fill />
             </button>
           </div>

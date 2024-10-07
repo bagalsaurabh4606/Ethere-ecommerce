@@ -2,10 +2,10 @@
 // new
 import React, { useState, useEffect } from "react";
 import Fabric from "/images/Fabric.jpg";
-import Scrunchies from "../../public/images/Scrunchies.jpg";
-import Polymer from "../../public/images/Polymer.jpg";
-import WristCharms from "../../public/images/WristCharms.jpg";
-import Crochet from "../../public/images/Crochet.jpg";
+import Scrunchies from "/images/Scrunchies.jpg";
+import Polymer from "/images/Polymer.jpg";
+import WristCharms from "/images/WristCharms.jpg";
+import Crochet from "/images/Crochet.jpg";
 
 const BannerImage = () => {
   const images = [Fabric, Scrunchies, Polymer, WristCharms, Crochet];

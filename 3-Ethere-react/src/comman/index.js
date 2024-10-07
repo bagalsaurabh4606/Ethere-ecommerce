@@ -6,7 +6,7 @@ const summaryApi = {
     method: `post`,
   },
   LogIN: {
-    url: `${backendDomain}/api/login`,
+    url: `${backendDomain}/api/login`,   
     method: `post`,
   },
   currentUser: {
@@ -24,6 +24,10 @@ const summaryApi = {
   UpdateUser:{
     url:`${backendDomain}/api/update-user`,
     method:`post`
+  },
+  AdminAuthentication:{
+url:`${backendDomain}/api/admin-panel`,
+method:`get`
   },
   uploadProduct:{
     url:`${backendDomain}/api/upload-prouct`,

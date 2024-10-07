@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 const CONVENIENCE_FEES=99;
 const BagSummary=({FinalItems})=>{
 
@@ -6,15 +8,14 @@ const BagSummary=({FinalItems})=>{
   let totalDiscount = 0;
   let curruntprice=0;
   FinalItems.forEach(bagItem => {
-    totalMRP += bagItem.originalPrice;
-    curruntprice+=(bagItem.originalPrice)-(bagItem.originalPrice/100)*(bagItem.discountPercentage)
+    totalMRP += bagItem.originalPrice*bagItem.quantity;
+    curruntprice+=(bagItem.originalPrice*bagItem.quantity)-(bagItem.originalPrice*bagItem.quantity/100)*(bagItem.discountPercentage)
     totalDiscount += totalMRP - curruntprice;
     
   });
 
 
   let finalPayment = curruntprice + CONVENIENCE_FEES;
-  
 
 return (
 <>
