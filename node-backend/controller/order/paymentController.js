@@ -1,6 +1,6 @@
-
 const razorpay = require("../../config/razorpay");
 const userModel = require("../../models/userModels");
+const orderModel = require("../../models/orderModel");
 
 const paymentController = async (request, response) => {
   try {
@@ -15,12 +15,22 @@ const paymentController = async (request, response) => {
     });
 
     const order = await razorpay.orders.create({
-      amount: Math.round(amount * 100), // amount in smallest currency unit (paise)
+      amount: Math.round(amount * 100), // amount in paise
       currency: "INR",
       receipt: `receipt_order_${new Date().getTime()}`,
       notes: {
         email: user.email,
       },
+    });
+
+    // Save order details in the database
+    await orderModel.create({
+      userId: user._id,
+      email: user.email,
+      products: bagItems,
+      totalAmount: amount,
+      orderId: order.id,
+      paymentStatus: "Pending",
     });
 
     response.status(200).json({ orderId: order.id });
