@@ -22,6 +22,7 @@ const deleteCartProductController = require('../controller/deleteCartproductCont
 const searchProductController = require('../controller/searchProductController')
 const quantityController = require('../controller/quantityController')
 const authorizeAdminController = require('../controller/authorizeAdminController')
+const paymentController = require('../controller/order/paymentController')
 
 router.post("/signup",userSignUpController)
 router.post("/login",userLoginINController)
@@ -57,4 +58,7 @@ router.get("/getBagproduct",authToken,getBagProductController)
 router.delete("/deletebagProduct",authToken,deleteBagProductController)
 router.post("/bag-quantity",authToken,quantityController)
 
+//payment and order
+
+router.post("/checkout",authToken,paymentController)
 module.exports=router

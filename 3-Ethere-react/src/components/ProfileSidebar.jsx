@@ -7,28 +7,25 @@ import moment from "moment";
 import { useState } from "react";
 import AdminLogOutConfirm from "./AdminLogOutConfirm";
 
-const ProfileSidebar=()=>{
-  const user=useSelector((store)=>store?.user?.data);
-  const navigate=useNavigate();
-  const dispatch=useDispatch();
- 
-  const [logoutConfirm , setlogOutForm]=useState(false)
+const ProfileSidebar = () => {
+  const user = useSelector((store) => store?.user?.data);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [logoutConfirm, setlogOutForm] = useState(false);
+
   const handleLogout = async () => {
     try {
-      console.log("Logging out...");
       const response = await fetch(summaryApi.LogoutUser.url, {
         method: summaryApi.LogoutUser.method,
         credentials: "include",
       });
-  
-     
-  
+
       const dataApi = await response.json();
-  
+
       if (dataApi.success) {
         toast.error(dataApi.message);
-        dispatch(userActions.setUserDetails(null))
-        navigate("/")
+        navigate("/");
+        dispatch(userActions.setUserDetails([]));
       } else if (dataApi.error) {
         toast.error(dataApi.message);
       }
@@ -37,64 +34,43 @@ const ProfileSidebar=()=>{
       toast.error("Failed to log out. Please try again later.");
     }
   };
-  return <>
-  <div class="container">
-        <div class="profile-header">
-          <div className="picture-info">
-          <div class="profile-picture">
-                <img src="images/ethere_logo.jpg" alt="Profile Picture"/>
-            </div>
-            <div class="profile-info">
-                <h1>{user.name}</h1>
-                <p>Email: {user.email}</p>
-                <p>Member since: {moment(user.createdAt).format('ll')}</p>
-            </div>
-          </div>
 
-            <button className="edit-profile-btn" onClick={()=>{setlogOutForm(true)}}>Logout</button>
+  // Check if user is undefined or null before rendering user details
+  if (!user) {
+    return <p>Loading profile information...</p>;
+  }
+
+  return (
+    <div className="container">
+      <div className="profile-header">
+        <div className="picture-info">
+          <div className="profile-picture">
+            <img src="images/ethere_logo.jpg" alt="Profile Picture" />
+          </div>
+          <div className="profile-info">
+            <h1>{user.name}</h1>
+            <p>Email: {user.email}</p>
+            <p>Member since: {moment(user.createdAt).format('ll')}</p>
+          </div>
         </div>
-        <div class="profile-body">
-            <div class="profile-details">
-                <h2>Profile Details</h2>
-                <p><strong>Full Name:</strong> {user.name}</p>
-                <p><strong>Email:</strong> {user.email}</p>
-                <p><strong>Phone Number:</strong> provide phone number</p>
-                <p><strong>Address:</strong> Please provide address</p>
-            </div>
-            <div class="order-history">
-                <h2>Order History</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Order ID</th>
-                            <th>Name</th>
-                            <th>Date</th>
-                            <th>Status</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>12345</td>
-                            <td>Earings</td>
-                            <td>2023-07-20</td>
-                            <td>Delivered</td>
-                            <td>$59.99</td>
-                        </tr>
-                        <tr>
-                            <td>12346</td>
-                            <td>Earings</td>
-                            <td>2023-07-18</td>
-                            <td>Processing</td>
-                            <td>$39.99</td>
-                        </tr>
-                       
-                    </tbody>
-                </table>
-            </div>
+        <button className="edit-profile-btn" onClick={() => setlogOutForm(true)}>Logout</button>
+      </div>
+      <div className="profile-body">
+        <div className="profile-details">
+          <h2>Profile Details</h2>
+          <p><strong>Full Name:</strong> {user.name}</p>
+          <p><strong>Email:</strong> {user.email}</p>
+          <p><strong>Phone Number:</strong> provide phone number</p>
+          <p><strong>Address:</strong> Please provide address</p>
         </div>
-        {logoutConfirm &&<>{console.log("rendering user log out")} <AdminLogOutConfirm handleLogout={handleLogout}  setlogOutForm={setlogOutForm}/></>}
+        <div className="order-history">
+          <h2>Order History</h2>
+          {/* Order history table */}
+        </div>
+      </div>
+      {logoutConfirm && <AdminLogOutConfirm handleLogout={handleLogout} setlogOutForm={setlogOutForm} />}
     </div>
-  </>
-}
+  );
+};
+
 export default ProfileSidebar;

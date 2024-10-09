@@ -84,6 +84,11 @@ method:`get`
     method:`get`
   },
 
+  payment:{
+    url:`${backendDomain}/api/checkout`,
+    method:`post`
+  }
+
   
 };
 

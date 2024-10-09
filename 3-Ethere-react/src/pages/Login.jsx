@@ -5,13 +5,17 @@ import { useContext, useState } from "react";
 import summaryApi from "../comman";
 import { toast } from "react-toastify";
 import Context from "../context";
+import { useDispatch } from "react-redux";
 const Login = () => {
   const [ShowPassword, setShowPassword] = useState(true);
+
+  const dispatch = useDispatch();
 
   const [data,setData]=useState({
     email:"",
     password:""
   })
+
 
   const navigate=useNavigate()
 
@@ -41,7 +45,7 @@ const Login = () => {
       
       
     })
-    console.log(data);
+    console.log("got data in login",data);
     const dataApi=await dataresponse.json();
     if(dataApi.success){
       toast.success(dataApi.message)

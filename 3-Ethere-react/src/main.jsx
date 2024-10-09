@@ -19,6 +19,7 @@ import AllProducts from "./pages/AllProducts.jsx";
 import CatagoryWiseProducts from "./components/CatagoryList.jsx";
 import CategoryWiseProducts from "./pages/CategoryWiseProducts.jsx";
 import SearchProduct from "./pages/SearchProduct.jsx";
+import PaymentSuccessful from "./pages/PaymentSuccessful.jsx";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,7 @@ const router = createBrowserRouter([
 
 
       { path: "signup", element: <SignUp></SignUp> },
+      { path: "payment-success",element: <PaymentSuccessful/>},
       { path: "login", element: <Login></Login> },
       { path: "forgot-password", element: <ForgotPassword></ForgotPassword> },
       { path: "Profile", element: <ProfileSidebar></ProfileSidebar> },

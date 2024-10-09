@@ -22,20 +22,35 @@ function App() {
   const currentUser = useSelector((store) => store.user.data);
   const isUserLoggedIn = currentUser && Object.keys(currentUser).length > 0;
 
-  const fetchUserDetails = async () => {
-    const dataresponse = await fetch(summaryApi.currentUser.url, {
-      method: summaryApi.currentUser.method,
-      credentials: "include",
-    });
 
-    const dataApi = await dataresponse.json();
+    const fetchUserDetails = async () => {
+      const dataresponse = await fetch(summaryApi.currentUser.url, {
+        method: summaryApi.currentUser.method,
+        credentials: "include",
+      });
+      const dataApi = await dataresponse.json();
 
-    // dispatch(userActions.setUserDetails(dataApi))
+      console.log("got user deatils in app.jsxx", dataApi.data);
 
-    if (dataApi.success) {
-      dispatch(userActions.setUserDetails(dataApi));
-    }
-  };
+      if (dataApi.success) {
+        dispatch(userActions.setUserDetails(dataApi));
+      }
+    };
+    // if (currentUser && Object.keys(currentUser).length > 0) {
+    //   fetchUserDetails(); // Fetch bag products if user is logged in
+    // } else {
+    //   dispatch(userActions.setUserDetails([]));
+    // }
+
+    useEffect(() => {
+      if (!currentUser || Object.keys(currentUser).length === 0) {
+        fetchUserDetails(); 
+      }
+    }, []); 
+    
+
+
+  
 
   //bag product fetching
 
@@ -86,9 +101,7 @@ function App() {
     }
   }, [currentUser, dispatch]);
 
-  useEffect(() => {
-    fetchUserDetails();
-  }, []);
+
 
   return (
     <>

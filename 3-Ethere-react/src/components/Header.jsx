@@ -11,6 +11,8 @@ const Header = () => {
   const bag = useSelector((store) => store.bag.bagProducts);
 
   const user = useSelector((store) => store?.user?.data);
+  
+  console.log("user details in header",user)
 
   const searchInput = useLocation();
 
