@@ -62,8 +62,10 @@ const crypto = require("crypto");
 
 const webhookController = async (req, res) => {
   const secret = process.env.WEBHOOK_SECRET;
+  console.log("secrete key",secret)
   const signature = req.headers["x-razorpay-signature"];
 
+  console.log("signature from razor pay",signature)
   if (!signature) {
     return res.status(400).send("Signature missing");
   }

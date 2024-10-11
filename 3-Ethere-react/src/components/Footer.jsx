@@ -1,8 +1,5 @@
 const Footer=()=>{
   return  <footer>
-    <div className="footer_container">
-
-    </div>
     <hr/>
 
     <div className="copyright">
