@@ -9,7 +9,11 @@ import HorizontalCardHome from "../pages/HorizontalCardHome";
 const Home = ({ fetchbagproduct }) => {
   const dispatch = useDispatch();
   const fetchCategoryProduct = async () => {
-    const response = await fetch(summaryApi.categoryProduct.url);
+    const response = await fetch(summaryApi.categoryProduct.url,{
+      headers: {
+        "content-type": "application/json",
+      },
+    });
     const dataResponse = await response.json();
 
     if (dataResponse.success) {

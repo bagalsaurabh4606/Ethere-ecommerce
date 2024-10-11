@@ -13,7 +13,15 @@ const FetchItems = () => {
 
     dispatch(fetchActions.markFetchingstarted());
     
-    const dataResponse = await fetch(summaryApi.getProduct.url)
+    const dataResponse = await fetch(summaryApi.getProduct.url,{
+    method:summaryApi.getProduct.method,
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    }
+    }
+
+    )
 
     const dataApi = await dataResponse.json();
     if(dataApi.success)

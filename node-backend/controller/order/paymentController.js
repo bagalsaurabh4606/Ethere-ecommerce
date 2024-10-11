@@ -5,8 +5,8 @@ const orderModel = require("../../models/orderModel");
 const paymentController = async (request, response) => {
   try {
     const bagItems = request.body;
+    // console.log("bagItems",bagItems)
     const user = await userModel.findOne({ _id: request.userId });
-
     let amount = 0;
     bagItems.forEach((item) => {
       const discount = item.discountPercentage || 0;
@@ -32,6 +32,8 @@ const paymentController = async (request, response) => {
       orderId: order.id,
       paymentStatus: "Pending",
     });
+
+    console.log("order detalis sending in backend",order.id)
 
     response.status(200).json({ orderId: order.id });
   } catch (err) {

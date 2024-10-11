@@ -23,6 +23,7 @@ const searchProductController = require('../controller/searchProductController')
 const quantityController = require('../controller/quantityController')
 const authorizeAdminController = require('../controller/authorizeAdminController')
 const paymentController = require('../controller/order/paymentController')
+const webhookController = require('../controller/order/webHook')
 
 router.post("/signup",userSignUpController)
 router.post("/login",userLoginINController)
@@ -61,4 +62,9 @@ router.post("/bag-quantity",authToken,quantityController)
 //payment and order
 
 router.post("/checkout",authToken,paymentController)
+
+//webhook 
+
+
+
 module.exports=router
