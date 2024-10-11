@@ -5,6 +5,7 @@ const orderModel = require("../../models/orderModel");
 const paymentController = async (request, response) => {
   try {
     const bagItems = request.body;
+    const curruentUser=request.userId;
     // console.log("bagItems",bagItems)
     const user = await userModel.findOne({ _id: request.userId });
     let amount = 0;
@@ -25,7 +26,7 @@ const paymentController = async (request, response) => {
 
     // Save order details in the database
     await orderModel.create({
-      userId: user._id,
+      userId: curruentUser,
       email: user.email,
       products: bagItems,
       totalAmount: amount,
