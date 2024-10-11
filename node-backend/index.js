@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
   res.send("Welcome to the backend!");
 });
 
-app.post('/webhook',authToken, webhookController);
+app.post('/webhook', webhookController);
 
 
 
