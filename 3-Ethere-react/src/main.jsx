@@ -20,6 +20,7 @@ import CatagoryWiseProducts from "./components/CatagoryList.jsx";
 import CategoryWiseProducts from "./pages/CategoryWiseProducts.jsx";
 import SearchProduct from "./pages/SearchProduct.jsx";
 import PaymentSuccessful from "./pages/PaymentSuccessful.jsx";
+import OrderDetails from "./pages/OrderDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,9 @@ const router = createBrowserRouter([
           { path: "all-users", element: <Allusers /> },
           { path: "all-products", element: <AllProducts /> },
         ],
+      },
+      {
+        path:"order-details/:orderId",element:<OrderDetails></OrderDetails>
       },
     ],
   },

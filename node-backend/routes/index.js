@@ -24,6 +24,7 @@ const quantityController = require('../controller/quantityController')
 const authorizeAdminController = require('../controller/authorizeAdminController')
 const paymentController = require('../controller/order/paymentController')
 const webhookController = require('../controller/order/webHook')
+const fetchOrderController = require('../controller/order/fetchOrderController')
 
 router.post("/signup",userSignUpController)
 router.post("/login",userLoginINController)
@@ -62,7 +63,7 @@ router.post("/bag-quantity",authToken,quantityController)
 //payment and order
 
 router.post("/checkout",authToken,paymentController)
-
+router.get("/order-details",authToken,fetchOrderController)
 //webhook 
 
 

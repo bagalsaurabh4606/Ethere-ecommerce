@@ -2,9 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import summaryApi from "../comman";
 import { toast } from "react-toastify";
 import { userActions } from "../store/userSlice";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import moment from "moment";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AdminLogOutConfirm from "./AdminLogOutConfirm";
 
 const ProfileSidebar = () => {
@@ -12,6 +12,22 @@ const ProfileSidebar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [logoutConfirm, setlogOutForm] = useState(false);
+
+  const[orderData,setOrderData]=useState([]);
+  const fetchOrder=async()=>{
+    const response=await fetch(summaryApi.getOrder.url,{
+      method:summaryApi.getOrder.method,
+      credentials:'include',
+      headers:{"content-type":"application/json"},
+
+    });
+    const dataresponse=await response.json();
+    setOrderData(dataresponse.data);
+    console.log("dataResponse",dataresponse.data);
+  }
+
+  useEffect(()=>{fetchOrder()},[])
+
 
   const handleLogout = async () => {
     try {
@@ -65,7 +81,30 @@ const ProfileSidebar = () => {
         </div>
         <div className="order-history">
           <h2>Order History</h2>
-          {/* Order history table */}
+          <table className="orders-table">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Total Amount</th>
+            <th>Status</th>
+            <th>View Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          {orderData.map((order) => (
+            <tr key={order.orderId}>
+              <td>{order.orderId}</td>
+              <td>  ₹ {Math.round(order.totalAmount)}</td>
+              <td>{order.paymentStatus}</td>
+              <td>
+                <Link to={`/order-details/${order.orderId}`}>
+                  <div> View Details </div>
+                </Link>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
         </div>
       </div>
       {logoutConfirm && <AdminLogOutConfirm handleLogout={handleLogout} setlogOutForm={setlogOutForm} />}

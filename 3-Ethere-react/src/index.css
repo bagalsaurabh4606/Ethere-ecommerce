@@ -2101,3 +2101,46 @@ Admin Panel all proucts */
     opacity: 1;
   }
 }
+
+
+
+/* 
+order details  */
+
+
+.orders-table-container {
+  margin: 20px;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse; /* Ensures no space between borders */
+}
+
+.orders-table th,
+.orders-table td {
+  border: 1px solid #ddd; /* Adds a border around each cell */
+  padding: 10px; /* Adds padding for better spacing */
+  text-align: left; /* Aligns text to the left */
+}
+
+.orders-table th {
+  background-color: #f2f2f2; /* Light gray background for headers */
+}
+
+.orders-table tr:nth-child(even) {
+  background-color: #f9f9f9; /* Slightly different background for even rows */
+}
+
+.orders-table tr:hover {
+  background-color: #ddd; /* Changes background on hover */
+}
+
+.orders-table a {
+  color: #17a2b8; /* Link color */
+  text-decoration: none; /* No underline */
+}
+
+.orders-table a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
