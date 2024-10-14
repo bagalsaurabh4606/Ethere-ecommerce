@@ -1,0 +1,10 @@
+.wishlistItemsContainer {
+  display: grid;
+  width: 70%;
+  padding-right: 20px;
+  padding-top: 32px;
+  color: #282c3f;
+  font-size: 13px;
+  margin: 20px 15%;
+  line-height: 1.42857143;
+}

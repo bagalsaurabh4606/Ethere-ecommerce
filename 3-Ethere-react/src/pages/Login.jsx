@@ -4,15 +4,21 @@ import { useContext, useState } from "react";
 import summaryApi from "../comman";
 import { toast } from "react-toastify";
 import Context from "../context";
+import { useDispatch } from "react-redux";
+import styles from "../styles/Login.module.css"; // Importing CSS module
 
 const Login = () => {
-  const [ShowPassword, setShowPassword] = useState(true); // State to toggle password visibility
-  const [data, setData] = useState({ email: "", password: "" }); // State to store form input data
+  const [showPassword, setShowPassword] = useState(true);
+  const dispatch = useDispatch();
+
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+  });
 
   const navigate = useNavigate();
-  const { fetchUserDetails } = useContext(Context); // Fetch user details after successful login
+  const { fetchUserDetails } = useContext(Context);
 
-  // Handle input field changes
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setData((prev) => ({
@@ -21,10 +27,9 @@ const Login = () => {
     }));
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const dataresponse = await fetch(summaryApi.LogIN.url, {
+    const dataResponse = await fetch(summaryApi.LogIN.url, {
       method: summaryApi.LogIN.method,
       credentials: "include",
       headers: {
@@ -32,46 +37,41 @@ const Login = () => {
       },
       body: JSON.stringify(data),
     });
-
-    const dataApi = await dataresponse.json();
-
-    // Handle successful login
+    console.log("got data in login", data);
+    const dataApi = await dataResponse.json();
     if (dataApi.success) {
       toast.success(dataApi.message);
       navigate("/");
-      fetchUserDetails(); // Refresh user details after login
+      fetchUserDetails();
     }
-
-    // Handle login error
     if (dataApi.error) {
       toast.error(dataApi.message);
     }
   };
 
   return (
-    <section className="main_section_login">
-      <div className="login_container">
+    <section className={styles.mainSectionLogin}>
+      <div className={styles.loginContainer}>
         <h2>Login</h2>
-        <div className="inner_page">
+        <div className={styles.innerPage}>
           <form id="loginForm" onSubmit={handleSubmit}>
             {/* Email input */}
             <input
               type="text"
               id="username"
               name="email"
-              className="username"
+              className={styles.username}
               placeholder="Email"
               required
               value={data.email}
               onChange={handleOnChange}
             />
 
-            {/* Password input with visibility toggle */}
-            <div className="password-container">
+            <div className={styles.passwordContainer}>
               <input
-                type={ShowPassword ? "password" : "text"}
+                type={showPassword ? "password" : "text"}
                 id="password"
-                className="password"
+                className={styles.password}
                 name="password"
                 placeholder="Password"
                 value={data.password}
@@ -79,26 +79,21 @@ const Login = () => {
                 required
               />
               <div
-                className="eye-container"
+                className={styles.eyeContainer}
                 onClick={() => setShowPassword((prev) => !prev)}
               >
-                <span className="eye-icon">
-                  {ShowPassword ? <IoMdEyeOff /> : <IoMdEye />}
+                <span className={styles.eyeIcon}>
+                  {showPassword ? <IoMdEyeOff /> : <IoMdEye />}
                 </span>
               </div>
             </div>
 
-            {/* Forgot password link */}
-            <Link to="/forgot-password" className="forgot-password">
-              forgot password
+            <Link to="/forgot-password" className={styles.forgotPassword}>
+              Forgot password?
             </Link>
-
-            {/* Submit button */}
             <button type="submit">Login</button>
           </form>
-
-          {/* Sign up redirect */}
-          <div className="signin_redirect">
+          <div className={styles.signinRedirect}>
             <h6>
               Create an Account <Link to="/signup">SignUp</Link>
             </h6>

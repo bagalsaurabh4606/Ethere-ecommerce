@@ -1,57 +1,51 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import summaryApi from "../comman";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "../components/LoadingSpinner";
 import HomeItems from "../components/HomeItems";
 import { useSelector } from "react-redux";
+import styles from "../styles/SearchProduct.module.css";
 
 const SearchProduct = () => {
-  const query = useLocation(); // Get query parameters from the location
-  const [data, setData] = useState([]); // Store search results
-  const [loading, setLoading] = useState(false); // Manage loading state
-  const bagItems = useSelector((state) => state.bag); // Get bag items from Redux store
-  const wishlistItems = useSelector((state) => state.wishlist); // Get wishlist items from Redux store
+  const query = useLocation();
+  const navigate = useNavigate();
 
-  // Fetch products based on search query
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const bagItems = useSelector((state) => state.bag);
+  const wishlistitem = useSelector((state) => state.wishlist);
+
   const fetchProduct = async () => {
     setLoading(true);
-    try {
-      const response = await fetch(`${summaryApi.searchProduct.url}${query.search}`);
-      const dataResponse = await response.json();
-      setData(dataResponse.data);
-    } catch (error) {
-      console.error("Error fetching search results:", error);
-      setData([]); // Clear data on error to prevent displaying stale results
-    } finally {
-      setLoading(false);
-    }
+    const response = await fetch(summaryApi.searchProduct.url + query.search);
+
+    const dataResponse = await response.json();
+
+    setLoading(false);
+    setData(dataResponse.data);
   };
 
-  // Fetch products whenever the query changes
   useEffect(() => {
     fetchProduct();
   }, [query]);
 
   return (
-    <div className="search-main-container">
+    <div className={styles.searchMainContainer}>
       {loading && <LoadingSpinner />}
-
-      <p className="search-result">{data.length} Results Found</p>
-
-      {/* Display a message if no results are found */}
+      <p className={styles.searchResult}>{data.length} Results Found</p>
       {data.length === 0 && !loading && (
-        <p className="no-results">Opps!!! No results found.</p>
+        <p className={styles.noResults}> Opps !!! </p>
       )}
-
-      {/* Display the list of products if available */}
-      <div className="items-container">
-        {data.length !== 0 && !loading &&
+      <div className={styles.itemsContainer}>
+        {data.length !== 0 &&
+          !loading &&
           data.map((item) => (
             <HomeItems
               key={item.id}
               item={item}
               bagItem={bagItems}
-              wishlistitem={wishlistItems}
+              wishlistitem={wishlistitem}
             />
           ))}
       </div>

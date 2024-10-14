@@ -1,35 +1,38 @@
 import { useState } from "react";
 import { MdEdit } from "react-icons/md";
 import EditAdminProduct from "./EditAdminProduct";
-const AdminAllProduct = ({ product,fetchData }) => {
-  const [editProduct, seteditProduct] = useState(false);
+import styles from "../styles/AdminAllProduct.module.css"; // Importing CSS module
 
-  const curruntprice=(product.originalPrice)-(product.originalPrice/100)*(product.discountPercentage)
+const AdminAllProduct = ({ product, fetchData }) => {
+  const [editProduct, setEditProduct] = useState(false);
+
+  const currentPrice = (product.originalPrice) - (product.originalPrice / 100) * (product.discountPercentage);
+
   return (
-    <div className="products-container">
-      <div key={product.id} className="product-card">
-        <img src={product.image} alt={product.name} className="product-image" />
-        <div className="product-info">
+    <div className={styles.productsContainer}>
+      <div key={product.id} className={styles.productCard}>
+        <img src={product.image} alt={product.name} className={styles.productImage} />
+        <div className={styles.productInfo}>
           <h3>{product.name}</h3>
-          <p> <b>Quantity:</b> {product.quantity}</p>
-          <p> <b>Description:</b> {product.description}</p>
+          <p><b>Quantity:</b> {product.quantity}</p>
+          <p><b>Description:</b> {product.description}</p>
           <p><b>Category:</b> {product.category}</p>
-          <p> <b>Original Price: Rs</b>{product.originalPrice}</p>
+          <p><b>Original Price: Rs</b> {product.originalPrice}</p>
           <p><b>Discount:</b> {product.discountPercentage}%</p>
-          <p><b>Final Price:</b>{Math.round(curruntprice)}</p>
+          <p><b>Final Price:</b> {Math.round(currentPrice)}</p>
         </div>
-        <div className="edit_product1" onClick={() => seteditProduct(true)}>
+        <div className={styles.editProductIcon} onClick={() => setEditProduct(true)}>
           <MdEdit />
         </div>
       </div>
       {editProduct && (
-        (<div className="edit_product_overlay">
+        <div className={styles.editProductOverlay}>
           <EditAdminProduct
+           onClose={() => setEditProduct(false)}
             data={product}
-            onClose={() => seteditProduct(false)}
             fetchData={fetchData}
-          ></EditAdminProduct>
-        </div>)
+          />
+        </div>
       )}
     </div>
   );

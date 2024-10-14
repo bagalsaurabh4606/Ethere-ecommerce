@@ -1,0 +1,93 @@
+.mainSectionLogin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.validationMessage {
+  display: none;
+  color: red;
+  margin-top: 5px;
+}
+
+.passwordContainer {
+  padding: 7px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.password {
+  border: none;
+  outline: none;
+  width: 90%;
+}
+
+.eyeIcon {
+  font-size: 20px;
+}
+
+.forgotPassword {
+  text-align: right;
+  margin-bottom: 7px;
+  text-decoration: none;
+}
+
+.signinContainer {
+  height: auto;
+  width: 30%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.signinContainer h2 {
+  font-weight: bold;
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.signinContainer .inputBox {
+  position: relative;
+  width: 100%;
+}
+
+.signinContainer .inputBox input {
+  width: 100%;
+
+  font-size: 16px;
+
+  border-radius: 5px;
+  outline: none;
+  resize: none;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+}
+
+.signinContainer .inputBox input[type="submit"] {
+  width: 100%;
+  background: rgb(43, 150, 243);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 18px;
+  transition: 0.5s;
+}
+
+.signinRedirect {
+  text-align: center;
+  width: 100%;
+}
+
+.signinRedirect h6 a {
+  text-decoration: none;
+}

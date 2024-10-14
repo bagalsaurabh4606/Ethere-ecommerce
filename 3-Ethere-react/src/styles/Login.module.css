@@ -1,0 +1,90 @@
+.mainSectionLogin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.loginContainer {
+  height: auto;
+  width: 30%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.innerPage {
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.username {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.passwordContainer {
+  padding: 7px;
+  margin: 7px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.password {
+  border: none;
+  outline: none;
+  width: 90%;
+}
+
+.eyeIcon {
+  font-size: 20px;
+}
+
+.forgotPassword {
+  text-align: right;
+  margin-bottom: 7px;
+  text-decoration: none;
+}
+
+button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.signinRedirect {
+  margin-top: 12px;
+  text-align: center;
+}
+
+.signinRedirect h6 a {
+  text-decoration: none;
+}
+
+.validationMessage {
+  display: none;
+  color: red;
+  margin-top: 5px;
+}

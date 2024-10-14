@@ -1,29 +1,30 @@
+import React from "react";
 import { useSelector } from "react-redux";
 import HorizontalCardItems from "../components/HorizontalCardItems";
 import { MdArrowForwardIos } from "react-icons/md";
 import { Link } from "react-router-dom";
+import styles from "../styles/HorizontalCardHome.module.css"; // Import the CSS module
 
 const HorizontalCardHome = ({ category }) => {
-  const products = useSelector((state) => state.items.products || []); // Get products from Redux state
-  const items = products.filter((item) => item.category === category); // Filter products by the provided category
+  const products = useSelector((state) => state.items.products || []);
+  const items = products.filter((item) => item.category === category);
+  const bagItems = useSelector((state) => state.bag);
+  const wishlistitem = useSelector((state) => state.wishlist);
 
   return (
-    <div className="horizontal-items-container-main">
-      {/* Link to navigate to the category-specific product page */}
-      <Link className="horizontal-title" to={`/product-category/${category}`}>
+    <div className={styles.horizontalItemsContainerMain}>
+      <Link className={styles.horizontalTitle} to={`/product-category/${category}`}>
         {category}
       </Link>
-
-      {/* Display items in a horizontal scrollable list */}
-      <div className="horizontal-items-container">
+      
+      <div className={styles.horizontalItemsContainer}>
         {items.map((item, index) => (
           <HorizontalCardItems key={item.id || index} item={item} />
         ))}
       </div>
 
-      {/* Link to see more items in the selected category */}
-      <Link className="horizontal-see-more-overlay" to={`/product-category/${category}`}>
-        <div className="horizontal-see-more-text">
+      <Link className={styles.horizontalSeeMoreOverlay} to={`/product-category/${category}`}>
+        <div className={styles.horizontalSeeMoreText}>
           See More <MdArrowForwardIos />
         </div>
       </Link>

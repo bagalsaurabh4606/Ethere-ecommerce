@@ -4,19 +4,19 @@ import { toast } from "react-toastify";
 import { MdEdit } from "react-icons/md";
 import ChangeUserRole from "../components/ChangeUserRole";
 import moment from "moment";
+import styles from "../styles/Allusers.module.css"; // Importing CSS module
 
-const AllUsers = () => {
-  const [allUser, setAllUsers] = useState([]); // State to store all users
-  const [openUpdateRole, setOpenUpdateRole] = useState(false); // State to toggle role update modal
+const Allusers = () => {
+  const [allUser, setAllUsers] = useState([]);
+  const [openUpdateRole, setOpenUpdateRole] = useState(false);
   const [updateUserDetails, setUpdateUserDetails] = useState({
     email: "",
     name: "",
     role: "",
     createdAt: "",
     _id: "",
-  }); // State to hold details of the user to be updated
+  });
 
-  // Fetch all users from the API
   const fetchAllUsers = async () => {
     try {
       const fetchData = await fetch(summaryApi.AllUsers.url, {
@@ -40,8 +40,8 @@ const AllUsers = () => {
   }, []);
 
   return (
-    <div className="user-table-container">
-      <table className="user-table">
+    <div className={styles.userTableContainer}>
+      <table className={styles.userTable}>
         <thead>
           <tr>
             <th>Sr. No.</th>
@@ -53,18 +53,18 @@ const AllUsers = () => {
           </tr>
         </thead>
         <tbody>
-          {allUser.map((user, index) => (
-            <tr key={user._id}>
+          {allUser.map((el, index) => (
+            <tr key={el._id}>
               <td>{index + 1}</td>
-              <td>{user?.name}</td>
-              <td>{user?.email}</td>
-              <td>{user?.role}</td>
-              <td>{moment(user?.createdAt).format("ll")}</td>
-              <td
-                className="action-icon"
+              <td>{el?.name}</td>
+              <td>{el?.email}</td>
+              <td>{el?.role}</td>
+              <td>{moment(el?.createdAt).format('ll')}</td>
+              <td 
+                className={styles.actionIcon}
                 onClick={() => {
-                  setUpdateUserDetails(user); // Set details of selected user for role update
-                  setOpenUpdateRole(true); // Open role update modal
+                  setUpdateUserDetails(el);
+                  setOpenUpdateRole(true);
                 }}
               >
                 <MdEdit />
@@ -73,10 +73,8 @@ const AllUsers = () => {
           ))}
         </tbody>
       </table>
-
-      {/* Render ChangeUserRole modal if openUpdateRole is true */}
       {openUpdateRole && (
-        <div className="user-role-overlay">
+        <div className={styles.userRoleOverlay}>
           <ChangeUserRole
             onClose={() => setOpenUpdateRole(false)}
             name={updateUserDetails.name}
@@ -84,7 +82,7 @@ const AllUsers = () => {
             role={updateUserDetails.role}
             userId={updateUserDetails._id}
             createdAt={updateUserDetails.createdAt}
-            callFunc={fetchAllUsers} // Callback to refresh user list after update
+            callFunc={fetchAllUsers}
           />
         </div>
       )}

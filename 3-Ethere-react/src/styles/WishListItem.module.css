@@ -1,0 +1,62 @@
+.bagItemContainer {
+  margin-bottom: 8px;
+  background: #fff;
+  font-size: 14px;
+  border: 1px solid #eaeaec;
+  border-radius: 4px;
+  position: relative;
+  padding: 12px 12px 0;
+}
+
+.itemLeftPart {
+  position: absolute;
+  background: rgb(255, 242, 223);
+  height: 148px;
+  width: 111px;
+}
+
+.itemRightPart {
+  padding-left: 12px;
+  position: relative;
+  min-height: 148px;
+  margin-left: 111px;
+  margin-bottom: 12px;
+}
+
+.bagItemImg {
+  width: 100%;
+}
+
+.returnPeriod {
+  display: inline-flex;
+  font-size: 14px;
+  padding-top: 8px;
+}
+
+.returnPeriodDays {
+  font-weight: 700;
+  margin-right: 4px;
+}
+
+.deliveryDetails {
+  margin-top: 5px;
+  color: #282c3f;
+  font-size: 12px;
+  letter-spacing: -0.1px;
+  margin-bottom: 8px;
+  line-height: 15px;
+}
+
+.deliveryDetailsDays {
+  color: #03a685;
+}
+
+.removeFromCart {
+  position: absolute;
+  font-size: 25px;
+  top: 10px;
+  right: 18px;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}

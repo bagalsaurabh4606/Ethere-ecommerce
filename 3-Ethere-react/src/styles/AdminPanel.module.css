@@ -1,0 +1,14 @@
+.adminContainer {
+  display: flex;
+}
+
+.mainSectionAdmin {
+  width: 100%;
+}
+
+.sidebar {
+  width: 280px; /* Match the width of the sidebar */
+  height: 600px; /* Match the height of the sidebar */
+}
+
+
