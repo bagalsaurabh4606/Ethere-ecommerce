@@ -4,18 +4,18 @@ import { toast } from "react-toastify";
 import { MdEdit } from "react-icons/md";
 import ChangeUserRole from "../components/ChangeUserRole";
 import moment from "moment";
+import styles from "../styles/Allusers.module.css"; // Importing CSS module
 
 const Allusers = () => {
   const [allUser, setAllUsers] = useState([]);
-  const [openUpdateRole,setOpenUpdateRole]=useState(false)
-  const [updateUserDetails,setUpdateUserDetails]=useState({
-    email:"",
-    name:"",
-    role:"",
-    createdAt:"",
-    _id:"",
-  })
-
+  const [openUpdateRole, setOpenUpdateRole] = useState(false);
+  const [updateUserDetails, setUpdateUserDetails] = useState({
+    email: "",
+    name: "",
+    role: "",
+    createdAt: "",
+    _id: "",
+  });
 
   const fetchAllUsers = async () => {
     const fetchdata = await fetch(summaryApi.AllUsers.url, {
@@ -34,9 +34,10 @@ const Allusers = () => {
   useEffect(() => {
     fetchAllUsers();
   }, []);
+
   return (
-    <div className="user-table-container">
-      <table className="user-table">
+    <div className={styles.userTableContainer}>
+      <table className={styles.userTable}>
         <thead>
           <tr>
             <th>Sr. No.</th>
@@ -47,42 +48,40 @@ const Allusers = () => {
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody>{allUser.map((el, index) => {
-          return <tr key={el._id}>
-            <td>
-              {index+1}
-            </td>
-            <td>{el?.name}</td>
-            <td>{el?.email}</td>
-            <td>{el?.role}</td>
-            <td>{moment(el?.createdAt).format('ll')}</td>
-            <td className="action-icon"
-             onClick={()=>{
-              setUpdateUserDetails(el)
-              setOpenUpdateRole(true)
-
-             }}
-
-             ><MdEdit/></td>
-            
-          </tr>
-        })}</tbody>
+        <tbody>
+          {allUser.map((el, index) => (
+            <tr key={el._id}>
+              <td>{index + 1}</td>
+              <td>{el?.name}</td>
+              <td>{el?.email}</td>
+              <td>{el?.role}</td>
+              <td>{moment(el?.createdAt).format('ll')}</td>
+              <td 
+                className={styles.actionIcon}
+                onClick={() => {
+                  setUpdateUserDetails(el);
+                  setOpenUpdateRole(true);
+                }}
+              >
+                <MdEdit />
+              </td>
+            </tr>
+          ))}
+        </tbody>
       </table>
-      {
-        openUpdateRole && (
-          <div className="user-role-overlay">
-          <ChangeUserRole onClose={()=>setOpenUpdateRole(false)} 
-        name={updateUserDetails.name}
-        email={updateUserDetails.email}
-        role={updateUserDetails.role}
-        userId={updateUserDetails._id}
-        createdAt={updateUserDetails.createdAt}
-        callFunc={fetchAllUsers}
-        />
+      {openUpdateRole && (
+        <div className={styles.userRoleOverlay}>
+          <ChangeUserRole
+            onClose={() => setOpenUpdateRole(false)}
+            name={updateUserDetails.name}
+            email={updateUserDetails.email}
+            role={updateUserDetails.role}
+            userId={updateUserDetails._id}
+            createdAt={updateUserDetails.createdAt}
+            callFunc={fetchAllUsers}
+          />
         </div>
-      )
-      }
-     
+      )}
     </div>
   );
 };

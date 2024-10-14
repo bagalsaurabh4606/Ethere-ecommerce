@@ -4,9 +4,10 @@ import productCatagory from "../helper/productCatagory";
 import { MdCloudUpload } from "react-icons/md";
 import uploadImage from "../helper/uploadImage";
 import summaryApi from "../comman";
-import { json } from "react-router-dom";
 import { toast } from "react-toastify";
-const UploadProduct = ({ onClose,fetchuploadProduct}) => {
+import styles from "../styles/UploadProduct.module.css"; // Import the CSS module
+
+const UploadProduct = ({ onClose, fetchuploadProduct }) => {
   const [product, setProduct] = useState({
     id: "",
     category: "",
@@ -15,19 +16,17 @@ const UploadProduct = ({ onClose,fetchuploadProduct}) => {
     originalPrice: "",
     discountPercentage: "",
     image: [],
-    quantity:""
+    quantity: ""
   });
 
   const [uploadImageInput, setuploadImageInput] = useState(" ");
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-
-    setProduct((preve) => {
-      return {
-        ...preve,
-        [name]: value,
-      };
-    });
+    setProduct((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -46,45 +45,41 @@ const UploadProduct = ({ onClose,fetchuploadProduct}) => {
     if (productData.success) {
       toast.success(productData?.message);
       onClose();
-      fetchuploadProduct()
+      fetchuploadProduct();
     }
     if (productData.error) {
       toast.error(productData?.message);
     }
   };
+
   const handleUploadImage = async (e) => {
     const file = e.target.files[0];
     setuploadImageInput(file.name);
 
     const uploadImageCloudinary = await uploadImage(file);
-
-    setProduct((preve) => {
-      return {
-        ...preve,
-        image: [...preve.image, uploadImageCloudinary.url],
-      };
-    });
+    setProduct((prev) => ({
+      ...prev,
+      image: [...prev.image, uploadImageCloudinary.url],
+    }));
   };
 
   const handleDeleteImage = (index) => {
     const newProductImage = [...product.image];
     newProductImage.splice(index, 1);
-    setProduct((preve) => {
-      return {
-        ...preve,
-        image: [...newProductImage],
-      };
-    });
+    setProduct((prev) => ({
+      ...prev,
+      image: newProductImage,
+    }));
   };
 
   return (
-    <div className="product-upload-box">
-      <div className="cross-icon" onClick={onClose}>
+    <div className={styles.productUploadBox}>
+      <div className={styles.crossIcon} onClick={onClose}>
         <GrClose />
       </div>
       <h2>Upload Product</h2>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div className={styles.formGroup}>
           <label htmlFor="id">ID:</label>
           <input
             type="text"
@@ -95,8 +90,7 @@ const UploadProduct = ({ onClose,fetchuploadProduct}) => {
             required
           />
         </div>
-
-        <div className="form-group">
+        <div className={styles.formGroup}>
           <label htmlFor="quantity">Quantity:</label>
           <input
             type="number"
@@ -107,24 +101,21 @@ const UploadProduct = ({ onClose,fetchuploadProduct}) => {
             required
           />
         </div>
-
-
-        <div className="form-group">
+        <div className={styles.formGroup}>
           <label htmlFor="category">Category:</label>
           <select
-            type="text"
             id="category"
             name="category"
             value={product.category}
             onChange={handleChange}
             required
           >
-            {productCatagory.map((el, index) => {
-              return <option value={el.value}>{el.label}</option>;
-            })}
+            {productCatagory.map((el, index) => (
+              <option key={index} value={el.value}>{el.label}</option>
+            ))}
           </select>
         </div>
-        <div className="form-group">
+        <div className={styles.formGroup}>
           <label htmlFor="name">Name:</label>
           <input
             type="text"
@@ -135,7 +126,7 @@ const UploadProduct = ({ onClose,fetchuploadProduct}) => {
             required
           />
         </div>
-        <div className="form-group">
+        <div className={styles.formGroup}>
           <label htmlFor="description">Description:</label>
           <textarea
             id="description"
@@ -145,7 +136,7 @@ const UploadProduct = ({ onClose,fetchuploadProduct}) => {
             required
           />
         </div>
-        <div className="form-group">
+        <div className={styles.formGroup}>
           <label htmlFor="originalPrice">Original Price:</label>
           <input
             type="number"
@@ -156,7 +147,7 @@ const UploadProduct = ({ onClose,fetchuploadProduct}) => {
             required
           />
         </div>
-        <div className="form-group">
+        <div className={styles.formGroup}>
           <label htmlFor="discountPercentage">Discount Percentage:</label>
           <input
             type="number"
@@ -167,50 +158,45 @@ const UploadProduct = ({ onClose,fetchuploadProduct}) => {
             required
           />
         </div>
-        <div className="form-group">
+        <div className={styles.formGroup}>
           <label htmlFor="image">Image URL:</label>
-          <label htmlFor="image">
-            <div className="upload_image">
-              <div className="image-box">
-                <MdCloudUpload className="upload_icon" />
-              </div>
-              <p>Upload image here</p>
-              <input
-                type="file"
-                id="image"
-                name="image"
-                style={{ display: "none" }}
-                onChange={handleUploadImage}
-                required
-              />
+          <label htmlFor="image" className={styles.uploadImage}>
+            <div className={styles.imageBox}>
+              <MdCloudUpload className={styles.uploadIcon} />
             </div>
+            <p>Upload image here</p>
+            <input
+              type="file"
+              id="image"
+              name="image"
+              style={{ display: "none" }}
+              onChange={handleUploadImage}
+              required
+            />
           </label>
         </div>
-        <div className="uploded_image_div">
-          {product?.image[0] ? (
-            <div className="images_container">
-              {product.image.map((el, index) => {
-                return (
-                  <div className="uploaded_image">
-                    <div
-                      className="delete_image"
-                      onClick={() => handleDeleteImage(index)}
-                    >
-                      <GrClose />
-                    </div>
-
-                    <img src={el} width={80} height={80} className="" alt="" />
+        <div className={styles.uploadedImageDiv}>
+          {product.image.length > 0 ? (
+            <div className={styles.imagesContainer}>
+              {product.image.map((el, index) => (
+                <div className={styles.uploadedImage} key={index}>
+                  <div
+                    className={styles.deleteImage}
+                    onClick={() => handleDeleteImage(index)}
+                  >
+                    <GrClose />
                   </div>
-                );
-              })}
+                  <img src={el} width={80} height={80} alt="" />
+                </div>
+              ))}
             </div>
           ) : (
-            <p style={{ color: "red" }}> *Please Upload Product Image</p>
+            <p className={styles.uploadError}>*Please Upload Product Image</p>
           )}
         </div>
-
-        <button type="submit">Upload New Product</button>
-        
+        <button type="submit" className={styles.submitButton}>
+          Upload New Product
+        </button>
       </form>
     </div>
   );

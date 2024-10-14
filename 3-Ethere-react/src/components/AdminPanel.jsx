@@ -6,35 +6,27 @@ import summaryApi from "../comman";
 import { useState } from "react";
 import AdminLogOutConfirm from "./AdminLogOutConfirm";
 import { bagActions } from "../store/bagSlice";
-
+import styles from "../styles/AdminPanel.module.css"; // Importing CSS module
 
 const AdminPanel = () => {
-  const navigate=useNavigate();
-  const dispatch=useDispatch();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const bagItems = useSelector((store) => store.bag.bagProducts);
+  const [logoutForm, setLogOutForm] = useState(false);
 
-  const bagItems = useSelector((store)=>store.bag.bagProducts);
-
-const [logoutForm , setlogOutForm]=useState(false)
-  
   const handleLogout = async () => {
     try {
-
       const response = await fetch(summaryApi.LogoutUser.url, {
         method: summaryApi.LogoutUser.method,
         credentials: "include",
       });
-  
-     
-      
+
       const dataApi = await response.json();
-      const arr=[];
-  
+
       if (dataApi.success) {
         toast.error(dataApi.message);
-        navigate("/")
-        dispatch(userActions.setUserDetails([]))
-       // dispatch(bagActions.addToBag(arr))
-       
+        navigate("/");
+        dispatch(userActions.setUserDetails([]));
       } else if (dataApi.error) {
         toast.error(dataApi.message);
       }
@@ -45,27 +37,14 @@ const [logoutForm , setlogOutForm]=useState(false)
   };
 
   return (
-    <div className="admin-container">
-     
-
-      
-      <div className="sidebar">
-        <div
-          className="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary"
-          style={{width: "280px", height:"600px"}}
-        >
-          <div
-            
-            className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
-          >
-            <svg className="bi pe-none me-2" width="40" height="32">
-              
-            </svg>
+    <div className={styles.adminContainer}>
+      <div className={styles.sidebar}>
+        <div className="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary" style={{ width: "280px", height: "600px" }}>
+          <div className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <svg className="bi pe-none me-2" width="40" height="32"></svg>
             <span className="fs-4">Admin Panel</span>
           </div>
           <hr />
-          
-          
           <ul className="nav nav-pills flex-column mb-auto">
             <li className="nav-item">
               <Link to="all-users" className="nav-link link-body-emphasis" aria-current="page">
@@ -73,12 +52,11 @@ const [logoutForm , setlogOutForm]=useState(false)
                   <use to="#home"></use>
                 </svg>
                 All Users
-                
               </Link>
             </li>
             <hr />
             <li className="nav-item">
-              <Link to="all-products" className="nav-link  link-body-emphasis">
+              <Link to="all-products" className="nav-link link-body-emphasis">
                 <svg className="bi pe-none me-2" width="16" height="16">
                   <use to="#people-circle"></use>
                 </svg>
@@ -87,10 +65,8 @@ const [logoutForm , setlogOutForm]=useState(false)
             </li>
             <hr />
             <li className="nav-item">
-              <button className="nav-link link-body-emphasis Admin_Logout" onClick={()=>{setlogOutForm(true)}} >
-                <svg className="bi pe-none me-2" width="16" height="16">
-                  
-                </svg>
+              <button className="nav-link link-body-emphasis Admin_Logout" onClick={() => setLogOutForm(true)}>
+                <svg className="bi pe-none me-2" width="16" height="16"></svg>
                 LogOut
               </button>
             </li>
@@ -98,8 +74,12 @@ const [logoutForm , setlogOutForm]=useState(false)
           <hr />
         </div>
       </div>
-      <div className="main-section-admin"><Outlet></Outlet></div>
-      {logoutForm &&<> <AdminLogOutConfirm handleLogout={handleLogout} setlogOutForm={setlogOutForm}/></>}
+      <div className={styles.mainSectionAdmin}>
+        <Outlet />
+      </div>
+      {logoutForm && (
+        <AdminLogOutConfirm handleLogout={handleLogout} setLogOutForm={setLogOutForm} />
+      )}
     </div>
   );
 };

@@ -1,0 +1,122 @@
+.productUploadBox {
+  width: 600px;
+  margin: 20px auto;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  max-height: 500px;
+  min-height: 300px;
+  overflow-y: auto;
+}
+
+.crossIcon {
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+
+.formGroup {
+  margin-bottom: 15px;
+}
+
+.formGroup label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.formGroup input,
+.formGroup textarea,
+.formGroup select {
+  width: calc(100% - 12px);
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.submitButton {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  background-color: #0056b3;
+}
+
+.uploadImage {
+  width: calc(100% - 12px);
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  min-height: 100px;
+  background-color: white;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.imageBox {
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.uploadedImageDiv {
+  margin-bottom: 5px;
+}
+
+.uploadError {
+  color: red;
+}
+
+.imagesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.uploadedImage {
+  position: relative;
+  margin: 5px;
+  border-radius: 8px;
+  width: 90px;
+  height: 90px;
+  border: 1px solid;
+  overflow: hidden;
+  padding: 7px;
+}
+
+.uploadedImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.deleteImage {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deleteImage svg {
+  font-size: 12px;
+  cursor: pointer;
+  
+}

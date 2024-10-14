@@ -1,0 +1,50 @@
+.modal123 {
+  display: block; /* Set this to block when the form is visible */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with transparency */
+}
+
+/* Modal Content */
+.modalContent {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30%;
+  text-align: center;
+  border-radius: 8px;
+}
+
+/* Buttons */
+.buttonsss {
+  margin-top: 20px;
+}
+
+.btnn {
+  background-color: #4caf50; /* Green */
+  color: white;
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btnn:hover {
+  background-color: #45a049;
+}
+
+/* Cancel Button Style */
+#cancelLogout {
+  background-color: #f44336; /* Red */
+}
+
+#cancelLogout:hover {
+  background-color: #d32f2f;
+}

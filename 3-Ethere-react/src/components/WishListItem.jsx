@@ -1,39 +1,39 @@
 import { useDispatch } from "react-redux";
-import { wishlistActions } from "../store/wishlistSlice";
 import { FcLike } from "react-icons/fc";
 import deleteCartProduct from "../helper/deleteCartProduct";
+import styles from "../styles/WishListItem.module.css"; // Adjust the path as necessary
 
+const WishListItem = ({ item }) => {
+  const dispatch = useDispatch();
 
-const WishListItem=({item})=>{
-const dispatch = useDispatch();
-const handleremove=(e)=>
-{
-  deleteCartProduct(e,item,dispatch);
-}
+  const handleRemove = (e) => {
+    deleteCartProduct(e, item, dispatch);
+  };
 
+  return (
+    <div className={styles.bagItemContainer}>
+      <div className={styles.itemLeftPart}>
+        <img className={styles.bagItemImg} src={item.image} alt={item.name} />
+      </div>
+      <div className={styles.itemRightPart}>
+        <div className={styles.company}>{item.category}</div>
+        <div className={styles.itemName}>{item.name}</div>
+        <div className={styles.priceContainer}>
+          <span className={styles.originalPrice}>Rs {item.originalPrice}</span>
+          <span className={styles.discountPercentage}>({item.discountPercentage}% OFF)</span>
+        </div>
+        <div className={styles.returnPeriod}>
+          <span className={styles.returnPeriodDays}>{item.return_period} days</span> return available
+        </div>
+        <div className={styles.deliveryDetails}>
+          Delivery by <span className={styles.deliveryDetailsDays}>{item.delivery_date}</span>
+        </div>
+      </div>
+      <div className={styles.removeFromCart} onClick={handleRemove}>
+        <FcLike className={styles.like} />
+      </div>
+    </div>
+  );
+};
 
-return  <div className="bag-item-container">
-<div className="item-left-part">
- <img className="bag-item-img" src={item.image}/>
-</div> 
-<div className="item-right-part">
-  <div className="company">{item.category}</div>
-  <div className="item-name">{item.name}</div>
-  <div className="price-container">
-    {/* <span className="current-price">Rs {item.current_price}</span> */}
-    <span className="original-price">Rs {item.originalPrice}</span>
-    <span className="discount-percentage">({item.discountPercentage}% OFF)</span>
-  </div>
-  <div className="return-period">
-    <span className="return-period-days">{item.return_period} days</span> return available
-  </div>
-  <div className="delivery-details">
-    Delivery by
-    <span className="delivery-details-days">{item.delivery_date}</span>
-  </div>
-</div>
-
-<div className="remove-from-cart" onClick={handleremove}><FcLike className="like"/></div>
-</div>
-}
 export default WishListItem;

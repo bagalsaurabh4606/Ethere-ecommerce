@@ -1,4 +1,4 @@
 const ForgotPassword=()=>{
-return <p>bhul gaya password chutiyaa...</p>
+return <p>bhul gaya password chutiyee...</p>
 }
 export default ForgotPassword;

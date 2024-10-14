@@ -1,0 +1,19 @@
+
+.searchResult {
+  text-align: center;
+  margin: 39px;
+  font-size: 21px;
+}
+
+.noResults {
+  text-align: center;
+  font-size: 50px;
+}
+
+.itemsContainer {
+  width: 80%;
+  margin: 50px 10%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}

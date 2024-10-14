@@ -1,0 +1,69 @@
+.productsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 20px;
+  height: 600px; 
+  overflow-y: scroll;
+}
+
+.productCard {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 250px; /* Set the width of each card */
+  transition: transform 0.2s;
+  position: relative;
+}
+
+.productCard:hover {
+  transform: scale(1.05);
+}
+
+/* Product image */
+.productImage {
+  width: 100%;
+  height: 250px;
+}
+
+/* Product information */
+.productInfo {
+  padding: 15px;
+}
+
+.productInfo h3 {
+  margin: 0 0 10px;
+  font-size: 1.2em;
+}
+
+.productInfo p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.editProductOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.editProductIcon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgb(207, 251, 183);
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

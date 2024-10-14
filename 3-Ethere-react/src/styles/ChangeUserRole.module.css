@@ -1,0 +1,46 @@
+.userRoleBox {
+  width: 500px; /* Reduced width */
+  margin: 60px auto; /* Center the box horizontally */
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow for better visual appeal */
+}
+
+.userRoleBox h2 {
+  margin-bottom: 20px;
+  text-align: center; /* Center align the heading */
+}
+
+.userRoleBox .userInfo {
+  margin-bottom: 10px;
+}
+
+.userRoleBox .userInfo label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.userRoleBox .userInfo span {
+  margin-left: 5px;
+}
+
+.userRoleBox .roleSelect {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Space out the label and select */
+}
+
+.userRoleBox .roleSelect select {
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 150px; /* Set width for consistent layout */
+}
+
+.crossIcon {
+  display: flex;
+  justify-content: right;
+  cursor: pointer;
+}

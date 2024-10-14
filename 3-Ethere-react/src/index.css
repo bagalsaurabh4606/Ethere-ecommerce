@@ -883,12 +883,6 @@ label {
   border-radius: 5px;
 }
 
-/* input[type="text"] {
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-} */
 
 .password-container {
   padding: 7px;
@@ -935,12 +929,7 @@ button[type="submit"]:hover {
   text-decoration: none;
 }
 
-.main_section_login {
-  display: flex;
-  justify-content: center;
-  /* margin-top: 150px; */
-  align-items: center;
-}
+
 
 .validation-message {
   display: none;
@@ -954,17 +943,9 @@ button[type="submit"]:hover {
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.signin_container {
   background-color: #fff;
-  height: auto;
+  
   align-items: center;
-  padding: 20px;
-  width: 30%;
-  border: 2px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .signin_container h2 {
@@ -1463,14 +1444,11 @@ Admin Panel all proucts */
   flex-wrap: wrap;
   justify-content: space-evenly;
   padding: 20px;
-}
-
-/* scroll bar */
-
-.products-container {
-  height: 600px; /* Adjust the height as needed */
+  height: 600px; 
   overflow-y: scroll;
 }
+
+
 
 /* Hide scrollbar for WebKit browsers */
 .products-container::-webkit-scrollbar {

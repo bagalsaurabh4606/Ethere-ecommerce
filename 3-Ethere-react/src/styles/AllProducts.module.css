@@ -1,0 +1,52 @@
+.uploadProductMain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.uploadBtnContainer {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.uploadBtn {
+  padding: 9px;
+  background-color: white;
+  border-radius: 20px;
+  border: 1px solid black;
+}
+
+.uploadBtn:hover {
+  background-color: #e2e8ee;
+}
+
+.productsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 20px;
+  height: 600px; 
+  overflow-y: scroll;
+}
+
+/* Hide scrollbar for WebKit browsers */
+.productsContainer::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.uploadProductOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Additional styles can be added here as needed */

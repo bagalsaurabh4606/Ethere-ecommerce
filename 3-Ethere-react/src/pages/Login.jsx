@@ -1,107 +1,99 @@
 import { Link, useNavigate } from "react-router-dom";
-import { IoMdEye } from "react-icons/io";
-import { IoMdEyeOff } from "react-icons/io";
+import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { useContext, useState } from "react";
 import summaryApi from "../comman";
 import { toast } from "react-toastify";
 import Context from "../context";
 import { useDispatch } from "react-redux";
-const Login = () => {
-  const [ShowPassword, setShowPassword] = useState(true);
+import styles from "../styles/Login.module.css"; // Importing CSS module
 
+const Login = () => {
+  const [showPassword, setShowPassword] = useState(true);
   const dispatch = useDispatch();
 
-  const [data,setData]=useState({
-    email:"",
-    password:""
-  })
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+  });
 
+  const navigate = useNavigate();
+  const { fetchUserDetails } = useContext(Context);
 
-  const navigate=useNavigate()
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
+    setData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
-  const {fetchUserDetails}=useContext(Context)
- 
-
-  const handleOnChange=(e)=>{
-    const {name,value}=e.target
-    setData((preve)=>{
-      return{
-        ...preve,
-        [name]:value
-      }
-    })
-  }
- 
-  const handleSubmit=async (e)=>{
-
-    e.preventDefault()
-    const dataresponse=await fetch(summaryApi.LogIN.url,{
-      method:summaryApi.LogIN.method,
-      credentials:'include',
-      headers:{
-        "content-type":"application/json"
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const dataResponse = await fetch(summaryApi.LogIN.url, {
+      method: summaryApi.LogIN.method,
+      credentials: "include",
+      headers: {
+        "content-type": "application/json",
       },
-      body:JSON.stringify(data)
-      
-      
-    })
-    console.log("got data in login",data);
-    const dataApi=await dataresponse.json();
-    if(dataApi.success){
-      toast.success(dataApi.message)
-      
-      navigate("/")
-      fetchUserDetails()
+      body: JSON.stringify(data),
+    });
+    console.log("got data in login", data);
+    const dataApi = await dataResponse.json();
+    if (dataApi.success) {
+      toast.success(dataApi.message);
+      navigate("/");
+      fetchUserDetails();
     }
-    if(dataApi.error){
-      toast.error(dataApi.message)
+    if (dataApi.error) {
+      toast.error(dataApi.message);
     }
+  };
 
-  }
   return (
-    <section class="main_section_login">
-      <div class="login_container">
+    <section className={styles.mainSectionLogin}>
+      <div className={styles.loginContainer}>
         <h2>Login</h2>
-        <div class="inner_page">
+        <div className={styles.innerPage}>
           <form id="loginForm" onSubmit={handleSubmit}>
             <input
               type="text"
               id="username"
               name="email"
-              className="username"
+              className={styles.username}
               placeholder="Email"
               required
               value={data.email}
               onChange={handleOnChange}
             />
 
-            <div className="password-container">
+            <div className={styles.passwordContainer}>
               <input
-                type={ShowPassword ? "password" : "text"}
+                type={showPassword ? "password" : "text"}
                 id="password"
-                className="password"
+                className={styles.password}
                 name="password"
                 placeholder="Password"
                 value={data.password}
                 onChange={handleOnChange}
                 required
-                
               />
 
               <div
-                className="eye-container"
-                onClick={() => setShowPassword((priv) => !priv)}
+                className={styles.eyeContainer}
+                onClick={() => setShowPassword((prev) => !prev)}
               >
-                <span className="eye-icon">
-                  {ShowPassword ?( <IoMdEyeOff />) : <IoMdEye />}
+                <span className={styles.eyeIcon}>
+                  {showPassword ? <IoMdEyeOff /> : <IoMdEye />}
                 </span>
               </div>
             </div>
 
-            <Link to="/forgot-password" className="forgot-password"> forgot password</Link>
-            <button type="submit">Login </button>
+            <Link to="/forgot-password" className={styles.forgotPassword}>
+              Forgot password?
+            </Link>
+            <button type="submit">Login</button>
           </form>
-          <div class="signin_redirect">
+          <div className={styles.signinRedirect}>
             <h6>
               Create an Account <Link to="/signup">SignUp</Link>
             </h6>

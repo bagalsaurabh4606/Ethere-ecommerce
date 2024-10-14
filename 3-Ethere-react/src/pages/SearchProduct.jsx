@@ -1,75 +1,56 @@
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import summaryApi from "../comman";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "../components/LoadingSpinner";
 import HomeItems from "../components/HomeItems";
 import { useSelector } from "react-redux";
+import styles from "../styles/SearchProduct.module.css";
 
-const SearchProduct =()=>
-{
-  const query=useLocation();
-  const navigate=useNavigate();
+const SearchProduct = () => {
+  const query = useLocation();
+  const navigate = useNavigate();
 
-  const [data,setData]=useState([]);
-  const [loading ,setLoading ] =useState(false);
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const bagItems = useSelector((state) => state.bag);
   const wishlistitem = useSelector((state) => state.wishlist);
 
-
-
-  const fetchProduct =async()=>
-  {
+  const fetchProduct = async () => {
     setLoading(true);
-    const response = await fetch(summaryApi.searchProduct.url+query.search)
+    const response = await fetch(summaryApi.searchProduct.url + query.search);
 
     const dataResponse = await response.json();
-    
-   setLoading(false);
 
-    setData(dataResponse.data)
+    setLoading(false);
+    setData(dataResponse.data);
+  };
 
-    
-  }
-
-  useEffect(()=>{
+  useEffect(() => {
     fetchProduct();
-  },[query]);
+  }, [query]);
 
-  return <div className="search-main-container">
-    {
-      loading && (<LoadingSpinner/>)  
-    }
-
-    <p className="search-result">{data.length} Results Found</p>
-
-    {
-       data.length===0 && !loading &&(
-        <p className="no-results"> Opps !!! </p>
-        
-       )  
-    }
-   <div className="items-container">
-    {
-      data.length!==0 && !loading &&(
-        data.map((item,index)=>{
-          return (
-
+  return (
+    <div className={styles.searchMainContainer}>
+      {loading && <LoadingSpinner />}
+      <p className={styles.searchResult}>{data.length} Results Found</p>
+      {data.length === 0 && !loading && (
+        <p className={styles.noResults}> Opps !!! </p>
+      )}
+      <div className={styles.itemsContainer}>
+        {data.length !== 0 &&
+          !loading &&
+          data.map((item) => (
             <HomeItems
-            key={item.id}
-            item={item}
-            bagItem={bagItems}
-            wishlistitem={wishlistitem}
-          />
-
-          )
-        })
-      )
-    }
+              key={item.id}
+              item={item}
+              bagItem={bagItems}
+              wishlistitem={wishlistitem}
+            />
+          ))}
+      </div>
     </div>
-
-  </div>
-}
-
+  );
+};
 
 export default SearchProduct;

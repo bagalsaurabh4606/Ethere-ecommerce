@@ -1,11 +1,10 @@
-
-// new
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"; 
 import Fabric from "/images/Fabric.jpg";
 import Scrunchies from "/images/Scrunchies.jpg";
 import Polymer from "/images/Polymer.jpg";
 import WristCharms from "/images/WristCharms.jpg";
 import Crochet from "/images/Crochet.jpg";
+import styles from "../styles/BannerImage.module.css"; // Adjust the path as necessary
 
 const BannerImage = () => {
   const images = [Fabric, Scrunchies, Polymer, WristCharms, Crochet];
@@ -16,7 +15,6 @@ const BannerImage = () => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
     }, 4000);
 
-    // Clear interval on component unmount
     return () => clearInterval(intervalId);
   }, [images.length]);
 
@@ -31,14 +29,14 @@ const BannerImage = () => {
   };
 
   return (
-    <div className="banner-container">
-      <div className="banner-image">
+    <div className={styles.bannerContainer}>
+      <div className={styles.bannerImage}>
         <img src={images[currentImageIndex]} alt={`Banner ${currentImageIndex}`} />
       </div>
-      <button className="arrow left-arrow" onClick={handlePrevClick}>
+      <button className={`${styles.arrow} ${styles.leftArrow}`} onClick={handlePrevClick}>
         &#10094; {/* Left arrow icon */}
       </button>
-      <button className="arrow right-arrow" onClick={handleNextClick}>
+      <button className={`${styles.arrow} ${styles.rightArrow}`} onClick={handleNextClick}>
         &#10095; {/* Right arrow icon */}
       </button>
     </div>
@@ -46,47 +44,3 @@ const BannerImage = () => {
 };
 
 export default BannerImage;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import Fabric from "../../public/images/Fabric.jpg";
-// import Scrunchies from "../../public/images/Scrunchies.jpg";
-// import Polymer from "../../public/images/Polymer.jpg";
-// import WristCharms from "../../public/images/WristCharms.jpg";
-// import Crochet from "../../public/images/Crochet.jpg";
-
-// const BannerImage = () => {
-//   const images = [Fabric, Scrunchies, Polymer, WristCharms, Crochet];
-//   return (
-//     <div className="banner-main-container">
-
-//       <div className="banner-container">
-//         {images.map((image, index) => {
-//           return (
-//             <div className="banner-image">
-//               <img src={image} alt="" />
-//             </div>
-//           );
-//         })}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default BannerImage;

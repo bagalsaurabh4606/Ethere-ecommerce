@@ -1,0 +1,64 @@
+.horizontalItemsContainerMain {
+  display: grid;
+  text-align: center;
+  margin: 20px 5%;
+  background-color: rgba(140, 0, 0, 0.1);
+  width: 90%;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.horizontalItemsContainer {
+  display: flex;
+  padding: 10px;
+  flex-direction: row;
+  overflow-x: hidden;
+  white-space: nowrap;
+  gap: 5px;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.horizontalTitle {
+  font-size: 25px;
+  margin: 10px auto;
+  background: aliceblue;
+  text-decoration: none;
+  text-transform: capitalize;
+  color: inherit;
+  display: block;
+}
+
+.horizontalItemContainer {
+  display: flex;
+  flex: 0 0 auto;
+  width: 300px;
+  border: 2px solid #eaeaec;
+  border-radius: 4px;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.horizontalSeeMoreOverlay {
+  position: absolute;
+  right: 0;
+  top: 60%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 69%;
+  background: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  text-decoration: none;
+  z-index: 1;
+}
+
+.horizontalSeeMoreText {
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+}
