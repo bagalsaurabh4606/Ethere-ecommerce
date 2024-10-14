@@ -1,31 +1,35 @@
-import { useDispatch, useSelector } from "react-redux";
-import fetchproductOne from "../helper/fetchCategoryProduct";
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CatagoryList from "../components/CatagoryList";
 import HomeItems from "../components/HomeItems";
-
+import styles from "../styles/CategoryWiseProducts.module.css"; // Import the CSS module
 
 const CategoryWiseProducts = () => {
-  const { category } = useParams();
-  const bagItems = useSelector((state) => state.bag);
-  const products = useSelector((state) => state.items.products || []);
-  const wishlistitem = useSelector((state) => state.wishlist);
+  const { category } = useParams(); // Get the category from the URL parameters
+  const bagItems = useSelector((state) => state.bag); // Get bag items from Redux state
+  const products = useSelector((state) => state.items.products || []); // Get all products from Redux state
+  const wishlistitem = useSelector((state) => state.wishlist); // Get wishlist items from Redux state
 
-  const [fileterdItem, setfilteredItem] = useState([]);
+  const [filteredItem, setFilteredItem] = useState([]); // State for storing category-filtered products
+
+  // Filter products by category whenever category or products change
   useEffect(() => {
     const items = products.filter((item) => item.category === category);
-    setfilteredItem(items);
+    setFilteredItem(items);
   }, [category, products]);
 
   return (
     <main>
+      {/* Display the category list */}
       <div>
         <CatagoryList />
       </div>
-      <hr className="hr-tag"/>
-      <div className="items-container">
-        {fileterdItem.map((item) => (
+      <hr className={styles.hrTag} />
+      
+      {/* Display filtered items */}
+      <div className={styles.itemsContainer}>
+        {filteredItem.map((item) => (
           <HomeItems
             key={item.id}
             item={item}

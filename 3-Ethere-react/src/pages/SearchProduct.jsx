@@ -1,75 +1,62 @@
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import summaryApi from "../comman";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "../components/LoadingSpinner";
 import HomeItems from "../components/HomeItems";
 import { useSelector } from "react-redux";
 
-const SearchProduct =()=>
-{
-  const query=useLocation();
-  const navigate=useNavigate();
+const SearchProduct = () => {
+  const query = useLocation(); // Get query parameters from the location
+  const [data, setData] = useState([]); // Store search results
+  const [loading, setLoading] = useState(false); // Manage loading state
+  const bagItems = useSelector((state) => state.bag); // Get bag items from Redux store
+  const wishlistItems = useSelector((state) => state.wishlist); // Get wishlist items from Redux store
 
-  const [data,setData]=useState([]);
-  const [loading ,setLoading ] =useState(false);
-
-  const bagItems = useSelector((state) => state.bag);
-  const wishlistitem = useSelector((state) => state.wishlist);
-
-
-
-  const fetchProduct =async()=>
-  {
+  // Fetch products based on search query
+  const fetchProduct = async () => {
     setLoading(true);
-    const response = await fetch(summaryApi.searchProduct.url+query.search)
+    try {
+      const response = await fetch(`${summaryApi.searchProduct.url}${query.search}`);
+      const dataResponse = await response.json();
+      setData(dataResponse.data);
+    } catch (error) {
+      console.error("Error fetching search results:", error);
+      setData([]); // Clear data on error to prevent displaying stale results
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    const dataResponse = await response.json();
-    
-   setLoading(false);
-
-    setData(dataResponse.data)
-
-    
-  }
-
-  useEffect(()=>{
+  // Fetch products whenever the query changes
+  useEffect(() => {
     fetchProduct();
-  },[query]);
+  }, [query]);
 
-  return <div className="search-main-container">
-    {
-      loading && (<LoadingSpinner/>)  
-    }
+  return (
+    <div className="search-main-container">
+      {loading && <LoadingSpinner />}
 
-    <p className="search-result">{data.length} Results Found</p>
+      <p className="search-result">{data.length} Results Found</p>
 
-    {
-       data.length===0 && !loading &&(
-        <p className="no-results"> Opps !!! </p>
-        
-       )  
-    }
-   <div className="items-container">
-    {
-      data.length!==0 && !loading &&(
-        data.map((item,index)=>{
-          return (
+      {/* Display a message if no results are found */}
+      {data.length === 0 && !loading && (
+        <p className="no-results">Opps!!! No results found.</p>
+      )}
 
+      {/* Display the list of products if available */}
+      <div className="items-container">
+        {data.length !== 0 && !loading &&
+          data.map((item) => (
             <HomeItems
-            key={item.id}
-            item={item}
-            bagItem={bagItems}
-            wishlistitem={wishlistitem}
-          />
-
-          )
-        })
-      )
-    }
+              key={item.id}
+              item={item}
+              bagItem={bagItems}
+              wishlistitem={wishlistItems}
+            />
+          ))}
+      </div>
     </div>
-
-  </div>
-}
-
+  );
+};
 
 export default SearchProduct;

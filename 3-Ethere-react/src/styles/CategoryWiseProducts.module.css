@@ -1,0 +1,16 @@
+.itemsContainer {
+  width: 86%;
+  margin: 40px 7%;
+  display: flex;
+    width: 86%;
+    margin: 40px 7%;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+
+.hrTag {
+  border: 0;
+    height: 2px;
+    background-image: linear-gradient(to right, transparent, #000000, transparent);
+}

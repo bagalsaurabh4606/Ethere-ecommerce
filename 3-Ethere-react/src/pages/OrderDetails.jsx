@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import summaryApi from "../comman";
+import styles from "../styles/OrderDetails.module.css"; // Import the CSS module
 
 const OrderDetails = () => {
-  const { orderId } = useParams(); // Extract orderId from useParams
-  const [orderData, setOrderData] = useState(null); // Initialize with null to check later
-  console.log("orderID", orderId);
+  const { orderId } = useParams(); // Extract orderId from URL parameters
+  const [orderData, setOrderData] = useState(null); // State to store order data
+
+  // Function to fetch order details from the API
   const fetchOrder = async () => {
     try {
       const response = await fetch(summaryApi.getOrder.url, {
@@ -14,24 +16,23 @@ const OrderDetails = () => {
         headers: { "content-type": "application/json" },
       });
       const dataResponse = await response.json();
-      setOrderData(dataResponse.data); // Set the order data
-      console.log("Data Response:", dataResponse.data);
+      setOrderData(dataResponse.data); // Set the fetched order data
     } catch (error) {
       console.error("Error fetching order data:", error);
     }
   };
 
+  // Fetch order data when the component mounts
   useEffect(() => {
     fetchOrder();
-  }, []); // Fetch order only once when the component mounts
+  }, []);
 
-  console.log("Order Data:", orderData);
-
-  // Only run find if orderData is not null/undefined
+  // Find the specific order using the orderId
   const order = orderData?.find((order) => order.orderId === orderId);
 
+  // Display a message if the order is not found or still loading
   if (!order) {
-    return <p>Order not found or still loading...</p>; // Handle case when order is not found or loading
+    return <p>Order not found or still loading...</p>;
   }
 
   const { products } = order;
@@ -39,49 +40,46 @@ const OrderDetails = () => {
   return (
     <div>
       <h2>Order Summary</h2>
-    
-
+      
+      {/* Display the list of products in the order */}
       {products.length > 0 ? (
         products.map((item) => {
-          const currentPrice = item.originalPrice - (item.originalPrice / 100) * item.discountPercentage;
+          // Calculate the discounted price
+          const currentPrice =
+            item.originalPrice - (item.originalPrice / 100) * item.discountPercentage;
           return (
-            <>
-              
-              <div className="bag-item-container">
-                <div className="item-left-part">
-                  <img className="bag-item-img" src={item.image} />
+            <div className={styles.bagItemContainer} key={item.id}>
+              <div className={styles.itemLeftPart}>
+                <img className={styles.bagItemImg} src={item.image} alt={item.name} />
+              </div>
+              <div className={styles.itemRightPart}>
+                <div className={styles.companyName}>{item.company}</div>
+                <div className={styles.itemName}>{item.name}</div>
+                <div className={styles.priceContainer}>
+                  <span className={styles.currentPrice}>
+                    Rs {Math.round(currentPrice)}
+                  </span>
+                  <span className={styles.originalPrice}>
+                    Rs {item.originalPrice}
+                  </span>
+                  <span className={styles.discountPercentage}>
+                    ({item.discountPercentage}% OFF)
+                  </span>
                 </div>
-                <div className="item-right-part">
-                  <div className="company">{item.company}</div>
-                  <div className="item-name">{item.name}</div>
-                  <div className="price-container">
-                    <span className="current-price">
-                      Rs {Math.round(currentPrice)}
-                    </span>
-                    <span className="original-price">
-                      Rs {item.originalPrice}
-                    </span>
-                    <span className="discount-percentage">
-                      ({item.discountPercentage}% OFF)
-                    </span>
-                  </div>
-                  <div className="return-period">
-                    <span className="return-period-days">
-                      {" "}
-                      {item.return_period} days
-                    </span>{" "}
-                    return available
-                  </div>
-                  <div className="delivery-details">
-                    Delivery by
-                    <span className="delivery-details-days">
-                      {item.delivery_date}
-                    </span>
-                  </div>
+                <div className={styles.returnPeriod}>
+                  <span className={styles.returnPeriodDays}>
+                    {item.return_period} days
+                  </span>{" "}
+                  return available
+                </div>
+                <div className={styles.deliveryDetails}>
+                  Delivery by
+                  <span className={styles.deliveryDetailsDays}>
+                    {item.delivery_date}
+                  </span>
                 </div>
               </div>
-              
-            </>
+            </div>
           );
         })
       ) : (

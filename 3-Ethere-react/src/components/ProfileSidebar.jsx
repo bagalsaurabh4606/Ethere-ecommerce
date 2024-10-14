@@ -6,28 +6,28 @@ import { Link, useNavigate } from "react-router-dom";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import AdminLogOutConfirm from "./AdminLogOutConfirm";
+import styles from "../styles/ProfileSidebar.module.css";
 
 const ProfileSidebar = () => {
   const user = useSelector((store) => store?.user?.data);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [logoutConfirm, setlogOutForm] = useState(false);
+  const [orderData, setOrderData] = useState([]);
 
-  const[orderData,setOrderData]=useState([]);
-  const fetchOrder=async()=>{
-    const response=await fetch(summaryApi.getOrder.url,{
-      method:summaryApi.getOrder.method,
-      credentials:'include',
-      headers:{"content-type":"application/json"},
-
+  const fetchOrder = async () => {
+    const response = await fetch(summaryApi.getOrder.url, {
+      method: summaryApi.getOrder.method,
+      credentials: 'include',
+      headers: { "content-type": "application/json" },
     });
-    const dataresponse=await response.json();
+
+    const dataresponse = await response.json();
     setOrderData(dataresponse.data);
-    console.log("dataResponse",dataresponse.data);
-  }
+    console.log("dataResponse", dataresponse.data);
+  };
 
-  useEffect(()=>{fetchOrder()},[])
-
+  useEffect(() => { fetchOrder() }, []);
 
   const handleLogout = async () => {
     try {
@@ -51,60 +51,59 @@ const ProfileSidebar = () => {
     }
   };
 
-  // Check if user is undefined or null before rendering user details
   if (!user) {
     return <p>Loading profile information...</p>;
   }
 
   return (
-    <div className="container">
-      <div className="profile-header">
-        <div className="picture-info">
-          <div className="profile-picture">
+    <div className={styles.container}>
+      <div className={styles.profileHeader}>
+        <div className={styles.pictureInfo}>
+          <div className={styles.profilePicture}>
             <img src="images/ethere_logo.jpg" alt="Profile Picture" />
           </div>
-          <div className="profile-info">
+          <div className={styles.profileInfo}>
             <h1>{user.name}</h1>
             <p>Email: {user.email}</p>
             <p>Member since: {moment(user.createdAt).format('ll')}</p>
           </div>
         </div>
-        <button className="edit-profile-btn" onClick={() => setlogOutForm(true)}>Logout</button>
+        <button className={styles.editProfileBtn} onClick={() => setlogOutForm(true)}>Logout</button>
       </div>
-      <div className="profile-body">
-        <div className="profile-details">
+      <div className={styles.profileBody}>
+        <div className={styles.profileDetails}>
           <h2>Profile Details</h2>
           <p><strong>Full Name:</strong> {user.name}</p>
           <p><strong>Email:</strong> {user.email}</p>
           <p><strong>Phone Number:</strong> provide phone number</p>
           <p><strong>Address:</strong> Please provide address</p>
         </div>
-        <div className="order-history">
+        <div className={styles.orderHistory}>
           <h2>Order History</h2>
-          <table className="orders-table">
-        <thead>
-          <tr>
-            <th>Order ID</th>
-            <th>Total Amount</th>
-            <th>Status</th>
-            <th>View Details</th>
-          </tr>
-        </thead>
-        <tbody>
-          {orderData.map((order) => (
-            <tr key={order.orderId}>
-              <td>{order.orderId}</td>
-              <td>  ₹ {Math.round(order.totalAmount)}</td>
-              <td>{order.paymentStatus}</td>
-              <td>
-                <Link to={`/order-details/${order.orderId}`}>
-                  <div> View Details </div>
-                </Link>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+          <table className={styles.ordersTable}>
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Total Amount</th>
+                <th>Status</th>
+                <th>View Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              {orderData.map((order) => (
+                <tr key={order.orderId}>
+                  <td>{order.orderId}</td>
+                  <td>₹ {Math.round(order.totalAmount)}</td>
+                  <td>{order.paymentStatus}</td>
+                  <td>
+                    <Link to={`/order-details/${order.orderId}`}>
+                      <div>View Details</div>
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
       {logoutConfirm && <AdminLogOutConfirm handleLogout={handleLogout} setlogOutForm={setlogOutForm} />}

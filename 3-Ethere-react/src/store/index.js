@@ -6,20 +6,15 @@ import wishlistSlice from "./wishlistSlice";
 import userSlice from "./userSlice";
 import categorySlice from "./categorySlice";
 
-
-
-const ethereStore=configureStore(
-  {
-    reducer:{
-      items:itemsSlice.reducer,
-      fetchStatus:fetchItemSlice.reducer,
-      bag:bagSlice.reducer,
-      wishlist:wishlistSlice.reducer,
-      user:userSlice.reducer,
-      category:categorySlice.reducer,
-      
-    }
-  }
-);
+const ethereStore = configureStore({
+  reducer: {
+    items: itemsSlice.reducer,
+    fetchStatus: fetchItemSlice.reducer,
+    bag: bagSlice.reducer,
+    wishlist: wishlistSlice.reducer,
+    user: userSlice.reducer,
+    category: categorySlice.reducer,
+  },
+});
 
 export default ethereStore;

@@ -2,11 +2,10 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import BagSummary from "../components/BagSummary";
 import BagItem from "../components/BagItem";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Message from "../components/Message";
-import summaryApi from "../comman";
-import { useEffect, useState } from "react";
-import { bagActions } from "../store/bagSlice";
+import styles from "../styles/Bag.module.css"; // Importing the CSS module
+
 const Bag = () => {
   const bagItems = useSelector((store) => store.bag.bagProducts);
   const items = useSelector((state) => state.items.products);
@@ -20,26 +19,22 @@ const Bag = () => {
   });
 
   return (
-    <>
-      <main>
-        {FinalItems.length === 0 ? (
-          <Message></Message>
-        ) : (
-          <div className="bag-page">
-            <div className="bag-items-container">
-              {FinalItems.map((item) => (
-                <BagItem item={item} key={item.id}></BagItem>
-              ))}
-            </div>
-
-            <div className="bag-summary">
-              {" "}
-              <BagSummary FinalItems={FinalItems}></BagSummary>
-            </div>
+    <main > {/* Use CSS module styles */}
+      {FinalItems.length === 0 ? (
+        <Message />
+      ) : (
+        <div className={styles.bagPage}>
+          <div className={styles.bagItemsContainer}>
+            {FinalItems.map((item) => (
+              <BagItem item={item} key={item.id} />
+            ))}
           </div>
-        )}
-      </main>
-    </>
+          <div className={styles.bagSummary}>
+            <BagSummary FinalItems={FinalItems} />
+          </div>
+        </div>
+      )}
+    </main>
   );
 };
 
