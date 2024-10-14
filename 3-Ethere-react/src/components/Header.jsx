@@ -1,24 +1,18 @@
-import { IoPersonSharp, IoBag, IoSearchOutline } from "react-icons/io5";
+import React, { useState } from "react";
+import { IoPersonSharp, IoBag } from "react-icons/io5";
 import { ImHeart } from "react-icons/im";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FiSearch } from "react-icons/fi";
-import ProfileSidebar from "./ProfileSidebar";
-
-import React, { useEffect, useState } from "react";
+import styles from "../styles/Header.module.css"; // Adjusted import path
 
 const Header = () => {
   const bag = useSelector((store) => store.bag.bagProducts);
-
   const user = useSelector((store) => store?.user?.data);
-  
-  console.log("user details in header",user)
-
   const searchInput = useLocation();
-
   const [search, setSearch] = useState(searchInput?.search?.split("=")[1]);
-
   const navigate = useNavigate();
+
   const handleSearch = (e) => {
     const { value } = e.target;
     setSearch(value);
@@ -28,111 +22,54 @@ const Header = () => {
       navigate("/search");
     }
   };
+
   return (
-    <>
-      <header>
-        <div className="logo_container">
-          <Link to="">
-            <img className="myntra_home" src="images/ethere_logo.jpg" alt="" />
-          </Link>
-        </div>
-        {/* <nav className="nav_bar">
-  <div className="dropdown">
-    <Link to="/">Earrings</Link>
-    <div className="dropdown-content">
-      <Link to="/product-catagory/fabric">Fabric</Link>
-      <Link to="/Earrings/hoops">Hoops</Link>
-      <Link to="/Earrings/polymer">Polymer</Link>
-    </div>
-  </div>
+    <header className={styles.header}>
+      <div className={styles.logo_container}>
+        <Link to="">
+          <img className={styles.myntra_home} src="images/ethere_logo.jpg" alt="" />
+        </Link>
+      </div>
 
-  <div className="dropdown">
-    <Link to="/">Scrunchies</Link>
-    <div className="dropdown-content">
-      <Link to="/scrunchies/satin">Satin</Link>
-      <Link to="/scrunchies/organza">Organza</Link>
-    </div>
-  </div>
+      <div className={styles.search_bar}>
+        <span className={styles.search_icon}>
+          <FiSearch />
+        </span>
+        <input
+          className={styles.search_input}
+          placeholder="Search for products, brands and more"
+          onChange={handleSearch}
+          value={search}
+        />
+      </div>
 
-  <Link to="/">Wrist Charms</Link>
- 
-  <Link to="/">
-    Key Chains <sup>New</sup>
-  </Link>
-</nav> */}
-
-        <div className="search_bar">
-          <span className="search_icon ">
-            <FiSearch />
+      <div className={styles.action_bar}>
+        <Link
+          className={styles.action_container}
+          to={!user?._id ? "/login" : user.role === "ADMIN" ? "/admin-panel/all-users" : "/profile"}
+        >
+          <IoPersonSharp />
+          <span className={styles.action_name}>
+            {user && user.name ? (user.name.length > 6 ? user.name.substring(0, 6) + ".." : user.name) : "Login"}
           </span>
-          <input
-            className="search_input"
-            placeholder="Search for products, brands and more"
-            onChange={handleSearch}
-            value={search}
-          />
-        </div>
-        <div className="action_bar">
-          <Link
-            className="action_container"
-            to={
-              !user?._id
-                ? "/login"
-                : user.role === "ADMIN"
-                ? "/admin-panel/all-users"
-                : "/profile"
-            }
-            style={{ color: "inherit", textDecoration: "none" }}
-          >
-            <IoPersonSharp />
+        </Link>
 
-            <span className="action_name">
-              {user && user.name
-                ? user.name.length > 6
-                  ? user.name.substring(0, 6) + ".."
-                  : user.name
-                : "Login"}
-            </span>
-          </Link>
+        <Link className={styles.action_container} to="/WishLists">
+          <ImHeart />
+          <span className={styles.action_name}>Favourite</span>
+        </Link>
 
-          <Link
-            className="action_container"
-            to="/WishLists"
-            style={{ color: "inherit", textDecoration: "none" }}
-          >
-            <ImHeart />
-            <span className="action_name">favourite</span>
-          </Link>
+        <Link className={styles.action_container} to="/bag">
+          <IoBag />
+          <span className={styles.action_name}>Store</span>
+        </Link>
 
-          <Link
-            className="action_container"
-            to="/bag"
-            style={{ color: "inherit", textDecoration: "none" }}
-          >
-            <IoBag />
-            {/* <sup>{bag.length}</sup> */}
-
-            <span className="action_name">Store</span>
-          </Link>
-          <Link to="/bag"className="bag-item-count">{bag.length}</Link>
-        </div>
-      </header>
-    </>
+        <Link to="/bag" className={styles["bag-item-count"]}>
+          {bag.length}
+        </Link>
+      </div>
+    </header>
   );
 };
 
 export default Header;
-
-{
-  /* <nav className="nav_bar">
-<Link to="/">Earings</Link>
-<Link to="/admin-panel">Polymer</Link>
-<Link to="/">Hoops</Link> 
-<Link to="/">Scrunchies</Link>
-<Link to="/">Key Chains</Link>
-
-<Link to="/">
-Wrist Charms <sup>New</sup>
-</Link>
-</nav> */
-}

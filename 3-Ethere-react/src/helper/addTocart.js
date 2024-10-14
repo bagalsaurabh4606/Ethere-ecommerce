@@ -1,6 +1,5 @@
-import { toast } from "react-toastify";
 import summaryApi from "../comman";
-import { useDispatch } from "react-redux";
+
 import { wishlistActions } from "../store/wishlistSlice";
 
 const addTocart = async (e, item, dispatch) => {
@@ -25,8 +24,6 @@ const addTocart = async (e, item, dispatch) => {
       discountPercentage: item.discountPercentage,
     }),
   });
-
-  const responseData = await response.json();
 };
 
 export default addTocart;

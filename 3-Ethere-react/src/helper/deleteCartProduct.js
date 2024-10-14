@@ -1,5 +1,3 @@
-import { toast } from "react-toastify";
-
 import summaryApi from "../comman";
 import { wishlistActions } from "../store/wishlistSlice";
 
@@ -17,6 +15,5 @@ const deleteCartProduct = async (e, item, dispatch) => {
     }),
     credentials: "include",
   });
-  const dataApi = await response.json();
 };
 export default deleteCartProduct;

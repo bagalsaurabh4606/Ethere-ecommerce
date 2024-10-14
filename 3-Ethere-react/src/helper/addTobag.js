@@ -1,7 +1,4 @@
-import { toast } from "react-toastify";
 import summaryApi from "../comman";
-import { useDispatch } from "react-redux";
-import { bagActions } from "../store/bagSlice";
 
 const addTobag = async (e, item, dispatch) => {
   e?.stopPropagation();
@@ -25,8 +22,6 @@ const addTobag = async (e, item, dispatch) => {
       quantity: item.quantity,
     }),
   });
-
-  const responseData = await response.json();
 };
 
 export default addTobag;

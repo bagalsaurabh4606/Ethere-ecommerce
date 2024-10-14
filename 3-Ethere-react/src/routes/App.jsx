@@ -7,53 +7,39 @@ import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import summaryApi from "../comman";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Context from "../context";
 import { userActions } from "../store/userSlice";
-import ProfileSidebar from "../components/ProfileSidebar";
-import { categoryAction } from "../store/categorySlice";
 import { bagActions } from "../store/bagSlice";
 import { wishlistActions } from "../store/wishlistSlice";
 
 function App() {
   const fetchStatus = useSelector((store) => store.fetchStatus);
   const dispatch = useDispatch();
-  const bag = useSelector((state) => state.bag);
+
   const currentUser = useSelector((store) => store.user.data);
   const isUserLoggedIn = currentUser && Object.keys(currentUser).length > 0;
 
+  // Fetch user details if not already logged in
+  const fetchUserDetails = async () => {
+    const dataresponse = await fetch(summaryApi.currentUser.url, {
+      method: summaryApi.currentUser.method,
+      credentials: "include",
+    });
+    const dataApi = await dataresponse.json();
 
-    const fetchUserDetails = async () => {
-      const dataresponse = await fetch(summaryApi.currentUser.url, {
-        method: summaryApi.currentUser.method,
-        credentials: "include",
-      });
-      const dataApi = await dataresponse.json();
+    if (dataApi.success) {
+      dispatch(userActions.setUserDetails(dataApi));
+    }
+  };
 
-      console.log("got user deatils in app.jsxx", dataApi.data);
+  useEffect(() => {
+    if (!currentUser || Object.keys(currentUser).length === 0) {
+      fetchUserDetails();
+    }
+  }, [currentUser, dispatch]);
 
-      if (dataApi.success) {
-        dispatch(userActions.setUserDetails(dataApi));
-      }
-    };
-    // if (currentUser && Object.keys(currentUser).length > 0) {
-    //   fetchUserDetails(); // Fetch bag products if user is logged in
-    // } else {
-    //   dispatch(userActions.setUserDetails([]));
-    // }
-
-    useEffect(() => {
-      if (!currentUser || Object.keys(currentUser).length === 0) {
-        fetchUserDetails(); 
-      }
-    }, []); 
-    
-
-
-  
-
-  //bag product fetching
-
+  // Fetch bag products if user is logged in
   useEffect(() => {
     const fetchBagProduct = async () => {
       const response = await fetch(summaryApi.getBagproducts.url, {
@@ -65,20 +51,20 @@ function App() {
       });
       const responseData = await response.json();
       if (responseData.success) {
-        dispatch(bagActions.addToBag(responseData?.data));
+        dispatch(bagActions.addToBag(responseData.data));
       }
     };
 
-    if (currentUser && Object.keys(currentUser).length > 0) {
-      fetchBagProduct(); // Fetch bag products if user is logged in
+    if (isUserLoggedIn) {
+      fetchBagProduct();
     } else {
       dispatch(bagActions.addToBag([]));
     }
-  }, [currentUser]);
+  }, [isUserLoggedIn, dispatch]);
 
-  //wishlist product fetching
+  // Fetch wishlist products if user is logged in
   useEffect(() => {
-    const fetchcartproduct = async () => {
+    const fetchWishlistProduct = async () => {
       const response = await fetch(summaryApi.getCartProduct.url, {
         method: summaryApi.getCartProduct.method,
         credentials: "include",
@@ -94,31 +80,24 @@ function App() {
       }
     };
 
-    if (currentUser && Object.keys(currentUser).length > 0) {
-      fetchcartproduct(); // Fetch wishlist products if user is logged in
+    if (isUserLoggedIn) {
+      fetchWishlistProduct();
     } else {
-      dispatch(wishlistActions.addToWishlist([])); // Clear wishlist if user is logged out
+      dispatch(wishlistActions.addToWishlist([]));
     }
-  }, [currentUser, dispatch]);
-
-
+  }, [isUserLoggedIn, dispatch]);
 
   return (
     <>
       <Context.Provider
         value={{
-          fetchUserDetails, //user detail fetched
+          fetchUserDetails, // Provides user details fetch functionality
         }}
       >
         <ToastContainer />
         <Header />
-        <FetchItems></FetchItems>
-        {fetchStatus.currentFetching ? (
-          <LoadingSpinner></LoadingSpinner>
-        ) : (
-          <Outlet></Outlet>
-        )}
-
+        <FetchItems />
+        {fetchStatus.currentFetching ? <LoadingSpinner /> : <Outlet />}
         <Footer />
       </Context.Provider>
     </>
