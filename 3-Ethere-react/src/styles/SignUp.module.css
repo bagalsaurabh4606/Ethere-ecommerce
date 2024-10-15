@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
   height: 80vh;
 }
 
@@ -18,16 +19,18 @@
   border-radius: 5px;
   display: flex;
   justify-content: space-between;
+  background-color: #fff;
 }
 
 .password {
   border: none;
   outline: none;
-  width: 90%;
+  width: 85%;
 }
 
 .eyeIcon {
   font-size: 20px;
+  cursor: pointer;
 }
 
 .forgotPassword {
@@ -37,18 +40,19 @@
 }
 
 .signinContainer {
-  height: auto;
-  width: 30%;
+  width: 90%;
+  max-width: 400px;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   background-color: #fff;
+  box-sizing: border-box;
 }
 
 .signinContainer h2 {
   font-weight: bold;
-  font-size: 2em;
+  font-size: 1.8em;
   margin-bottom: 20px;
   color: #333;
   text-align: center;
@@ -57,37 +61,74 @@
 .signinContainer .inputBox {
   position: relative;
   width: 100%;
+  margin-bottom: 15px;
 }
 
 .signinContainer .inputBox input {
   width: 100%;
-
   font-size: 16px;
-
   border-radius: 5px;
   outline: none;
-  resize: none;
   padding: 10px;
-  margin-bottom: 15px;
   border: 1px solid #ccc;
 }
 
 .signinContainer .inputBox input[type="submit"] {
-  width: 100%;
   background: rgb(43, 150, 243);
   color: #fff;
   border: none;
   cursor: pointer;
-  padding: 10px;
   font-size: 18px;
-  transition: 0.5s;
+  transition: 0.3s ease;
+}
+
+.signinContainer .inputBox input[type="submit"]:hover {
+  background: rgb(30, 120, 220);
 }
 
 .signinRedirect {
   text-align: center;
-  width: 100%;
+  margin-top: 10px;
+}
+
+.signinRedirect h6 {
+  font-size: 14px;
 }
 
 .signinRedirect h6 a {
   text-decoration: none;
+  color: rgb(43, 150, 243);
+}
+
+@media (max-width: 768px) {
+  .signinContainer {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .signinContainer h2 {
+    font-size: 1.5em;
+  }
+
+  .eyeIcon {
+    font-size: 18px;
+  }
+
+  .signinRedirect h6 {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .signinContainer {
+    padding: 10px;
+  }
+
+  .signinContainer h2 {
+    font-size: 1.3em;
+  }
+
+  .password {
+    width: 80%;
+  }
 }
