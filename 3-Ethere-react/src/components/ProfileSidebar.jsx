@@ -23,8 +23,17 @@ const ProfileSidebar = () => {
     });
 
     const dataresponse = await response.json();
-    setOrderData(dataresponse.data);
-    console.log("dataResponse", dataresponse.data);
+    if(dataresponse.success)
+    {
+      setOrderData(dataresponse.data);
+      console.log("dataResponse", dataresponse.data);
+    }
+    if(dataresponse.error)
+    {
+      toast.error("Failed to fetch order details")
+    }
+    
+    
   };
 
   useEffect(() => { fetchOrder() }, []);
