@@ -88,3 +88,30 @@ button[type="submit"]:hover {
   color: red;
   margin-top: 5px;
 }
+
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .loginContainer {
+    width: 80%; /* Reduces container width for tablet-sized screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .mainSectionLogin {
+    padding: 0 20px; /* Adds padding for smaller screens */
+  }
+  
+  .loginContainer {
+    width: 100%; /* Full width for mobile screens */
+  }
+
+  .passwordContainer {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .forgotPassword {
+    font-size: 0.85em; /* Reduces font size on smaller screens */
+  }
+}

@@ -63,7 +63,7 @@ const ProfileSidebar = () => {
             <img src="images/ethere_logo.jpg" alt="Profile Picture" />
           </div>
           <div className={styles.profileInfo}>
-            <h1>{user.name}</h1>
+            <h1 style={{"text-transform":"capitalize"}}>{user.name}</h1>
             <p>Email: {user.email}</p>
             <p>Member since: {moment(user.createdAt).format('ll')}</p>
           </div>
@@ -73,7 +73,7 @@ const ProfileSidebar = () => {
       <div className={styles.profileBody}>
         <div className={styles.profileDetails}>
           <h2>Profile Details</h2>
-          <p><strong>Full Name:</strong> {user.name}</p>
+          <p style={{"text-transform":"capitalize"}}><strong>Full Name:</strong> {user.name}</p>
           <p><strong>Email:</strong> {user.email}</p>
           <p><strong>Phone Number:</strong> provide phone number</p>
           <p><strong>Address:</strong> Please provide address</p>

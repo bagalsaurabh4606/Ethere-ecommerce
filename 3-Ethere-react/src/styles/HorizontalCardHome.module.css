@@ -1,33 +1,51 @@
 .horizontalItemsContainerMain {
-  display: grid;
-  text-align: center;
-  margin: 20px 5%;
-  background-color: rgba(140, 0, 0, 0.1);
-  width: 90%;
-  position: relative;
-  overflow-x: hidden;
+   display: grid;
+    text-align: center;
+    margin: 20px 3%;
+    
+    width: 94%;
+    position: relative;
+    overflow-x: hidden;
 }
 
 .horizontalItemsContainer {
   display: flex;
   padding: 10px;
   flex-direction: row;
-  overflow-x: hidden;
+  overflow-x: auto;
   white-space: nowrap;
-  gap: 5px;
+  gap: 22px;
   position: relative;
   width: 100%;
   box-sizing: border-box;
+  scrollbar-width: none;
 }
-
+.horizontalItemsContainer::-webkit-scrollbar 
+{
+  display: none; 
+}
+.titleContainer
+{
+  display: flex;
+  justify-content: space-between;
+}
 .horizontalTitle {
   font-size: 25px;
-  margin: 10px auto;
-  background: aliceblue;
+  margin-left: 10px;
+  text-align: left;
   text-decoration: none;
   text-transform: capitalize;
   color: inherit;
   display: block;
+
+}
+.horizontalViewAll
+{
+   display: flex;
+   align-items: flex-end;
+   font-size: 14px;
+   text-decoration: none;
+   color: black;
 }
 
 .horizontalItemContainer {
@@ -43,17 +61,16 @@
 .horizontalSeeMoreOverlay {
   position: absolute;
   right: 0;
-  top: 60%;
+  top: 58%;
   transform: translateY(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 90px;
-  height: 69%;
-  background: rgba(0, 0, 0, 0.5);
+
   cursor: pointer;
   text-decoration: none;
   z-index: 1;
+
 }
 
 .horizontalSeeMoreText {
@@ -61,4 +78,18 @@
   font-weight: 700;
   color: white;
   text-align: center;
+      background-color: #9f2e04;
+    border-radius: 6px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    right: 15px;
+}
+.seemore{
+  font-size: 16px;
+    font-weight: 700;
+    color: #0d0c0c;
+    text-align: center;
+
 }

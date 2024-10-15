@@ -1,12 +1,12 @@
 import { useEffect } from "react";
-import summaryApi from "../comman";
-import { Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { categoryAction } from "../store/categorySlice";
 import styles from "../styles/CatagoryList.module.css"; // Import the CSS module
 
 const CatagoryList = () => {
   const dispatch = useDispatch();
+  const { category: currentCategory } = useParams(); // Get the current category from the URL
 
   const fetchCategoryProduct = async () => {
     const response = await fetch(summaryApi.categoryProduct.url);
@@ -28,8 +28,10 @@ const CatagoryList = () => {
       {CategoryProduct.map((produts, index) => (
         <Link
           key={index}
-          to={"/product-category/" + produts?.category}
-          className={styles.categoryContainer}
+          to={`/product-category/${produts.category}`}
+          className={`${styles.categoryContainer} ${
+            currentCategory === produts.category ? styles.selectedCategory : ""
+          }`}
         >
           <div className={styles.categoryImg}>
             <img src={produts.image} alt={produts.category} />

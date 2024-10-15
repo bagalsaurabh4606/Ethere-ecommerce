@@ -61,7 +61,7 @@ const Header = () => {
 
         <Link className={styles.action_container} to="/bag">
           <IoBag />
-          <span className={styles.action_name}>Store</span>
+          <span className={styles.action_name}>Cart</span>
         </Link>
 
         <Link to="/bag" className={styles["bag-item-count"]}>

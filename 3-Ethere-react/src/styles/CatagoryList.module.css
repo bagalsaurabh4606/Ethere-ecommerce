@@ -51,3 +51,10 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
+/* Add this to CatagoryList.module.css */
+.selectedCategory {
+  background-color: #e0e0e0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+  border: 2px solid #dce8f5;
+}

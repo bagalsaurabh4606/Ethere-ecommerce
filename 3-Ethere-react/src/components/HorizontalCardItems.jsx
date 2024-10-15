@@ -66,7 +66,8 @@ const HorizontalCardItems = ({ item }) => {
         />
       </div>
       <div className={styles.horizontalDetailsContainer}>
-        <div className={styles.horizontalCompanyName}>{item.name}</div>
+        <div> <div className={styles.horizontalCompanyName}>{item.name}</div>
+        <div className={styles.horizontalDiscription}>{item.description}</div></div>
         <div className={styles.horizontalPrice}>
           <span className={styles.horizontalCurrentPrice}>
             Rs {Math.round(curr_price)}
