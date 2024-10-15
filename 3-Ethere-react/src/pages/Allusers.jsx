@@ -90,4 +90,4 @@ const Allusers = () => {
   );
 };
 
-export default AllUsers;
+export default Allusers;

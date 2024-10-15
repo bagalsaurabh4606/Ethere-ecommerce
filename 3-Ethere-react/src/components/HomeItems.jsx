@@ -1,18 +1,16 @@
-import { FcLike } from "react-icons/fc";
-import { useDispatch } from "react-redux";
-import { bagActions } from "../store/bagSlice";
-import { wishlistActions } from "../store/wishlistSlice";
-import { FcLikePlaceholder } from "react-icons/fc";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { FcLike, FcLikePlaceholder } from "react-icons/fc";
 import { RiDeleteBin4Fill } from "react-icons/ri";
 import { IoBag } from "react-icons/io5";
-import addTocart from "../helper/addTocart";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import summaryApi from "../comman";
+import { Link } from "react-router-dom";
+import { bagActions } from "../store/bagSlice";
+import { wishlistActions } from "../store/wishlistSlice";
+import addTocart from "../helper/addTocart";
 import addTobag from "../helper/addTobag";
 import deletefrombag from "../helper/deleteBagProduct";
 import deleteCartProduct from "../helper/deleteCartProduct";
+import styles from "../styles/HomeItems.module.css";
 
 const HomeItems = ({ item }) => {
   const dispatch = useDispatch();
@@ -33,7 +31,6 @@ const HomeItems = ({ item }) => {
   }, [wishlistelementfound]);
 
   //bag
-
   const bagitemelementfound = bagItem.some((bagId) => bagId.id === item.id);
 
   const [isInBag, setIsinBag] = useState(false);
@@ -55,7 +52,6 @@ const HomeItems = ({ item }) => {
 
   const handleAddToWishlist = (e) => {
     addTocart(e, item, dispatch);
-
     setisInWishlist(true);
   };
 
@@ -63,50 +59,51 @@ const HomeItems = ({ item }) => {
     deleteCartProduct(e, item, dispatch);
     setisInWishlist(false);
   };
+
   const curr_price =
     item.originalPrice - (item.originalPrice / 100) * item.discountPercentage;
 
   return (
-    <div className="item-container">
-      <img className="item-image" src={item.image} alt="item image" />
-      <div className="rating_container">
-        <div className="rating">
-          {/* {" "}
-          {item.rating.stars} ⭐ | {item.rating.count}{" "} */}
+    <div className={styles.itemContainer}>
+      <img className={styles.itemImage} src={item.image} alt="item image" />
+      <div className={styles.ratingContainer}>
+        <div className={styles.rating}>
+          {/* Rating can be displayed here */}
         </div>
-
-        <div className="wishlist-icon">
+        <div className={styles.wishlistIcon}>
           {isInWishlist ? (
-            <div className="like" onClick={handleRemoveFromWishlist}>
+            <div className={styles.like} onClick={handleRemoveFromWishlist}>
               <FcLike />
             </div>
           ) : (
-            <div className="like" onClick={handleAddToWishlist}>
+            <div className={styles.like} onClick={handleAddToWishlist}>
               <FcLikePlaceholder />
             </div>
           )}
         </div>
       </div>
-      <div className="company-name">{item.name}</div>
-      <div className="item-name">{item.description}</div>
-      <div className="price">
-        <span className="current-price">Rs {Math.round(curr_price)}</span>
-        <span className="original-price">Rs {item.originalPrice}</span>
-        <span className="discount">({item.discountPercentage} % OFF)</span>
+      <div className={styles.companyName}>{item.name}</div>
+      <div className={styles.itemName}>{item.description}</div>
+      <div className={styles.price}>
+        <span className={styles.currentPrice}>Rs {Math.round(curr_price)}</span>
+        <span className={styles.originalPrice}>Rs {item.originalPrice}</span>
+        <span className={styles.discount}>
+          ({item.discountPercentage} % OFF)
+        </span>
       </div>
 
       {!isInBag ? (
-        <button className="btn-add-bag" onClick={handleAddToBag}>
+        <button className={styles.btnAddBag} onClick={handleAddToBag}>
           Add to Bag <IoBag />
         </button>
       ) : (
-        <div className="tow-buttons-container">
-          <Link to={"/bag"} className="bag-link">
-            <button className="buy-now-button">
+        <div className={styles.towButtonsContainer}>
+          <Link to={"/bag"} className={styles.bagLink}>
+            <button className={styles.buyNowButton}>
               Buy Now <IoBag />
             </button>
           </Link>
-          <button className="remove-button" onClick={handleRemoveFromBag}>
+          <button className={styles.removeButton} onClick={handleRemoveFromBag}>
             <RiDeleteBin4Fill />
           </button>
         </div>
