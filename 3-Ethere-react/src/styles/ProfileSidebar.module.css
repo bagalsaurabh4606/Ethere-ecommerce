@@ -123,8 +123,8 @@
 
 @media (max-width: 768px) {
   .container {
-    width: 96%;
-    margin: 30px auto;
+    width: 100%;
+    margin: 0px auto;
     flex-direction: column;
   }
 
@@ -135,10 +135,9 @@
 
   .profileDetails,
   .orderHistory {
-    margin: 0;
-    width: calc(100% - 20px); /* Ensures no right margin */
-    margin-left: 10px;
-    margin-right: 10px;
+    padding: 4%;
+    width: 100%;
+   
   }
 
   .profilePicture img {
@@ -170,6 +169,13 @@
 @media (max-width: 480px) {
   .profileInfo h1 {
     font-size: 20px;
+  }
+  .profileInfo{
+    margin-left: 10px;
+  }
+  .ordersTable
+  {
+    width: 90%;
   }
 
   .editProfileBtn {

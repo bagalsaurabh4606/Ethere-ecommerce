@@ -67,8 +67,9 @@ const BagItem = ({ item, fetchbagproduct }) => {
         <img className={styles.bagItemImg} src={item.image} alt={item.name} />
       </div>
       <div className={styles.itemRightPart}>
-        <div className={styles.company}>{item.company}</div>
-        <div className={styles.itemName}>{item.name}</div>
+      <div className={styles.itemName}>{item.name}</div>
+        <div className={styles.company}>{item.description}</div>
+       
         <div className={styles.priceContainer}>
           <span className={styles.currentPrice}>Rs {Math.round(currentPrice)}</span>
           <span className={styles.originalPrice}>Rs {item.originalPrice}</span>
@@ -78,14 +79,14 @@ const BagItem = ({ item, fetchbagproduct }) => {
         </div>
         <div className={styles.returnPeriod}>
           <span className={styles.returnPeriodDays}>
-            {item.return_period} days
+            {item.return_period} 14 days
           </span>{" "}
           return available
         </div>
-        <div className={styles.deliveryDetails}>
+        {/* <div className={styles.deliveryDetails}>
           Delivery by
           <span className={styles.deliveryDetailsDays}>{item.delivery_date}</span>
-        </div>
+        </div> */}
         <div className={styles.quantityController}>
           <button
             onClick={() => decreasequantity(item.id, item.quantity)}

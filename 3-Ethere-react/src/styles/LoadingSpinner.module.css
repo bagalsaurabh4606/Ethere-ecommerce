@@ -1,3 +1,17 @@
 .spinner {
-  margin: 0 200px;
+     margin: 30px auto;
+    display: flex;
+    justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .spinner {
+    margin: 30px auto; 
+  }
+}
+
+@media (max-width: 768px) {
+  .spinner {
+    margin: 30px auto; 
+  }
 }

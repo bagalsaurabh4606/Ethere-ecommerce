@@ -12,9 +12,14 @@
 }
 
 .emptyWishlistImage {
-  margin-left: 100px;
-  height: 260px;
-  width: 250px;
+  
+  height: 210px;
+  width: 210px;
+}
+.imageContainer
+{
+  display: flex;
+  justify-content: center;
 }
 
 .emptyButtonContainer {
@@ -23,5 +28,31 @@
 }
 
 .cardContent {
-  display: grid;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+}
+
+/* responsive */
+
+@media (max-width: 768px) {
+  .emptyCart {
+    width: 90%;
+    margin: 15px auto;
+  }
+
+  .emptyWishlistImage {
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .emptyCart {
+    width: 90%;
+    margin: 15px auto;
+  }
+
+  .emptyWishlistImage {
+    max-width: 150px;
+  }
 }

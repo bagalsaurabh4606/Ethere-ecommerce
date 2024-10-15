@@ -8,3 +8,18 @@
   margin: 20px 15%;
   line-height: 1.42857143;
 }
+
+/* responsive */
+@media (max-width: 768px) {
+  .wishlistItemsContainer {
+    width: 95%;
+    margin: 20px 5%;
+  }
+}
+
+@media (max-width: 480px) {
+  .wishlistItemsContainer {
+    margin: 20px 5%;
+    width: 95%;
+  }
+}

@@ -22,5 +22,49 @@
 }
 .bagPage {
   width: 75%;
-  margin-left: 12.5%;
+  margin: 20px auto;
+}
+
+@media (max-width: 1024px) {
+  .bagItemsContainer {
+    width: 55%;
+  }
+
+  .bagSummary {
+    width: 40%;
+  }
+}
+
+@media (max-width: 768px) {
+  .bagPage {
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+    width: 90%;
+  }
+
+  .bagItemsContainer,
+  .bagSummary {
+    width: 90%;
+    padding: 16px 0;
+    border: none;
+  }
+
+  .bagSummary {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .bagItemsContainer,
+  .bagSummary {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 12px;
+  }
+
+  .bagItemsContainer {
+    border-bottom: 1px solid #eaeaec;
+    padding-bottom: 20px;
+  }
 }

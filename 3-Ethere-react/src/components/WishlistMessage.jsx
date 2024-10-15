@@ -6,11 +6,11 @@ const WishlistMessage = () => {
     <div className={styles.emptyCart}>
       <div className={styles.cardContent}>
         <h2>Add your favorite items here</h2>
-        <img
+        <div className={styles.imageContainer}><img
           className={styles.emptyWishlistImage}
           src="images/forWhislist" // Ensure this path is correct
           alt="Myntra Home"
-        />
+        /></div>
         <Link to="/" className={styles.emptyButtonContainer} style={{ color: 'inherit', textDecoration: 'none' }}>
           <button type="button" className="btn btn-outline-info">
             Add items to favorites

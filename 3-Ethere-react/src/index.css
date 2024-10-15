@@ -296,9 +296,6 @@ a.action_container:link {
   cursor: pointer;
 }
 
-.spinner {
-  margin: 200px 0;
-}
 
 .empty-cart {
   align-items: center;
@@ -709,9 +706,6 @@ a.action_container:link {
   cursor: pointer;
 }
 
-.spinner {
-  margin: 0 200px;
-}
 
 .empty-cart {
   align-items: center;
