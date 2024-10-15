@@ -117,3 +117,69 @@
 .ordersTable a:hover {
   text-decoration: underline;
 }
+
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .container {
+    width: 96%;
+    margin: 30px auto;
+    flex-direction: column;
+  }
+
+  .profileBody {
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .profileDetails,
+  .orderHistory {
+    margin: 0;
+    width: calc(100% - 20px); /* Ensures no right margin */
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .profilePicture img {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media (min-width: 768px) {
+  .profileHeader {
+    flex-direction: row;
+  }
+
+  .profileBody {
+    flex-direction: row;
+  }
+
+  .profileDetails,
+  .orderHistory {
+    flex: 1;
+  }
+
+  .profilePicture img {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profileInfo h1 {
+    font-size: 20px;
+  }
+
+  .editProfileBtn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .ordersTable th,
+  .ordersTable td {
+    padding: 6px;
+    font-size: 12px;
+  }
+}

@@ -64,8 +64,8 @@ const ProfileSidebar = () => {
           </div>
           <div className={styles.profileInfo}>
             <h1 style={{"text-transform":"capitalize"}}>{user.name}</h1>
-            <p>Email: {user.email}</p>
-            <p>Member since: {moment(user.createdAt).format('ll')}</p>
+            <p>{user.email}</p>
+            <p><strong>Member since: </strong>{moment(user.createdAt).format('ll')}</p>
           </div>
         </div>
         <button className={styles.editProfileBtn} onClick={() => setlogOutForm(true)}>Logout</button>
