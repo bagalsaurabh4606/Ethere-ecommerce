@@ -1,72 +1,89 @@
 .itemContainer {
-  width: 80%;
-  margin: 40px 10%;
-  }
-
+  width: 298px;
+  margin: 10px;
+  border: 2px solid #eaeaec;
+  border-radius: 4px;
+  position: relative;
+  padding: 18px;
+  background-color: rgb(255, 255, 255);
+}
 
 .itemImage {
   width: 100%;
-  border-radius: 10px;
-  object-fit: cover;
+  height: 333.33px;
 }
 
-.ratingContainer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.rating {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.companyName {
+  margin-top: 15px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  color: #282c3f;
+  margin-bottom: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.itemName {
+  color: #535766;
+  font-size: 14px;
+  line-height: 1;
+  margin-bottom: 0;
+  margin-top: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 400;
+  display: block;
+}
+
+.price {
   margin-top: 10px;
+  font-size: 14px;
+  line-height: 15px;
+  color: #282c3f;
+  white-space: nowrap;
+}
+
+.currentPrice {
+  font-size: 14px;
+  font-weight: 700;
+  color: #282c3f;
+}
+
+.originalPrice {
+  text-decoration: line-through;
+  color: #7e818c;
+  font-weight: 400;
+  margin-left: 5px;
+  font-size: 12px;
+}
+
+.discount {
+  color: #ff905a;
+  font-weight: 400;
+  font-size: 12px;
+  margin-left: 5px;
 }
 
 .wishlistIcon {
   cursor: pointer;
 }
 
-.like {
-  font-size: 24px;
-}
-
-.companyName {
-  font-weight: bold;
-  margin-top: 5px;
-}
-
-.itemName {
-  color: #555;
-  font-size: 14px;
-  margin-top: 3px;
-}
-
-.price {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  margin-top: 5px;
-}
-
-.currentPrice {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.originalPrice {
-  font-size: 14px;
-  text-decoration: line-through;
-  color: #888;
-}
-
-.discount {
-  font-size: 14px;
-  color: #ff0000;
-}
-
 .btnAddBag {
-  background-color: #000;
-  color: #fff;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
+  margin-top: 16px;
+  font-size: 18px;
+  width: 100%;
+  border: 1px solid black;
+  padding: 5px 15px;
+  border-radius: 10px;
   cursor: pointer;
-  margin-top: 10px;
 }
 
 .towButtonsContainer {
@@ -77,28 +94,24 @@
   justify-content: space-between;
 }
 
-.bagLink {
-  text-decoration: none;
-}
-
 .buyNowButton {
-  background-color: #28a745;
-  color: #fff;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
+  width: 100%;
+  border: 1px solid black;
+  padding: 5px 15px;
+  border-radius: 10px;
   cursor: pointer;
+  background-color: #ff3f6c;
 }
 
 .removeButton {
-  background-color: #dc3545;
-  color: #fff;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
+  text-decoration: none;
+  border: 1px solid black;
+  padding: 5px 15px;
+  border-radius: 10px;
   cursor: pointer;
+  background-color: white;
+  width: 20%;
 }
-.rating{
-  font-size: 13px;
-  font-weight: 700;
+.bagLink{
+  width: 75%;
 }
