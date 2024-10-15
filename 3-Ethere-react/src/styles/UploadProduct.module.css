@@ -1,5 +1,6 @@
 .productUploadBox {
-  width: 600px;
+  width: 100%; /* Make it responsive */
+  max-width: 600px; /* Max width for larger screens */
   margin: 20px auto;
   border: 1px solid #ddd;
   padding: 20px;
@@ -30,15 +31,16 @@
 .formGroup input,
 .formGroup textarea,
 .formGroup select {
-  width: calc(100% - 12px);
+  width: 100%; /* Full width */
   padding: 5px;
   border: 1px solid #ddd;
   border-radius: 4px;
+  font-size: 16px; /* Increase font size for better readability */
 }
 
 .submitButton {
   display: block;
-  width: 100%;
+  width: 100%; /* Full width */
   padding: 10px;
   border: none;
   border-radius: 5px;
@@ -53,7 +55,7 @@
 }
 
 .uploadImage {
-  width: calc(100% - 12px);
+  width: 100%; /* Full width */
   padding: 5px;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -66,7 +68,7 @@
 }
 
 .imageBox {
-  font-size: 50px;
+  font-size: 50px; /* Large icon */
   display: flex;
   justify-content: center;
 }
@@ -115,8 +117,22 @@
   justify-content: center;
 }
 
-.deleteImage svg {
-  font-size: 12px;
-  cursor: pointer;
-  
+@media (max-width: 600px) {
+  .productUploadBox {
+    padding: 10px; /* Smaller padding for smaller screens */
+  }
+
+  .submitButton {
+    font-size: 14px; /* Smaller button text */
+  }
+
+  .formGroup input,
+  .formGroup textarea,
+  .formGroup select {
+    font-size: 14px; /* Smaller input text */
+  }
+
+  .uploadImage {
+    min-height: 80px; /* Adjust height for smaller screens */
+  }
 }

@@ -26,8 +26,8 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   padding: 20px;
-  height: 600px; 
-  overflow-y: scroll;
+  height: 600px;
+  overflow-y: auto; /* Allow vertical scrolling */
 }
 
 /* Hide scrollbar for WebKit browsers */
@@ -49,4 +49,59 @@
   z-index: 1000;
 }
 
-/* Additional styles can be added here as needed */
+/* Responsive styles */
+.productCard {
+  width: calc(25% - 40px); /* Default width for larger screens */
+  margin: 10px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.productCard:hover {
+  transform: scale(1.02); /* Slightly scale the product card on hover */
+}
+
+.productImage {
+  width: 100%; /* Make image responsive */
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.productInfo {
+  padding: 15px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1024px) {
+  .productCard {
+    width: calc(33.33% - 40px); /* Adjust width for medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .productCard {
+    width: calc(50% - 40px); /* Adjust width for small screens */
+  }
+
+  .productsContainer {
+    height: 400px; /* Reduce height for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .productCard {
+    width: calc(100% - 40px); /* Full width for very small screens */
+  }
+
+  .productsContainer {
+    height: 300px; /* Further reduce height */
+    padding: 10px; /* Reduce padding for very small screens */
+  }
+
+  .uploadBtnContainer {
+    flex-direction: column; /* Stack upload buttons vertically */
+  }
+}

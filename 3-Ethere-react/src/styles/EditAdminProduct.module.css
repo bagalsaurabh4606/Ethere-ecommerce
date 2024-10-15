@@ -1,5 +1,5 @@
 .productUploadBox {
-  width: 600px;
+  width: 600px; /* Default width for larger screens */
   margin: 20px auto;
   border: 1px solid #ddd;
   padding: 20px;
@@ -118,5 +118,53 @@
 .deleteImage svg {
   font-size: 12px;
   cursor: pointer;
-  
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+  .productUploadBox {
+    width: 90%; /* Take up more width on smaller screens */
+    padding: 10px; /* Reduce padding */
+  }
+
+  .formGroup {
+    margin-bottom: 10px; /* Smaller margins */
+  }
+
+  .formGroup label {
+    font-size: 14px; /* Smaller font size */
+  }
+
+  .formGroup input,
+  .formGroup textarea,
+  .formGroup select {
+    font-size: 14px; /* Smaller input text */
+  }
+
+  .submitButton {
+    font-size: 14px; /* Smaller button text */
+  }
+
+  .uploadImage {
+    min-height: 80px; /* Adjust height for smaller screens */
+  }
+
+  .uploadedImage {
+    width: 70px; /* Smaller image width */
+    height: 70px; /* Smaller image height */
+  }
+
+  .uploadedImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .deleteImage {
+    padding: 1px; /* Smaller delete button */
+  }
+
+  .deleteImage svg {
+    font-size: 10px; /* Smaller delete icon */
+  }
 }

@@ -1,6 +1,7 @@
 .userTableContainer {
   margin: 20px;
   position: relative;
+  overflow-x: auto; /* Allows horizontal scrolling on smaller screens */
 }
 
 .userTable {
@@ -44,4 +45,47 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .userTable th,
+  .userTable td {
+    padding: 10px 5px; /* Adjust padding for smaller screens */
+    font-size: 14px; /* Smaller font size */
+  }
+
+  .userTable th:nth-child(4),
+  .userTable td:nth-child(4) { /* Hide Role column on smaller screens */
+    display: none;
+  }
+
+  .userTable th:nth-child(5),
+  .userTable td:nth-child(5) { /* Hide Created At column on smaller screens */
+    display: none;
+  }
+
+  .userTableContainer {
+    margin: 10px; /* Reduce margin on smaller screens */
+  }
+
+  .userTable {
+    font-size: 12px; /* Reduce overall font size */
+  }
+
+  .userRoleOverlay {
+    padding: 20px; /* Add padding for overlay content */
+    overflow-y: auto; /* Allow scrolling if content exceeds height */
+  }
+}
+
+@media (max-width: 480px) {
+  .userTable th,
+  .userTable td {
+    font-size: 12px; /* Further reduce font size on very small screens */
+  }
+
+  .userTable .actionIcon {
+    font-size: 18px; /* Increase action icon size for easier tapping */
+  }
 }

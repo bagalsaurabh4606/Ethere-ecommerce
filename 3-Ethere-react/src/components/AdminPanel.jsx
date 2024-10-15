@@ -5,14 +5,13 @@ import { toast } from "react-toastify";
 import summaryApi from "../comman";
 import { useState } from "react";
 import AdminLogOutConfirm from "./AdminLogOutConfirm";
-import { bagActions } from "../store/bagSlice";
 import styles from "../styles/AdminPanel.module.css"; // Importing CSS module
 
 const AdminPanel = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const bagItems = useSelector((store) => store.bag.bagProducts);
   const [logoutForm, setLogOutForm] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLogout = async () => {
     try {
@@ -38,35 +37,32 @@ const AdminPanel = () => {
 
   return (
     <div className={styles.adminContainer}>
+      {/* Three-Line Icon for Mobile */}
+      <div className={styles.threeLineMenuIcon} onClick={() => setMenuOpen(true)}>
+        &#9776; {/* Unicode for three-line icon */}
+      </div>
+
       <div className={styles.sidebar}>
         <div className="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary" style={{ width: "280px", height: "600px" }}>
           <div className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-            <svg className="bi pe-none me-2" width="40" height="32"></svg>
             <span className="fs-4">Admin Panel</span>
           </div>
           <hr />
           <ul className="nav nav-pills flex-column mb-auto">
             <li className="nav-item">
               <Link to="all-users" className="nav-link link-body-emphasis" aria-current="page">
-                <svg className="bi pe-none me-2" width="16" height="16">
-                  <use to="#home"></use>
-                </svg>
                 All Users
               </Link>
             </li>
             <hr />
             <li className="nav-item">
               <Link to="all-products" className="nav-link link-body-emphasis">
-                <svg className="bi pe-none me-2" width="16" height="16">
-                  <use to="#people-circle"></use>
-                </svg>
-                All Products
+                All products
               </Link>
             </li>
             <hr />
             <li className="nav-item">
               <button className="nav-link link-body-emphasis Admin_Logout" onClick={() => setLogOutForm(true)}>
-                <svg className="bi pe-none me-2" width="16" height="16"></svg>
                 LogOut
               </button>
             </li>
@@ -74,9 +70,30 @@ const AdminPanel = () => {
           <hr />
         </div>
       </div>
+
       <div className={styles.mainSectionAdmin}>
         <Outlet />
       </div>
+
+      {/* Overlay Menu */}
+      <div className={`${styles.overlayMenu} ${menuOpen ? styles.open : ""}`}>
+        <span className={styles.overlayMenuCloseBtn} onClick={() => setMenuOpen(false)}>
+          &times; {/* Unicode for cross icon */}
+        </span>
+        <div className={styles.menuItems}>
+          <Link to="all-users" className={styles.menuItemLink}>
+            All Users
+          </Link>
+          <Link to="all-products" className={styles.menuItemLink}>
+             All-products
+          </Link>
+          <button className={styles.menuItemLink} onClick={() => setLogOutForm(true)}>
+            LogOut
+          </button>
+        </div>
+      </div>
+
+      {/* Logout Confirmation Modal */}
       {logoutForm && (
         <AdminLogOutConfirm handleLogout={handleLogout} setLogOutForm={setLogOutForm} />
       )}

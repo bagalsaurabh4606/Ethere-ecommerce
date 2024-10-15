@@ -7,8 +7,73 @@
 }
 
 .sidebar {
-  width: 280px; /* Match the width of the sidebar */
-  height: 600px; /* Match the height of the sidebar */
+  width: 280px; /* Sidebar width */
+  height: 600px; /* Sidebar height */
 }
 
+/* Overlay Menu Styling */
+.overlayMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: #f8f9fa;
+  overflow-x: hidden;
+  transition: width 0.3s ease;
+  padding-top: 60px;
+  z-index: 1000;
+}
 
+.open {
+  width: 35%; /* Adjust width of overlay */
+  box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.overlayMenuCloseBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.menuItems {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.menuItemLink {
+  background: #202123;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  transition: background 0.3s ease;
+}
+
+.menuItemLink:hover {
+  background: #0056b3;
+}
+
+/* Three-Line Icon */
+.threeLineMenuIcon {
+  display: none; /* Hide by default */
+  cursor: pointer;
+  font-size: 24px;
+  padding: 10px;
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 768px) {
+  .sidebar {
+    display: none; /* Hide sidebar on mobile */
+  }
+
+  .threeLineMenuIcon {
+    display: block; /* Show the three-line icon on mobile */
+  }
+}

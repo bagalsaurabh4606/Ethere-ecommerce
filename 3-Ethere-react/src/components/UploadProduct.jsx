@@ -16,7 +16,7 @@ const UploadProduct = ({ onClose, fetchuploadProduct }) => {
     originalPrice: "",
     discountPercentage: "",
     image: [],
-    quantity: ""
+    quantity: "",
   });
 
   const [uploadImageInput, setuploadImageInput] = useState(" ");
@@ -111,7 +111,9 @@ const UploadProduct = ({ onClose, fetchuploadProduct }) => {
             required
           >
             {productCatagory.map((el, index) => (
-              <option key={index} value={el.value}>{el.label}</option>
+              <option key={index} value={el.value}>
+                {el.label}
+              </option>
             ))}
           </select>
         </div>
