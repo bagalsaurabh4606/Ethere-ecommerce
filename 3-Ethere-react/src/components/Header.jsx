@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { IoPersonSharp, IoBag } from "react-icons/io5";
 import { ImHeart } from "react-icons/im";
+import { FiSearch } from "react-icons/fi";
+import { IoMdClose } from "react-icons/io";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { FiSearch } from "react-icons/fi";
 import styles from "../styles/Header.module.css"; // Adjusted import path
 
 const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
   const bag = useSelector((store) => store.bag.bagProducts);
   const user = useSelector((store) => store?.user?.data);
   const searchInput = useLocation();
@@ -22,6 +24,8 @@ const Header = () => {
       navigate("/search");
     }
   };
+
+  const toggleMenu = () => setMenuOpen(!menuOpen);
 
   return (
     <header className={styles.header}>
@@ -43,7 +47,14 @@ const Header = () => {
         />
       </div>
 
-      <div className={styles.action_bar}>
+      <div className={styles.mobile_menu_icon} onClick={toggleMenu}>
+        ☰
+      </div>
+
+      <div className={`${styles.action_bar} ${menuOpen ? styles.menu_open : ""}`}>
+        <span className={styles.close_menu_icon} onClick={toggleMenu}>
+          <IoMdClose />
+        </span>
         <Link
           className={styles.action_container}
           to={!user?._id ? "/login" : user.role === "ADMIN" ? "/admin-panel/all-users" : "/profile"}
@@ -64,7 +75,7 @@ const Header = () => {
           <span className={styles.action_name}>Cart</span>
         </Link>
 
-        <Link to="/bag" className={styles["bag-item-count"]}>
+        <Link to="/bag" className={styles.bagitemcount}>
           {bag.length}
         </Link>
       </div>
