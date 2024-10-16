@@ -58,3 +58,23 @@
   transform: translateY(-2px);
   border: 2px solid #dce8f5;
 }
+@media (max-width: 768px) {
+  .mainCategoryContainer {
+    display: none; /* Hide the category list on mobile devices */
+  }
+}
+
+/* Heading for Mobile View */
+.mobileCategoryHeading {
+  display: none;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+@media (max-width: 768px) {
+  .mobileCategoryHeading {
+    display: block; /* Show the category heading only on mobile devices */
+  }
+}
