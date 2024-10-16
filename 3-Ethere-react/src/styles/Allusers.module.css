@@ -55,13 +55,13 @@
     font-size: 14px; /* Smaller font size */
   }
 
-  .userTable th:nth-child(4),
-  .userTable td:nth-child(4) { /* Hide Role column on smaller screens */
+  .userTable th:nth-child(1),
+  .userTable td:nth-child(1) { /* Hide Role column on smaller screens */
     display: none;
   }
 
-  .userTable th:nth-child(5),
-  .userTable td:nth-child(5) { /* Hide Created At column on smaller screens */
+  .userTable th:nth-child(3),
+  .userTable td:nth-child(3) { /* Hide Created At column on smaller screens */
     display: none;
   }
 

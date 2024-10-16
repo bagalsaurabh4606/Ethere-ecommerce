@@ -9,6 +9,7 @@
   max-height: 500px;
   min-height: 300px;
   overflow-y: auto;
+
 }
 
 .crossIcon {
@@ -123,7 +124,7 @@
 /* Responsive Styles */
 @media (max-width: 600px) {
   .productUploadBox {
-    width: 90%; /* Take up more width on smaller screens */
+    width: 92%; /* Take up more width on smaller screens */
     padding: 10px; /* Reduce padding */
   }
 

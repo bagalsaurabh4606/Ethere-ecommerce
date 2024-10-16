@@ -35,6 +35,14 @@ const AdminPanel = () => {
     }
   };
 
+  const handleLogoutResponsive =()=>
+  {
+     
+    setMenuOpen(false);
+    setLogOutForm(true);
+    
+  }
+
   return (
     <div className={styles.adminContainer}>
       {/* Three-Line Icon for Mobile */}
@@ -81,13 +89,13 @@ const AdminPanel = () => {
           &times; {/* Unicode for cross icon */}
         </span>
         <div className={styles.menuItems}>
-          <Link to="all-users" className={styles.menuItemLink}>
+          <Link to="all-users" className={styles.menuItemLink} onClick={()=>setMenuOpen(false)}>
             All Users
           </Link>
-          <Link to="all-products" className={styles.menuItemLink}>
+          <Link to="all-products" className={styles.menuItemLink} onClick={()=>setMenuOpen(false)}>
              All-products
           </Link>
-          <button className={styles.menuItemLink} onClick={() => setLogOutForm(true)}>
+          <button className={styles.menuItemLink} onClick={handleLogoutResponsive}>
             LogOut
           </button>
         </div>

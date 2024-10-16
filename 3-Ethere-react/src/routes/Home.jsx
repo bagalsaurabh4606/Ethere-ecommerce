@@ -31,7 +31,10 @@ const Home = ({ fetchbagproduct }) => {
       <div>
         <BannerImage />
       </div>
-
+      
+      <div style={{"fontFamily":'Helvetica'}}>
+        <h2>Shop By Category</h2>
+      </div>
       {CategoryProduct.map((item, index) => (
         <div key={index}>
           {" "}

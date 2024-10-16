@@ -30,8 +30,12 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.logo_container}>
-        <Link to="">
-          <img className={styles.myntra_home} src="images/ethere_logo.jpg" alt="" />
+        <Link to="/">
+          <img
+            className={styles.myntra_home}
+            src="images/ethere_logo.jpg"
+            alt="ethere logo"
+          />
         </Link>
       </div>
 
@@ -50,33 +54,51 @@ const Header = () => {
       <div className={styles.mobile_menu_icon} onClick={toggleMenu}>
         ☰
       </div>
+      
 
-      <div className={`${styles.action_bar} ${menuOpen ? styles.menu_open : ""}`}>
-        <span className={styles.close_menu_icon} onClick={toggleMenu}>
+      <div  className={`${styles.action_bar} ${menuOpen ? styles.menu_open : ""}`}>
+      <span className={styles.close_menu_icon} onClick={toggleMenu}>
           <IoMdClose />
-        </span>
+     </span>
+        
         <Link
           className={styles.action_container}
-          to={!user?._id ? "/login" : user.role === "ADMIN" ? "/admin-panel/all-users" : "/profile"}
+          onClick={toggleMenu}
+          to={
+            !user?._id
+              ? "/login"
+              : user.role === "ADMIN"
+              ? "/admin-panel/all-users"
+              : "/profile"
+          }
         >
-          <IoPersonSharp />
+          <IoPersonSharp/>
           <span className={styles.action_name}>
-            {user && user.name ? (user.name.length > 6 ? user.name.substring(0, 6) + ".." : user.name) : "Login"}
+            {user && user.name
+              ? user.name.length > 6
+                ? user.name.substring(0, 6) + ".."
+                : user.name
+              : "Login"}
           </span>
         </Link>
 
-        <Link className={styles.action_container} to="/WishLists">
+        <Link
+          className={styles.action_container}
+          onClick={toggleMenu}
+          to="/WishLists"
+        >
           <ImHeart />
           <span className={styles.action_name}>Favourite</span>
         </Link>
 
-        <Link className={styles.action_container} to="/bag">
+        <Link
+          className={styles.action_container}
+          onClick={toggleMenu}
+          to="/bag"
+        >
           <IoBag />
           <span className={styles.action_name}>Cart</span>
-        </Link>
-
-        <Link to="/bag" className={styles.bagitemcount}>
-          {bag.length}
+          <span className={styles.bagitemcount}>{bag.length}</span>
         </Link>
       </div>
     </header>

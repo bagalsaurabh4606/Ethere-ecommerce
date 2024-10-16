@@ -119,7 +119,8 @@
 
 @media (max-width: 600px) {
   .productUploadBox {
-    padding: 10px; /* Smaller padding for smaller screens */
+    padding: 10px; 
+    width: 92%;
   }
 
   .submitButton {

@@ -12,7 +12,7 @@ const ProfileSidebar = () => {
   const user = useSelector((store) => store?.user?.data);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [logoutConfirm, setlogOutForm] = useState(false);
+  const [logoutConfirm, setLogOutForm] = useState(false);
   const [orderData, setOrderData] = useState([]);
 
   const fetchOrder = async () => {
@@ -77,7 +77,7 @@ const ProfileSidebar = () => {
             <p><strong>Member since: </strong>{moment(user.createdAt).format('ll')}</p>
           </div>
         </div>
-        <button className={styles.editProfileBtn} onClick={() => setlogOutForm(true)}>Logout</button>
+        <button className={styles.editProfileBtn} onClick={() => setLogOutForm(true)}>Logout</button>
       </div>
       <div className={styles.profileBody}>
         <div className={styles.profileDetails}>
@@ -115,7 +115,7 @@ const ProfileSidebar = () => {
           </table>
         </div>
       </div>
-      {logoutConfirm && <AdminLogOutConfirm handleLogout={handleLogout} setlogOutForm={setlogOutForm} />}
+      {logoutConfirm && <AdminLogOutConfirm handleLogout={handleLogout} setLogOutForm={setLogOutForm} />}
     </div>
   );
 };

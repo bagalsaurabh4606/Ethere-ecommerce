@@ -48,3 +48,10 @@
 #cancelLogout:hover {
   background-color: #d32f2f;
 }
+
+@media (max-width: 768px) {
+  .modalContent {
+    width: 80%;
+    margin: 80% auto;
+  }
+}

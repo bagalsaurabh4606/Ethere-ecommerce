@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "../styles/AdminLogOutConfirm.module.css"; // Import the CSS module
 
-const AdminLogOutConfirm = ({ handleLogout, setlogOutForm }) => {
+const AdminLogOutConfirm = ({ handleLogout, setLogOutForm }) => {
   return (
     <div className={styles.modal123}>
       <div className={styles.modalContent}>
-        <h2>Are you sure you want to log out?</h2>
+        <h4>Are you sure you want to log out?</h4>
         <div className={styles.buttonsss}>
           <button
             id="confirmLogout"
@@ -17,7 +17,7 @@ const AdminLogOutConfirm = ({ handleLogout, setlogOutForm }) => {
           <button
             id="cancelLogout"
             className={styles.btnn}
-            onClick={() => setlogOutForm(false)}
+            onClick={() => setLogOutForm(false)}
           >
             Cancel
           </button>

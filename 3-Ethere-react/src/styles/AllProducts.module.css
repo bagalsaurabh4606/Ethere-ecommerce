@@ -86,9 +86,7 @@
     width: calc(50% - 40px); /* Adjust width for small screens */
   }
 
-  .productsContainer {
-    height: 400px; /* Reduce height for smaller screens */
-  }
+ 
 }
 
 @media (max-width: 480px) {
@@ -97,7 +95,7 @@
   }
 
   .productsContainer {
-    height: 300px; /* Further reduce height */
+     /* Further reduce height */
     padding: 10px; /* Reduce padding for very small screens */
   }
 

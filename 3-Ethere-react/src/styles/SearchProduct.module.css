@@ -17,3 +17,14 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
+
+@media (max-width: 768px) {
+  .itemsContainer {
+    justify-content: center;
+  }
+
+  .itemsContainer > * {
+    flex: 1 1 calc(50% - 10px); /* Allows two items per row with a small gap */
+    margin: 5px;
+  }
+}
