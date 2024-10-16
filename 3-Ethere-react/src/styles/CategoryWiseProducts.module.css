@@ -1,16 +1,117 @@
 .itemsContainer {
-    width: 86%;
-    margin: 40px 7%;
-    display: flex;
-    width: 86%;
-    margin: 40px 7%;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+  width: 86%;
+  margin: 40px 7%;
+  display: flex;
+  width: 86%;
+  margin: 40px 7%;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 
 .hrTag {
-  border: 0;
-    height: 2px;
-    background-image: linear-gradient(to right, transparent, #000000, transparent);
+border: 0;
+  height: 2px;
+  background-image: linear-gradient(to right, transparent, #000000, transparent);
+}
+/* Default: Hide the mobile heading and show the category list */
+.mobileCategoryHeading {
+display: none;
+text-transform: capitalize;
+}
+
+.mainCategoryContainer {
+/* display: flex; */
+width: 90%;
+height: 160px;
+margin: 30px 5%;
+flex-wrap: wrap;
+justify-content: space-evenly;
+}
+
+/* Show only on mobile devices (width <= 768px) */
+@media (max-width: 768px) {
+.mobileCategoryHeading {
+  display: block; /* Show the heading on mobile devices */
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 20px 0;
+  font-weight: bold;
+}
+
+.mainCategoryContainer {
+  display: none; /* Hide the category list on mobile devices */
+}
+}
+
+/* Ensure the category list is only visible on larger screens (width > 768px) */
+@media (min-width: 769px) {
+.mobileCategoryHeading {
+  display: none; /* Hide the mobile heading on larger screens */
+}
+
+/* Ensure the category list is visible on larger screens */
+/* .mainCategoryContainer {
+  display: flex; 
+} */
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+.overlayContent {
+  background: white;
+  width: 76%;
+  max-width: 500px;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  top: -14%;
+
+}
+
+.crossButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #333;
+}
+
+.categoryListContainer {
+  margin-top: 40px; /* Adjust margin to position category list below the cross button */
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between category items */
+}
+
+.categoryItem {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: #f9f9f9;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  text-transform: capitalize;
+  color: black;
+  font-weight: 500;
+}
+
+.categoryItem:hover {
+  background-color: #e0e0e0;
 }
