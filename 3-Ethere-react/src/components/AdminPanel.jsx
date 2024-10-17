@@ -65,7 +65,13 @@ const AdminPanel = () => {
             <hr />
             <li className="nav-item">
               <Link to="all-products" className="nav-link link-body-emphasis">
-                All products
+                All Products
+              </Link>
+            </li>
+            <hr />
+            <li className="nav-item">
+              <Link to="all-orders" className="nav-link link-body-emphasis">
+                All Orders
               </Link>
             </li>
             <hr />
@@ -74,6 +80,7 @@ const AdminPanel = () => {
                 LogOut
               </button>
             </li>
+            
           </ul>
           <hr />
         </div>
@@ -93,7 +100,10 @@ const AdminPanel = () => {
             All Users
           </Link>
           <Link to="all-products" className={styles.menuItemLink} onClick={()=>setMenuOpen(false)}>
-             All-products
+             All Products
+          </Link>
+          <Link to="all-orders" className={styles.menuItemLink} onClick={()=>setMenuOpen(false)}>
+             All Orders
           </Link>
           <button className={styles.menuItemLink} onClick={handleLogoutResponsive}>
             LogOut

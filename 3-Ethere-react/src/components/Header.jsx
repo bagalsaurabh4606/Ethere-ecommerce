@@ -33,7 +33,7 @@ const Header = () => {
         <Link to="/">
           <img
             className={styles.myntra_home}
-            src="images/ethere_logo.jpg"
+            src="/images/ethere_logo.jpg"
             alt="ethere logo"
           />
         </Link>
