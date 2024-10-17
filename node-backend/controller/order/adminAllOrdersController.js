@@ -5,7 +5,7 @@ const adminAllOrdersController=async(req,res)=>{
 
     const userId=req.userId;
 
-    const orders=orderModel.find()
+    const orders=await orderModel.find()
     res.json({
       message:"All orders Fetched",
       success:true,
@@ -14,10 +14,10 @@ const adminAllOrdersController=async(req,res)=>{
     
      })
 
-    console.log("data",orders)
+
 
   }catch (err) {
-    response.status(400).json({
+    res.status(400).json({
       message: err.message || err,
       error: true,
       success: false,

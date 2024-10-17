@@ -26,6 +26,7 @@ const paymentController = require('../controller/order/paymentController')
 const webhookController = require('../controller/order/webHook')
 const fetchOrderController = require('../controller/order/fetchOrderController')
 const adminAllOrdersController = require('../controller/order/adminAllOrdersController')
+const orderStatusController = require('../controller/order/OrderStatusController')
 
 router.post("/signup",userSignUpController)
 router.post("/login",userLoginINController)
@@ -65,9 +66,9 @@ router.post("/bag-quantity",authToken,quantityController)
 
 router.post("/checkout",authToken,paymentController)
 router.get("/order-details",authToken,fetchOrderController)
-router.get("all-orders",authToken,adminAllOrdersController)
+router.get("/all-orders",authToken,adminAllOrdersController)
 //webhook 
 
-
+router.post("/order-status/:orderId",authToken,orderStatusController)
 
 module.exports=router

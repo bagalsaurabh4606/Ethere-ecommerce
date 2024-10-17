@@ -1,4 +1,5 @@
 // models/orderModel.js
+const { boolean } = require("joi");
 const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema({
@@ -19,7 +20,9 @@ const orderSchema = new mongoose.Schema({
   totalAmount: { type: Number, required: true },
   orderId: { type: String, required: true },
   paymentStatus: { type: String, enum: ["Pending", "Completed"], default: "Pending" },
+  orderPacked: { type:Boolean},
   createdAt: { type: Date, default: Date.now },
+
 });
 
 module.exports = mongoose.model("Order", orderSchema);

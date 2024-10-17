@@ -93,7 +93,12 @@ const summaryApi = {
     url:`${backendDomain}/api/all-orders`,
     method:`get`
   },
-  
+
+  OrderStatus:{
+    url:`${backendDomain}/api/order-status`,
+    method:`post`
+  },
+
 };
 
 export default summaryApi;

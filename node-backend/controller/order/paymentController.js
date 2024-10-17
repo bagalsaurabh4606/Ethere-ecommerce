@@ -32,6 +32,7 @@ const paymentController = async (request, response) => {
       totalAmount: amount,
       orderId: order.id,
       paymentStatus: "Pending",
+      orderPacked:false,
     });
 
     console.log("order detalis sending in backend",order.id)
