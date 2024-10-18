@@ -22,6 +22,8 @@ import SearchProduct from "./pages/SearchProduct.jsx";
 import PaymentSuccessful from "./pages/PaymentSuccessful.jsx";
 import OrderDetails from "./pages/OrderDetails.jsx";
 import AdminAllOrders from "./components/AdminAllOrders.jsx";
+import OtpVerification from "./pages/OtpVerification.jsx";
+import ResetPassword from "./pages/ResetPassword.jsx";
 
 const router = createBrowserRouter([
   {
@@ -41,15 +43,14 @@ const router = createBrowserRouter([
       { path: "payment-success", element: <PaymentSuccessful /> },
       { path: "login", element: <Login></Login> },
       { path: "forgot-password", element: <ForgotPassword></ForgotPassword> },
+      { path: "/otp-verification/:userEmail", element: <OtpVerification/> },
+      { path: "reset-password/:userEmail", element: <ResetPassword/>},
       { path: "Profile", element: <ProfileSidebar></ProfileSidebar> },
       {
         path: "product-catagory/:category",
         element: <CatagoryWiseProducts />,
       },
-      {
-        path: "product-category/:category",
-        element: <CategoryWiseProducts />,
-      },
+    
       {
         path: "admin-panel",
         element: <AdminPanel />,

@@ -13,7 +13,7 @@ if(!password){
   
 const user=await userModel.findOne({email})
 if(!user){
-  throw new Error("User Not Found")
+  throw new Error("Account with this email doesn't exsits !")
 }
 
 const checkPassword=await bcrypt.compareSync(password,user.password)

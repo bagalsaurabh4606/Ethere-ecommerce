@@ -10,7 +10,9 @@ const userSchema=new mongoose.Schema({
     required:true
   },
   password:String,
-  role:String
+  role:String,
+  otp: String, // OTP is stored as a string
+  otpExpires:Date,
 },
 {timestamps:true,}
 )

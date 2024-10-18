@@ -98,6 +98,22 @@ const summaryApi = {
     url:`${backendDomain}/api/order-status`,
     method:`post`
   },
+  forgotPassword:{
+    url:`${backendDomain}/api/forgot-password`,
+    method:`post`
+  },
+  otpVerification:{
+    url:`${backendDomain}/api/otp-verification`,
+    method:`post`
+  },
+
+  ResetPassword:{
+    url:`${backendDomain}/api/reset-password`,
+    method:`post`
+  },
+  
+  
+  
 
 };
 
