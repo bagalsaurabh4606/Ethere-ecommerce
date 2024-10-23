@@ -1,40 +1,5 @@
-// import React, { useState } from 'react';
-// import styles from '../styles/ResetPassword.module.css';
-
-// const ResetPassword = () => {
-//   const [newPassword, setNewPassword] = useState('');
-//   const [confirmPassword, setConfirmPassword] = useState('');
-
-//   return (
-//     <div className={styles.container}>
-//       <div className={styles.form}>
-//         <h2>Reset Password</h2>
-//         <input
-//           type="password"
-//           placeholder="Enter new password"
-//           value={newPassword}
-//           onChange={(e) => setNewPassword(e.target.value)}
-//           className={styles.input}
-//         />
-//         <input
-//           type="password"
-//           placeholder="Confirm new password"
-//           value={confirmPassword}
-//           onChange={(e) => setConfirmPassword(e.target.value)}
-//           className={styles.input}
-//         />
-//         <button className={styles.button}>
-//           Update Password
-//         </button>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ResetPassword;
-
 import React, { useState } from 'react';
-import { useNavigate, useLocation, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styles from '../styles/ResetPassword.module.css';
 import summaryApi from '../comman';
 import { toast } from 'react-toastify';
@@ -45,14 +10,27 @@ const ResetPassword = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
-  const location = useLocation();
-
   const { userEmail } = useParams();
-  console.log("user emaillllll",userEmail)
-  // Assume userEmail is passed in location state (or you can store it in localStorage/sessionStorage)
-  //onst userEmail = location.state?.email || localStorage.getItem('userEmail');
+
+  const validatePassword = (password) => {
+    // Regular expression to check for minimum 8 characters, at least one digit, and one special character
+    const passwordRegex = /^(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{8,}$/;
+    return passwordRegex.test(password);
+  };
 
   const handlePasswordReset = async () => {
+    // Check if any field is empty
+    if (!newPassword || !confirmPassword) {
+      setErrorMessage('Both fields are required.');
+      return;
+    }
+
+    // Validate password constraints
+    if (!validatePassword(newPassword)) {
+      setErrorMessage('Password must be at least 8 characters, include one digit and one symbol.');
+      return;
+    }
+
     // Validate password match
     if (newPassword !== confirmPassword) {
       setErrorMessage('Passwords do not match!');
@@ -66,7 +44,7 @@ const ResetPassword = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          userEmail,  // You need to send the email too
+          userEmail,
           newPassword,
         }),
       });
@@ -74,10 +52,9 @@ const ResetPassword = () => {
       const result = await response.json();
       
       if (result.success) {
-      toast.success(result.message)
+        toast.success(result.message);
         setSuccessMessage(result.message);
-        // Optionally, navigate to login page
-        setTimeout(() => navigate('/login'), 3000);
+        setTimeout(() => navigate('/login'), 1000);
       } else {
         setErrorMessage(result.message);
       }
@@ -91,13 +68,14 @@ const ResetPassword = () => {
       <div className={styles.form}>
         <h2>Reset Password</h2>
         {errorMessage && <p className={styles.error}>{errorMessage}</p>}
-        {successMessage && <p className={styles.success}>{successMessage}</p>}
+        {/* {successMessage && <p className={styles.success}>{successMessage}</p>} */}
         <input
           type="password"
           placeholder="Enter new password"
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
           className={styles.input}
+          required
         />
         <input
           type="password"
@@ -105,6 +83,7 @@ const ResetPassword = () => {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           className={styles.input}
+          required
         />
         <button className={styles.button} onClick={handlePasswordReset}>
           Update Password

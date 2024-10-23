@@ -18,7 +18,7 @@ const Bag = () => {
     };
   });
 
-  console.log("final items in bag",FinalItems)
+ 
 
   return (
     <main > {/* Use CSS module styles */}

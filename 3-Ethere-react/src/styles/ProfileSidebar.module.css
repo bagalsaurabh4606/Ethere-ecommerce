@@ -30,6 +30,10 @@
   margin: 0;
   font-size: 28px;
   color: #333;
+  text-transform:capitalize;
+}
+.nameInProfile{
+  text-transform: capitalize;
 }
 
 .profileInfo p {

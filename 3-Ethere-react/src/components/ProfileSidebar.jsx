@@ -26,7 +26,7 @@ const ProfileSidebar = () => {
     if(dataresponse.success)
     {
       setOrderData(dataresponse.data);
-      console.log("dataResponse", dataresponse.data);
+     
     }
     if(dataresponse.error)
     {
@@ -55,7 +55,7 @@ const ProfileSidebar = () => {
         toast.error(dataApi.message);
       }
     } catch (error) {
-      console.error("Logout error:", error);
+      
       toast.error("Failed to log out. Please try again later.");
     }
   };
@@ -72,7 +72,7 @@ const ProfileSidebar = () => {
             <img src="images/ethere_logo.jpg" alt="Profile Picture" />
           </div>
           <div className={styles.profileInfo}>
-            <h1 style={{"text-transform":"capitalize"}}>{user.name}</h1>
+            <h1>{user.name}</h1>
             <p>{user.email}</p>
             <p><strong>Member since: </strong>{moment(user.createdAt).format('ll')}</p>
           </div>
@@ -82,7 +82,7 @@ const ProfileSidebar = () => {
       <div className={styles.profileBody}>
         <div className={styles.profileDetails}>
           <h2>Profile Details</h2>
-          <p style={{"text-transform":"capitalize"}}><strong>Full Name:</strong> {user.name}</p>
+          <p className={styles.nameInProfile}><strong>Full Name:</strong> {user.name}</p>
           <p><strong>Email:</strong> {user.email}</p>
           <p><strong>Phone Number:</strong> provide phone number</p>
           <p><strong>Address:</strong> Please provide address</p>

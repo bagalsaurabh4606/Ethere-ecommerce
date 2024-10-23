@@ -138,3 +138,11 @@
 .bagLink{
   width: 71%;
 }
+
+@media (max-width: 768px) {
+  
+  .horizontalItemContainer
+  {
+    width:300px;
+  }
+}

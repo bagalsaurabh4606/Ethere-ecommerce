@@ -33,7 +33,7 @@ const Home = ({ fetchbagproduct }) => {
       </div>
       
       <div style={{"fontFamily":'Brush Script MT'}}>
-        <h2 style={{"font-size": "40px"}}>Shop By Category</h2>
+        <h2 style={{fontSize: "40px"}}>Shop By Category</h2>
       </div>
       {CategoryProduct.map((item, index) => (
         <div key={index}>

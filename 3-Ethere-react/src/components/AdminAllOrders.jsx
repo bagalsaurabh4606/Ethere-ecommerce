@@ -108,6 +108,7 @@ const AdminAllOrders = () => {
                   <p>Mark as Packed</p>
                   <input
                     type="checkbox"
+                    style={{"cursor": "pointer"}}
                     checked={order.orderPacked || false} // Reflect the stored value
                     onChange={(e) =>
                       handleCheckboxChange(order._id, e.target.checked)
