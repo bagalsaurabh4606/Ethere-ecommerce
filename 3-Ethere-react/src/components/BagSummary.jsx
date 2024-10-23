@@ -21,7 +21,7 @@ const BagSummary = ({ FinalItems }) => {
     };
   }, []);
 
-  const razor_key = "rzp_test_lvvBTkLbGzAcVM"; // Replace with your actual Razorpay key
+  const razor_key = import.meta.env.REACT_APP_RAZORPAY_KEY; // Replace with your actual Razorpay key
 
   const handlePayment = async () => {
     const response = await fetch(summaryApi.payment.url, {
