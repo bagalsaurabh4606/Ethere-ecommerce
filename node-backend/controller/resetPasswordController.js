@@ -1,11 +1,22 @@
+const jwt = require("jsonwebtoken");
 const userModel = require("../models/userModels");
 const bcrypt = require("bcrypt");
 
 const resetPasswordController = async (req, res) => {
-  const { userEmail, newPassword } = req.body;
+  const { userEmail, token, newPassword } = req.body;
 
-  console.log("got userEmail and new password",userEmail,newPassword)
   try {
+    // Verify the token
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    if (decoded.email !== userEmail) {
+      return res.json({
+        message: "Invalid token or email mismatch.",
+        error: true,
+        success: false,
+      });
+    }
+
     // Check if the user exists
     const user = await userModel.findOne({ email: userEmail });
     if (!user) {
@@ -24,7 +35,6 @@ const resetPasswordController = async (req, res) => {
     user.password = hashedPassword;
     await user.save();
 
-    // Respond with success
     return res.json({
       message: "Password updated successfully!",
       error: false,

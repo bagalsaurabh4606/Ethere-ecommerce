@@ -2,9 +2,12 @@ import { useState } from "react";
 import { MdEdit } from "react-icons/md";
 import EditAdminProduct from "./EditAdminProduct";
 import styles from "../styles/AdminAllProduct.module.css"; // Importing CSS module
+import { RiDeleteBin4Fill } from "react-icons/ri";
+import DeleteProductConfirm from "./DeleteProductConfirm";
 
 const AdminAllProduct = ({ product, fetchData }) => {
   const [editProduct, setEditProduct] = useState(false);
+  const [deleteProduct,setDeleteProduct] = useState(false);
 
   const currentPrice = (product.originalPrice) - (product.originalPrice / 100) * (product.discountPercentage);
 
@@ -24,6 +27,9 @@ const AdminAllProduct = ({ product, fetchData }) => {
         <div className={styles.editProductIcon} onClick={() => setEditProduct(true)}>
           <MdEdit />
         </div>
+        <div className={styles.deleteProductIcon} onClick={() => setDeleteProduct(true)}>
+        <RiDeleteBin4Fill/>
+        </div>
       </div>
       {editProduct && (
         <div className={styles.editProductOverlay}>
@@ -32,6 +38,11 @@ const AdminAllProduct = ({ product, fetchData }) => {
             data={product}
             fetchData={fetchData}
           />
+        </div>
+      )}
+      {deleteProduct && (
+        <div className={styles.editProductOverlay}>
+          <DeleteProductConfirm product={product} setDeleteProduct={setDeleteProduct}  fetchData={fetchData}/>
         </div>
       )}
     </div>

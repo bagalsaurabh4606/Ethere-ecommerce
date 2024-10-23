@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import summaryApi from "../comman";
 import moment from "moment";
 import styles from "../styles/AdminAllOrders.module.css";
+import { toast } from "react-toastify";
 
 const AdminAllOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -17,6 +18,9 @@ const AdminAllOrders = () => {
       const dataResponse = await response.json();
       console.log("Data response in admin all orders", dataResponse);
       setOrders(dataResponse.data); // Set orders from database
+      if(dataResponse.success){
+        toast.success(dataResponse.message)
+      }
     } catch (error) {
       console.error("Error fetching orders:", error);
     } finally {

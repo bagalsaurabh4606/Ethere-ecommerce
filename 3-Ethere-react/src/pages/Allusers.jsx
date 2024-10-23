@@ -26,6 +26,7 @@ const Allusers = () => {
       const dataResponse = await fetchData.json();
       if (dataResponse.success) {
         setAllUsers(dataResponse.data); // Set user data if fetch is successful
+        toast.success(dataResponse.message)
       } else if (dataResponse.error) {
         toast.error(dataResponse.message); // Show error message if any
       }

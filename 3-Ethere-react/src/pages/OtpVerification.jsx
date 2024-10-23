@@ -26,15 +26,19 @@ const OtpVerification = () => {
     });
 
     const responseData = await response.json();
+    const token = responseData.resetToken;
 
     if (responseData.success) {
      
       toast.success(responseData.message);
-      navigate(`/reset-password/${userEmail}`)
+      navigate(`/reset-password/${userEmail}/${token}`)
     } 
     if (responseData.error) {
      
       toast.error(responseData.message);
+
+
+      console.log("else block called with error",responseData.message)
       
     }
   };

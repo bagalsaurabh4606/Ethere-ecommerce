@@ -50,6 +50,7 @@ const EditAdminProduct = ({ onClose, data, fetchData }) => {
       toast.success(productData?.message);
       onClose();
       fetchData();
+      
     }
     if (productData.error) {
       toast.error(productData?.message);

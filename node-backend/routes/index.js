@@ -30,6 +30,8 @@ const orderStatusController = require('../controller/order/OrderStatusController
 const forgotPasswordController = require('../controller/forgotPasswordController')
 const otpVerificationController = require('../controller/otpVerificationController')
 const resetPasswordController = require('../controller/resetPasswordController')
+const authMiddleware = require('../middleware/authMiddleWare')
+const deleteAdminProductController = require('../controller/deleteAdminProductController')
 
 router.post("/signup",userSignUpController)
 router.post("/login",userLoginINController)
@@ -37,15 +39,16 @@ router.get("/user-details",authToken,userDetailsController)
 router.get("/user-logout",userLogout)
 
 //admin-panel
-router.get("http://localhost:5173/admin-panel",authToken,authorizeAdminController)
-router.get("/all-users",authToken,allUsers)
-router.post("/update-user",authToken,updateUser)
+// router.get("/admin-panel",authToken,authMiddleware)
+router.get("/all-users",authToken,authMiddleware,allUsers)
+router.post("/update-user",authToken,authMiddleware,updateUser)
 //product
-router.post("/upload-prouct",authToken,uploadPoductController)
+router.post("/upload-prouct",authToken,authMiddleware,uploadPoductController)
+router.delete("/delete-adminproduct",deleteAdminProductController)
 router.get("/get-product",getproductController)
 
 
-router.post("/update-product",authToken,upadateProductController)
+router.post("/update-product",authToken,authMiddleware,upadateProductController)
 
 
 router.get("/get-catagory",getCatagoryProductController)
@@ -69,7 +72,7 @@ router.post("/bag-quantity",authToken,quantityController)
 
 router.post("/checkout",authToken,paymentController)
 router.get("/order-details",authToken,fetchOrderController)
-router.get("/all-orders",authToken,adminAllOrdersController)
+router.get("/all-orders",authToken,authMiddleware,adminAllOrdersController)
 //webhook 
 
 router.post("/order-status/:orderId",authToken,orderStatusController)

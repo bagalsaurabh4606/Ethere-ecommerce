@@ -46,6 +46,7 @@ const UploadProduct = ({ onClose, fetchuploadProduct }) => {
       toast.success(productData?.message);
       onClose();
       fetchuploadProduct();
+      toast.success(productData.message)
     }
     if (productData.error) {
       toast.error(productData?.message);

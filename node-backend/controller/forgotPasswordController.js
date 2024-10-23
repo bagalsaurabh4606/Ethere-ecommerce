@@ -53,13 +53,15 @@ const forgotPasswordController = async (req, res) => {
 
     // Generate a 4-digit OTP
     const otp = crypto.randomInt(1000, 9999).toString();
-    const otpExpires = Date.now() + 10 * 60 * 1000; // OTP expires in 10 minutes
+    const otpExpires = Date.now() + 15 * 60 * 1000; // OTP expires in 10 minutes
 
     // Update user with OTP and expiration
     user.otp = otp;
     user.otpExpires = otpExpires;
     await user.save();
 
+    console.log("Generated OTP:", otp); // In forgotPasswordController.js
+    console.log("Stored OTP in DB:", user.otp); // After saving in DB
     // Configure Nodemailer to send email
     const transporter = nodemailer.createTransport({
       service: "Gmail",
