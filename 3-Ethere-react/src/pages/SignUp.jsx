@@ -11,29 +11,49 @@ const SignUp = () => {
   const [data, setData] = useState({
     name: "",
     email: "",
-    password: ""
+    password: "",
   });
+  const [passwordError, setPasswordError] = useState("");
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setData((prev) => {
       return {
         ...prev,
-        [name]: value
+        [name]: value,
       };
     });
+
+    // Reset the password error when user starts typing
+    if (name === "password") {
+      setPasswordError("");
+    }
   };
-  
+
   const navigate = useNavigate();
-  
+
+  // Function to validate the password
+  const validatePassword = (password) => {
+    // Password must be more than 8 characters, contain at least one digit and one symbol
+    const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+    return passwordRegex.test(password);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Check if the password is valid
+    if (!validatePassword(data.password)) {
+      setPasswordError("Password must be at least 8 characters long, include at least one digit and one special character.");
+      return;
+    }
+
     const dataResponse = await fetch(summaryApi.SignUP.url, {
       method: summaryApi.SignUP.method,
       headers: {
-        "content-type": "application/json"
+        "content-type": "application/json",
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     });
 
     const dataApi = await dataResponse.json();
@@ -101,6 +121,11 @@ const SignUp = () => {
               </span>
             </div>
           </div>
+
+          {/* Display the password validation message */}
+          {passwordError && (
+            <p className={styles.errorText}>{passwordError}</p>
+          )}
 
           <div className={styles.inputBox}>
             <input type="submit" value="SignUp" />

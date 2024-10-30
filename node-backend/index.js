@@ -4,9 +4,8 @@ const cookieParser=require('cookie-parser')
 require('dotenv').config();
 const connectDB=require('./config/db');
 const router=require('./routes');
-const webhookController = require('./controller/order/webHook');
+const webhookController = require('./controller/order/webHook'); 
 const authToken = require('./middleware/authToken');
-const authMiddleware = require('./middleware/authMiddleWare');
 
 const app=express()
 app.use(express.json({
@@ -28,8 +27,6 @@ app.get("/", (req, res) => {
 });
 
 app.post('/webhook', webhookController);
-
-
 
 
 

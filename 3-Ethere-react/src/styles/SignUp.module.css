@@ -100,6 +100,10 @@
   color: rgb(43, 150, 243);
 }
 
+.errorText{
+  color: red;
+}
+
 @media (max-width: 768px) {
   .signinContainer {
     width: 100%;
