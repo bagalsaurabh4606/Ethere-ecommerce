@@ -12,6 +12,7 @@ import Context from "../context";
 import { userActions } from "../store/userSlice";
 import { bagActions } from "../store/bagSlice";
 import { wishlistActions } from "../store/wishlistSlice";
+import Home from "./Home";
 
 function App() {
   const fetchStatus = useSelector((store) => store.fetchStatus);
@@ -96,6 +97,7 @@ function App() {
       >
         <ToastContainer />
         <Header />
+        
         <FetchItems />
         {fetchStatus.currentFetching ? <LoadingSpinner /> : <Outlet />}
         <Footer />

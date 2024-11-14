@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import summaryApi from "../comman";
 import styles from "../styles/BagSummary.module.css"; // Updated import statement for CSS Module
+import { toast } from "react-toastify";
 
 const CONVENIENCE_FEES = 99;
 
@@ -34,6 +35,7 @@ const BagSummary = ({ FinalItems }) => {
     });
 
     const responseData = await response.json();
+    if(responseData.error){toast.error(responseData.message);}
     if (responseData?.orderId) {
       const razorpayOptions = {
         key: razor_key,

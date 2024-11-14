@@ -10,7 +10,6 @@ const deleteBagProductController = async (req, res) => {
     const product = await addtoBagModel.findOneAndDelete({
       id: id,
       userId: currentuser
-
     }); 
     if (product) {
       res.status(200).json({

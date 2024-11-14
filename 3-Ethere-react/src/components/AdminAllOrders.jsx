@@ -31,7 +31,7 @@ const AdminAllOrders = () => {
   // Function to handle checkbox change
   const handleCheckboxChange = async (orderId, isChecked) => {
     // Optimistically update local state
-    const updatedOrders = orders.map((order) =>
+    const updatedOrders = orders.map((order) =>  
       order._id === orderId ? { ...order, orderPacked: isChecked } : order
     );
     setOrders(updatedOrders); // Update local state for instant feedback

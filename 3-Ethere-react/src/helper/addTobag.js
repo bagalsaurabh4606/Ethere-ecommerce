@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import summaryApi from "../comman";
 
 const addTobag = async (e, item, dispatch) => {
@@ -22,6 +23,15 @@ const addTobag = async (e, item, dispatch) => {
       quantity: item.quantity,
     }),
   });
+
+
+  const dataApi = await response.json();
+  
+  if(dataApi.error)
+  {
+    toast.error(dataApi.message);
+  }
+
 };
 
 export default addTobag;

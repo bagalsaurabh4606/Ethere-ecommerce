@@ -6,7 +6,7 @@ const Footer = () => {
     <footer>
       <hr />
       <div className={styles.copyright}>
-        © 2024 www.etherebyshreyas.in. All rights reserved.
+        © 2024 www.ethere.in. All rights reserved.
       </div>
     </footer>
   );

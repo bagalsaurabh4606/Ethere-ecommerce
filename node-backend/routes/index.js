@@ -33,52 +33,50 @@ const resetPasswordController = require('../controller/resetPasswordController')
 const authMiddleware = require('../middleware/authMiddleWare')
 const deleteAdminProductController = require('../controller/deleteAdminProductController')
 
+
+//Signup and login 
 router.post("/signup",userSignUpController)
 router.post("/login",userLoginINController)
 router.get("/user-details",authToken,userDetailsController)
 router.get("/user-logout",userLogout)
 
-//admin-panel
-// router.get("/admin-panel",authToken,authMiddleware)
+//admin-panel users
+
 router.get("/all-users",authToken,authMiddleware,allUsers)
 router.post("/update-user",authToken,authMiddleware,updateUser)
-//product
+
+//admin-panel product
 router.post("/upload-prouct",authToken,authMiddleware,uploadPoductController)
-router.delete("/delete-adminproduct",deleteAdminProductController)
-router.get("/get-product",getproductController)
-
-
+router.delete("/delete-adminproduct",authToken,authMiddleware,deleteAdminProductController)
 router.post("/update-product",authToken,authMiddleware,upadateProductController)
 
 
+//Products
+router.get("/get-product",getproductController)
 router.get("/get-catagory",getCatagoryProductController)
-
 router.get("/search",searchProductController)
-// router.post("/category-product",getCategoryWiseOneProduct)
 
-//useradd to cart
 
+//Wishlist 
 router.post("/addTocart",authToken,addToCartController)
 router.get("/fetchCart-product",authToken,getCartProductController)
 router.delete("/deletecartproduct",authToken,deleteCartProductController)
 
-//useradd to bag
+//Bag
 router.post("/addToBag",authToken,addToBagController)
 router.get("/getBagproduct",authToken,getBagProductController)
 router.delete("/deletebagProduct",authToken,deleteBagProductController)
 router.post("/bag-quantity",authToken,quantityController)
 
 //payment and order
-
 router.post("/checkout",authToken,paymentController)
+
+//Order
 router.get("/order-details",authToken,fetchOrderController)
 router.get("/all-orders",authToken,authMiddleware,adminAllOrdersController)
-//webhook 
-
 router.post("/order-status/:orderId",authToken,orderStatusController)
 
 //forgot password
-
 router.post("/forgot-password",forgotPasswordController)
 router.post("/otp-verification",otpVerificationController)
 router.post("/reset-password",resetPasswordController)
