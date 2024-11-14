@@ -47,7 +47,7 @@ router.post("/update-user",authToken,authMiddleware,updateUser)
 
 //admin-panel product
 router.post("/upload-prouct",authToken,authMiddleware,uploadPoductController)
-router.delete("/delete-adminproduct",deleteAdminProductController)
+router.delete("/delete-adminproduct",authMiddleware,deleteAdminProductController)
 router.get("/get-product",getproductController)
 
 
@@ -83,4 +83,7 @@ router.post("/order-status/:orderId",authToken,orderStatusController)
 router.post("/forgot-password",forgotPasswordController)
 router.post("/otp-verification",otpVerificationController)
 router.post("/reset-password",resetPasswordController)
+
+
+
 module.exports=router
