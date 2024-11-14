@@ -47,7 +47,10 @@ router.post("/update-user",authToken,authMiddleware,updateUser)
 
 //admin-panel product
 router.post("/upload-prouct",authToken,authMiddleware,uploadPoductController)
-router.delete("/delete-adminproduct",authToken,authMiddleware,deleteAdminProductController)
+router.delete("/delete-adminproduct",deleteAdminProductController)
+router.get("/get-product",getproductController)
+
+
 router.post("/update-product",authToken,authMiddleware,upadateProductController)
 
 

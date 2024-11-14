@@ -4,8 +4,8 @@ const cookieParser=require('cookie-parser')
 require('dotenv').config();
 const connectDB=require('./config/db');
 const router=require('./routes');
-const webhookController = require('./controller/order/webHook');
-
+const webhookController = require('./controller/order/webHook'); 
+const authToken = require('./middleware/authToken');
 
 const app=express()
 
@@ -27,11 +27,6 @@ app.use("/api",router)
 app.post('/webhook', webhookController);
 
 
-
-app.get("/",(req,res)=>
-{
-  res.send("Welcome to Backend");
-})
 
 const PORT= 2024 || process.env.PORT 
 connectDB().then(()=>{
