@@ -44,7 +44,7 @@ router.get("/all-users",authToken,authMiddleware,allUsers)
 router.post("/update-user",authToken,authMiddleware,updateUser)
 //product
 router.post("/upload-prouct",authToken,authMiddleware,uploadPoductController)
-router.delete("/delete-adminproduct",deleteAdminProductController)
+router.delete("/delete-adminproduct",authToken,authMiddleware,deleteAdminProductController)
 router.get("/get-product",getproductController)
 
 
