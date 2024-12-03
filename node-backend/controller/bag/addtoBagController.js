@@ -7,7 +7,6 @@ const addToBagController= async(req,res)=>{
     const {id, image , category,name,description,originalPrice,discountPercentage}=req?.body
 
     const curruentUser=req.userId
-console.log("madarchod",id)
     const isproductavailable= await addtoBagModel.findOne({id:id, userId: curruentUser})
 
     if(isproductavailable){
