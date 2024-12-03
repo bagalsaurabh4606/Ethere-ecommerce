@@ -1,89 +1,94 @@
-const express = require('express')
-const router=express.Router()
+const express = require("express");
+const router = express.Router();
 
-const userSignUpController=require("../controller/userSignUp")
-const userLoginINController=require("../controller/userLogin")
-const authToken = require('../middleware/authToken')
-const userDetailsController = require('../controller/userDetails')
-const userLogout = require('../controller/userLogout')
-const allUsers = require('../controller/allUsers')
-const updateUser = require('../controller/updateUser')
-const uploadPoductController = require('../controller/uploadProduct')
-const getproductController = require('../controller/getProduct')
-const upadateProductController = require('../controller/updateProduct')
-const getCatagoryProductController = require('../controller/getCatagoryProduct')
-const getCategoryWiseOneProduct = require('../controller/getCategoryWiseOneProduct')
-const addToCartController = require('../controller/addtoCartController')
-const addToBagController = require('../controller/addtoBagController')
-const getBagProductController = require('../controller/getBagproductController')
-const getCartProductController = require('../controller/getCartProductController')
-const deleteBagProductController = require('../controller/deleteBagproductController')
-const deleteCartProductController = require('../controller/deleteCartproductController')
-const searchProductController = require('../controller/searchProductController')
-const quantityController = require('../controller/quantityController')
-const authorizeAdminController = require('../controller/authorizeAdminController')
-const paymentController = require('../controller/order/paymentController')
-const webhookController = require('../controller/order/webHook')
-const fetchOrderController = require('../controller/order/fetchOrderController')
-const adminAllOrdersController = require('../controller/order/adminAllOrdersController')
-const orderStatusController = require('../controller/order/OrderStatusController')
-const forgotPasswordController = require('../controller/forgotPasswordController')
-const otpVerificationController = require('../controller/otpVerificationController')
-const resetPasswordController = require('../controller/resetPasswordController')
-const authMiddleware = require('../middleware/authMiddleWare')
-const deleteAdminProductController = require('../controller/deleteAdminProductController')
+const userSignUpController = require("../controller/user/userSignUp");
+const userLoginINController = require("../controller/user/userLogin");
+const authToken = require("../middleware/authToken");
+const userDetailsController = require("../controller/user/userDetails");
+const userLogout = require("../controller/user/userLogout");
+const allUsers = require("../controller/user/allUsers");
+const updateUser = require("../controller/user/updateUser");
+const uploadPoductController = require("../controller/product/uploadProduct");
+const getproductController = require("../controller/product/getProduct");
+const upadateProductController = require("../controller/product/updateProduct");
+const getCatagoryProductController = require("../controller/product/getCatagoryProduct");
+const addtoWishListController = require("../controller/wishlist/addtoWishListController");
+const getBagProductController = require("../controller/bag/getBagproductController");
+const deleteBagProductController = require("../controller/bag/deleteBagproductController");
+const searchProductController = require("../controller/product/searchProductController");
+const quantityController = require("../controller/bag/quantityController");
+const paymentController = require("../controller/order/paymentController");
+const fetchOrderController = require("../controller/order/fetchOrderController");
+const adminAllOrdersController = require("../controller/order/adminAllOrdersController");
+const orderStatusController = require("../controller/order/OrderStatusController");
+const forgotPasswordController = require("../controller/user/forgotPasswordController");
+const otpVerificationController = require("../controller/user/otpVerificationController");
+const resetPasswordController = require("../controller/user/resetPasswordController");
+const authMiddleware = require("../middleware/authMiddleWare");
+const deleteAdminProductController = require("../controller/admin/deleteAdminProductController");
+const addToBagController = require("../controller/bag/addtoBagController");
+const deleteWishListProductController = require("../controller/wishlist/deleteWishListProductController");
+const getWishListProductController = require("../controller/wishlist/getWishListProductController");
 
-
-//Signup and login 
-router.post("/signup",userSignUpController)
-router.post("/login",userLoginINController)
-router.get("/user-details",authToken,userDetailsController)
-router.get("/user-logout",userLogout)
+//Signup and login
+router.post("/signup", userSignUpController);
+router.post("/login", userLoginINController);
+router.get("/user-details", authToken, userDetailsController);
+router.get("/user-logout", userLogout);
 
 //admin-panel users
 
-router.get("/all-users",authToken,authMiddleware,allUsers)
-router.post("/update-user",authToken,authMiddleware,updateUser)
+router.get("/all-users", authToken, authMiddleware, allUsers);
+router.post("/update-user", authToken, authMiddleware, updateUser);
 
 //admin-panel product
-router.post("/upload-prouct",authToken,authMiddleware,uploadPoductController)
-router.delete("/delete-adminproduct",authMiddleware,deleteAdminProductController)
-router.get("/get-product",getproductController)
+router.post(
+  "/upload-prouct",
+  authToken,
+  authMiddleware,
+  uploadPoductController
+);
+router.delete(
+  "/delete-adminproduct",
+  authMiddleware,
+  deleteAdminProductController
+);
+router.get("/get-product", getproductController);
 
-
-router.post("/update-product",authToken,authMiddleware,upadateProductController)
-
+router.post(
+  "/update-product",
+  authToken,
+  authMiddleware,
+  upadateProductController
+);
 
 //Products
-router.get("/get-product",getproductController)
-router.get("/get-catagory",getCatagoryProductController)
-router.get("/search",searchProductController)
+router.get("/get-product", getproductController);
+router.get("/get-catagory", getCatagoryProductController);
+router.get("/search", searchProductController);
 
-
-//Wishlist 
-router.post("/addTocart",authToken,addToCartController)
-router.get("/fetchCart-product",authToken,getCartProductController)
-router.delete("/deletecartproduct",authToken,deleteCartProductController)
+//Wishlist
+router.post("/addTocart", authToken, addtoWishListController);
+router.get("/fetchCart-product", authToken, getWishListProductController);
+router.delete("/deletecartproduct", authToken, deleteWishListProductController);
 
 //Bag
-router.post("/addToBag",authToken,addToBagController)
-router.get("/getBagproduct",authToken,getBagProductController)
-router.delete("/deletebagProduct",authToken,deleteBagProductController)
-router.post("/bag-quantity",authToken,quantityController)
+router.post("/addToBag", authToken, addToBagController);
+router.get("/getBagproduct", authToken, getBagProductController);
+router.delete("/deletebagProduct", authToken, deleteBagProductController);
+router.post("/bag-quantity", authToken, quantityController);
 
 //payment and order
-router.post("/checkout",authToken,paymentController)
+router.post("/checkout", authToken, paymentController);
 
 //Order
-router.get("/order-details",authToken,fetchOrderController)
-router.get("/all-orders",authToken,authMiddleware,adminAllOrdersController)
-router.post("/order-status/:orderId",authToken,orderStatusController)
+router.get("/order-details", authToken, fetchOrderController);
+router.get("/all-orders", authToken, authMiddleware, adminAllOrdersController);
+router.post("/order-status/:orderId", authToken, orderStatusController);
 
 //forgot password
-router.post("/forgot-password",forgotPasswordController)
-router.post("/otp-verification",otpVerificationController)
-router.post("/reset-password",resetPasswordController)
+router.post("/forgot-password", forgotPasswordController);
+router.post("/otp-verification", otpVerificationController);
+router.post("/reset-password", resetPasswordController);
 
-
-
-module.exports=router
+module.exports = router;

@@ -18,9 +18,9 @@ const AdminAllOrders = () => {
       const dataResponse = await response.json();
       console.log("Data response in admin all orders", dataResponse);
       setOrders(dataResponse.data); // Set orders from database
-      if(dataResponse.success){
-        toast.success(dataResponse.message)
-      }
+      // if(dataResponse.success){
+      //   toast.success(dataResponse.message)
+      // }
     } catch (error) {
       console.error("Error fetching orders:", error);
     } finally {
