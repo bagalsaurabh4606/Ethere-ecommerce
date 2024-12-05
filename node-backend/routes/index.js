@@ -29,6 +29,9 @@ const deleteAdminProductController = require("../controller/admin/deleteAdminPro
 const addToBagController = require("../controller/bag/addtoBagController");
 const deleteWishListProductController = require("../controller/wishlist/deleteWishListProductController");
 const getWishListProductController = require("../controller/wishlist/getWishListProductController");
+const updateProfielController = require("../controller/user/updateProfielController");
+const deleteAddressController = require("../controller/user/deleteAddressController");
+const editAddressController = require("../controller/user/editAddressController");
 
 //Signup and login
 router.post("/signup", userSignUpController);
@@ -90,5 +93,12 @@ router.post("/order-status/:orderId", authToken, orderStatusController);
 router.post("/forgot-password", forgotPasswordController);
 router.post("/otp-verification", otpVerificationController);
 router.post("/reset-password", resetPasswordController);
+
+//Profile 
+router.put("/save-address",authToken,updateProfielController);
+router.delete("/delete-address",authToken,deleteAddressController);
+router.post("/edit-address",authToken,editAddressController);
+
+
 
 module.exports = router;

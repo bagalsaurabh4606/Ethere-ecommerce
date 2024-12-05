@@ -4,7 +4,7 @@ const fetchOrderController=async(req,res)=>{
   try{
     const userId=req.userId;
     const order=await orderModel.find({userId:userId});
-    console.log("orderrrrrrr",order)
+   
 res.status(200).json({
   data:order,
   error: false,
@@ -14,7 +14,7 @@ res.status(200).json({
 })
     console.log("orderrrr",order)
   } catch (err) {
-    response.status(400).json({
+    res.status(400).json({
       message: err.message || err,
       error: true,
       success: false,

@@ -17,7 +17,7 @@ const EditAdminProduct = ({ onClose, data, fetchData }) => {
     originalPrice: data?.originalPrice,
     discountPercentage: data?.discountPercentage,
     image: data?.image || [],
-    quantity: "",
+    quantity:data?.quantity,
   });
 
   const [uploadImageInput, setUploadImageInput] = useState(" ");
@@ -178,7 +178,7 @@ const EditAdminProduct = ({ onClose, data, fetchData }) => {
         </div>
 
         <div className={styles.formGroup}>
-          <label htmlFor="image">Image URL:</label>
+          <label htmlFor="image">Image:</label>
           <label htmlFor="image">
             <div className={styles.uploadImage}>
               <div className={styles.imageBox}>

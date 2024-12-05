@@ -116,6 +116,24 @@ const summaryApi = {
     method:`post`
   },
   
+  UpdateProfile:
+  {
+    url:`${backendDomain}/api/save-address`,
+    method:`put`
+  },
+ 
+  DeleteAddress:
+  {
+    url:`${backendDomain}/api/delete-address`,
+    method:`delete`
+  },
+
+  EditAddress:
+  {
+    url:`${backendDomain}/api/edit-address`,
+    method:`post`
+  },
+  
   
   
 

@@ -97,7 +97,7 @@ function App() {
       >
         <ToastContainer />
         <Header />
-        
+             
         <FetchItems />
         {fetchStatus.currentFetching ? <LoadingSpinner /> : <Outlet />}
         <Footer />

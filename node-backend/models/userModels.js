@@ -11,6 +11,14 @@ const userSchema=new mongoose.Schema({
   },
   password:String,
   role:String,
+  addresses: [
+    {
+      _id: { type: mongoose.Schema.Types.ObjectId, default: () => new mongoose.Types.ObjectId() },
+      title: String,
+      address:String,
+    },
+  ],
+  phoneNumber:Number,
   otp: String, // OTP is stored as a string
   otpExpires:Date,
 },
