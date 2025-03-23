@@ -2,6 +2,13 @@
 
 Ethere is a modern e-commerce platform focusing on jewelry and fashion products. The platform provides secure role-based access control (RBAC) with authentication and authorization for admin and user roles.
 
+# Developers
+
+- **Shreyas Patil** - [shreyaspatil3007@gmail.com](mailto:shreyaspatil3007@gmail.com)
+- **Saurabh Bagal** - [saurabhbagal1234@gmail.com](mailto:saurabhbagal1234@gmail.com)
+
+
+
 
 ## Tech Stack
 
@@ -116,11 +123,6 @@ The frontend will run on [http://localhost:5173](http://localhost:5173).
     - Email: `user@example.com`
     - Password: `user@123`
 
-# Developers
 
-- **Shreyas Patil** - [shreyaspatil3007@gmail.com](mailto:shreyaspatil3007@gmail.com)
-- **Saurabh Bagal** - [saurabhbagal1234@gmail.com](mailto:saurabhbagal1234@gmail.com)
-
----
 
 Feel free to let us know if there are any improvements or suggestions!
