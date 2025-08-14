@@ -14,7 +14,7 @@ const AdminAllProduct = ({ product, fetchData }) => {
   return (
     <div className={styles.productsContainer}>
       <div key={product.id} className={styles.productCard}>
-        <img src={product.image} alt={product.name} className={styles.productImage} />
+        <img src={product.image[0]} alt={product.name} className={styles.productImage} />
         <div className={styles.productInfo}>
           <h3>{product.name}</h3>
           <p><b>Quantity:</b> {product.quantity}</p>

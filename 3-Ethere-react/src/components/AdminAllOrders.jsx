@@ -140,7 +140,7 @@ const AdminAllOrders = () => {
                     {order.products.map((product, index) => (
                       <div key={index} className={styles.productCard}>
                         <img
-                          src={product.image}
+                          src={product.image[0]}
                           alt={product.name}
                           className={styles.productImage}
                         />

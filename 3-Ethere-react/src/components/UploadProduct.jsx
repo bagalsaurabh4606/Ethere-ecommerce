@@ -53,16 +53,33 @@ const UploadProduct = ({ onClose, fetchuploadProduct }) => {
     }
   };
 
-  const handleUploadImage = async (e) => {
-    const file = e.target.files[0];
-    setuploadImageInput(file.name);
+  // const handleUploadImage = async (e) => {
+  //   const file = e.target.files[0];
+  //   setuploadImageInput(file.name);
 
-    const uploadImageCloudinary = await uploadImage(file);
+  //   const uploadImageCloudinary = await uploadImage(file);
+  //   setProduct((prev) => ({
+  //     ...prev,
+  //     image: [...prev.image, uploadImageCloudinary.url],
+  //   }));
+  // };
+  const handleUploadImage = async (e) => {
+    const files = Array.from(e.target.files); // Convert FileList to an array
+    setuploadImageInput(files.map(file => file.name).join(", ")); // Display all file names
+  
+    const uploadedImages = [];
+    for (let file of files) {
+      const uploadImageCloudinary = await uploadImage(file); // Upload each file
+      uploadedImages.push(uploadImageCloudinary.url); // Collect URLs
+    }
+  
+    // Update product images array with new uploads
     setProduct((prev) => ({
       ...prev,
-      image: [...prev.image, uploadImageCloudinary.url],
+      image: [...prev.image, ...uploadedImages],
     }));
   };
+  
 
   const handleDeleteImage = (index) => {
     const newProductImage = [...product.image];

@@ -9,6 +9,7 @@
 }
 
 .horizontalImageContainer {
+  cursor: pointer;
   width: 50%;
   height: 190px;
 }

@@ -24,6 +24,7 @@ import OrderDetails from "./pages/OrderDetails.jsx";
 import AdminAllOrders from "./components/AdminAllOrders.jsx";
 import OtpVerification from "./pages/OtpVerification.jsx";
 import ResetPassword from "./pages/ResetPassword.jsx";
+import ProductDetailsPage from "./components/ProductsDetailsOverlay.jsx";
 
 const router = createBrowserRouter([
   {
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
         path: "order-details/:orderId",
         element: <OrderDetails></OrderDetails>,
       },
+      {
+        path:"product_hower/:productId",
+        element:<ProductDetailsPage></ProductDetailsPage>
+      }
     ],
   },
 ]);
@@ -77,3 +82,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     </Provider>
   </React.StrictMode>
 );
+
+
+
+

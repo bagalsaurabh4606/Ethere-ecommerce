@@ -5,6 +5,7 @@ const getproductController=async(req, res)=>{
   try{
     const getProduct =await productModel.find().sort({createdAt:-1})
 
+    console.log("all product",getProduct)
     res.json({
       message:"All Product",
       error:false,

@@ -24,6 +24,7 @@ const FetchItems = () => {
     )
 
     const dataApi = await dataResponse.json();
+    console.log("data api in fetchItems",dataApi)
     if(dataApi.success)
     {
         dispatch(fetchActions.markFetchingDone());

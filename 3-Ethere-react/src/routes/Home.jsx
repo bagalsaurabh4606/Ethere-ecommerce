@@ -6,6 +6,7 @@ import summaryApi from "../comman";
 import { categoryAction } from "../store/categorySlice";
 import HorizontalCardHome from "../pages/HorizontalCardHome";
 
+
 const Home = ({ fetchbagproduct }) => {
   const dispatch = useDispatch();
   const fetchCategoryProduct = async () => {
@@ -15,7 +16,6 @@ const Home = ({ fetchbagproduct }) => {
       },
     });
     const dataResponse = await response.json();
-
     if (dataResponse.success) {
       dispatch(categoryAction.addInitialItems(dataResponse?.data));
     }

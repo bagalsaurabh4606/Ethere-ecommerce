@@ -1,0 +1,247 @@
+/* General container styling */
+.container {
+  padding: 20px;
+  max-width: 90%;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Back button styling */
+.backButton {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #007bff;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: color 0.3s ease;
+}
+
+.backButton:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* Flex container for content */
+.content {
+  display: flex;
+  flex-direction: row;
+  gap: 70px;
+  align-items: flex-start;
+}
+
+/* Product image styling with adjusted height */
+.productImage {
+  flex: 3; /* 75% width */
+  max-width: 600px;
+  height: auto; /* Ensures aspect ratio is maintained */
+  max-height: 500px; /* Adjust the maximum height */
+  object-fit: fit; /* Ensures the image fits within the container */
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.productImage:hover {
+  transform: scale(1.05);
+}
+
+/* Details section styling */
+.details {
+  flex: 1; /* 25% width */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Product name */
+.productName {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Description text */
+.description {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Price container */
+.priceContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+.currentPrice {
+  /* color: #28a745; */
+  font-weight: bold;
+}
+
+.originalPrice {
+  color: #e63946;
+  text-decoration: line-through;
+}
+
+.discount {
+  color:#999;
+  font-weight: bold;
+}
+
+/* Action buttons container */
+.actionButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+.buttonsContainer{
+  display: flex;
+    gap: 5px;
+}
+
+.addToBagButton {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 50%;
+  height: 50%;
+  margin-top: 2%;
+}
+
+.addToBagButton:hover {
+  transform: translateY(-2px);
+
+}
+
+.addToWishlistButton {
+  height: 42px;
+  width: 50%;
+  border: 1px solid black;
+  padding: 5px 15px;
+  border-radius: 10px;
+  margin: 15px;
+}
+
+.addToWishlistButton:hover {
+  background-color: beige;
+  transform: translateY(-2px);
+}
+.towButtonsContainerr {
+  margin-top: 16px;
+  font-size: 18px;
+  width: 50%;
+
+}
+.buyNowButton:hover{
+  background-color: beige;
+  transform: translateY(-2px);
+  
+}
+.buyNowButton {
+  width: 100%;
+  border: 1px solid black;
+  padding: 5px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  /* background-color: #ff3f6c; */
+}
+
+.buttonsContainer{
+  display: flex;
+  justify-content: space-between;
+}
+
+.removeButton {
+  text-decoration: none;
+  border: 1px solid black;
+  padding: 5px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: white;
+  width: 20%;
+}
+.bagLink{
+  width: 75%;
+}
+.imageContainer {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.arrowButton {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.arrowButton:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.arrowButton:first-of-type {
+  left: 10px;
+}
+
+.arrowButton:last-of-type {
+  right: 10px;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .productImage {
+    flex: none;
+    max-width: 100%;
+  }
+
+  .details {
+    flex: none;
+  }
+
+  .priceContainer {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .actionButtons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}

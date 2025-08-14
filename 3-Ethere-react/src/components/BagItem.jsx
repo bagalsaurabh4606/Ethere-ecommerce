@@ -64,7 +64,7 @@ const BagItem = ({ item, fetchbagproduct }) => {
   return (
     <div className={styles.bagItemContainer}>
       <div className={styles.itemLeftPart}>
-        <img className={styles.bagItemImg} src={item.image} alt={item.name} />
+        <img className={styles.bagItemImg} src={item.image[0]} alt={item.name} />
       </div>
       <div className={styles.itemRightPart}>
       <div className={styles.itemName}>{item.name}</div>

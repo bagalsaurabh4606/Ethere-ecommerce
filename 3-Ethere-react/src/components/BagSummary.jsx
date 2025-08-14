@@ -22,8 +22,8 @@ const BagSummary = ({ FinalItems }) => {
     };
   }, []);
 
-  const razor_key = import.meta.env.REACT_APP_RAZORPAY_KEY; // Replace with your actual Razorpay key
-
+  //const razor_key = import.meta.env.REACT_APP_RAZORPAY_KEY; // Replace with your actual Razorpay key
+  const razor_key="rzp_test_UGFv4hwUbaNa0c";
   const handlePayment = async () => {
     const response = await fetch(summaryApi.payment.url, {
       method: summaryApi.payment.method,
@@ -36,6 +36,7 @@ const BagSummary = ({ FinalItems }) => {
 
     const responseData = await response.json();
     if(responseData.error){toast.error(responseData.message);}
+    
     if (responseData?.orderId) {
       const razorpayOptions = {
         key: razor_key,

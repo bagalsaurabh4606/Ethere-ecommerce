@@ -3,7 +3,7 @@ import { RiDeleteBin4Fill } from "react-icons/ri";
 import { IoBag } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { bagActions } from "../store/bagSlice";
 import { wishlistActions } from "../store/wishlistSlice";
 import addTocart from "../helper/addTocart";
@@ -13,7 +13,9 @@ import deleteCartProduct from "../helper/deleteCartProduct";
 import styles from "../styles/HomeItems.module.css";
 
 const HomeItems = ({ item }) => {
+  console.log("image check",item)
   const dispatch = useDispatch();
+  const navigate=useNavigate();
   const currentUser = useSelector((store) => store.user.data);
   const isUserLoggedIn = currentUser && Object.keys(currentUser).length > 0;
 
@@ -59,13 +61,24 @@ const HomeItems = ({ item }) => {
     deleteCartProduct(e, item, dispatch);
     setisInWishlist(false);
   };
+  const handleProductPageOpen = () => {
+
+  let productId=item.id;
+   navigate(`/product_hower/${productId}`)
+ };
+
 
   const curr_price =
     item.originalPrice - (item.originalPrice / 100) * item.discountPercentage;
 
   return (
     <div className={styles.itemContainer}>
-      <img className={styles.itemImage} src={item.image} alt="item image" />
+      <img
+      className={styles.itemImage}
+      src={item.image[0]}
+      alt="item"
+      onClick={handleProductPageOpen}
+/>
       <div className={styles.ratingContainer}>
         <div className={styles.rating}>
           {/* Rating can be displayed here */}
@@ -113,3 +126,6 @@ const HomeItems = ({ item }) => {
 };
 
 export default HomeItems;
+
+
+

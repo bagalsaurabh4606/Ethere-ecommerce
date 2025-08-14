@@ -3,7 +3,7 @@ import { bagActions } from "../store/bagSlice";
 import { IoBag } from "react-icons/io5";
 import { wishlistActions } from "../store/wishlistSlice";
 import { FcLike, FcLikePlaceholder } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RiDeleteBin4Fill } from "react-icons/ri";
 import { useEffect, useState } from "react";
 import addTocart from "../helper/addTocart";
@@ -14,6 +14,7 @@ import styles from "../styles/HorizontalCardItems.module.css";
 
 const HorizontalCardItems = ({ item }) => {
   const dispatch = useDispatch();
+  const navigate=useNavigate();
   const currentUser = useSelector((store) => store.user.data);
   const isUserLoggedIn = currentUser && Object.keys(currentUser).length > 0;
   const wishlistitem = useSelector((state) => state.wishlist.wishProducts);
@@ -53,6 +54,11 @@ const HorizontalCardItems = ({ item }) => {
     deleteCartProduct(e, item, dispatch);
     setisInWishlist(false);
   };
+  const handleProductPageOpen=(e)=>{
+    console.log("clickedddddddddd")
+    let productId=item.id;
+    navigate(`/product_hower/${productId}`)
+  }
   
   const curr_price = item.originalPrice - (item.originalPrice / 100) * item.discountPercentage;
 
@@ -61,8 +67,9 @@ const HorizontalCardItems = ({ item }) => {
       <div className={styles.horizontalImageContainer}>
         <img
           className={styles.horizontalItemImage}
-          src={item.image}
+          src={item.image[0]}
           alt="item image"
+          onClick={handleProductPageOpen}
         />
       </div>
       <div className={styles.horizontalDetailsContainer}>
@@ -83,7 +90,7 @@ const HorizontalCardItems = ({ item }) => {
           <div className={styles.horizontalRating}>4.5 | 1400</div>
           <div className="horizontal-wishlist-buttons">
             {isInWishlist ? (
-              <div className="horizontal-like" onClick={handleRemoveFromWishlist}>
+              <div className={styles.horizontalLike} onClick={handleRemoveFromWishlist}>
                 <FcLike />
               </div>
             ) : (
